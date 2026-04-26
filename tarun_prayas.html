@@ -1,0 +1,1305 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>তরুণ প্রয়াস মানব কল্যাণ সংস্থা</title>
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Noto+Serif+Bengali:wght@400;600;700;900&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --green-dark: #1a5c2e;
+      --green-mid: #2e8b47;
+      --green-light: #4caf67;
+      --green-pale: #d6f0dc;
+      --gold: #f5a623;
+      --gold-light: #ffd166;
+      --white: #ffffff;
+      --off-white: #f8fdf9;
+      --text-dark: #0e2a18;
+      --text-mid: #2d5a3d;
+      --shadow: rgba(26,92,46,0.15);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Hind Siliguri', sans-serif;
+      background: var(--off-white);
+      color: var(--text-dark);
+      overflow-x: hidden;
+    }
+
+    /* ===== NAVBAR ===== */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: rgba(26,92,46,0.97);
+      backdrop-filter: blur(12px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.7rem 4rem;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      text-decoration: none;
+    }
+
+    .nav-logo-icon {
+      width: 48px; height: 48px;
+      background: var(--white);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      box-shadow: 0 0 0 3px var(--gold);
+    }
+
+    .nav-logo-text {
+      color: var(--white);
+      font-family: 'Noto Serif Bengali', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .nav-logo-text span {
+      display: block;
+      font-size: 0.7rem;
+      font-weight: 400;
+      color: var(--gold-light);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: rgba(255,255,255,0.85);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: color 0.2s;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0;
+      width: 0; height: 2px;
+      background: var(--gold);
+      transition: width 0.3s;
+    }
+
+    .nav-links a:hover { color: var(--gold-light); }
+    .nav-links a:hover::after { width: 100%; }
+
+    .nav-donate-btn {
+      background: var(--gold);
+      color: var(--green-dark) !important;
+      padding: 0.5rem 1.2rem;
+      border-radius: 50px;
+      font-weight: 700 !important;
+      transition: background 0.2s, transform 0.2s !important;
+    }
+
+    .nav-donate-btn:hover {
+      background: var(--gold-light) !important;
+      transform: translateY(-2px);
+    }
+
+    .nav-donate-btn::after { display: none; }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 26px; height: 3px;
+      background: var(--white);
+      border-radius: 2px;
+      transition: 0.3s;
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      min-height: 100vh;
+      background:
+        linear-gradient(135deg, rgba(26,92,46,0.92) 0%, rgba(46,139,71,0.75) 60%, rgba(76,175,103,0.6) 100%),
+        url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1600&q=80') center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 8rem 2rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      bottom: -2px; left: 0; right: 0;
+      height: 40px;
+      background: var(--off-white);
+      clip-path: ellipse(60% 100% at 50% 100%);
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(245,166,35,0.2);
+      border: 1px solid var(--gold);
+      color: var(--gold-light);
+      padding: 0.35rem 1.2rem;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      margin-bottom: 1.5rem;
+      animation: fadeDown 0.8s ease both;
+    }
+
+    .hero h1 {
+      font-family: 'Noto Serif Bengali', serif;
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1.2;
+      margin-bottom: 0.5rem;
+      animation: fadeDown 0.9s 0.1s ease both;
+    }
+
+    .hero h1 span {
+      color: var(--gold-light);
+      display: block;
+    }
+
+    .hero-tagline {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.85);
+      margin: 1.2rem auto 2rem;
+      max-width: 600px;
+      line-height: 1.7;
+      animation: fadeDown 1s 0.2s ease both;
+    }
+
+    .hero-tagline em {
+      color: var(--gold-light);
+      font-style: normal;
+      font-weight: 600;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: fadeDown 1s 0.3s ease both;
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: var(--green-dark);
+      padding: 0.8rem 2rem;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: none;
+      font-family: 'Hind Siliguri', sans-serif;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 20px rgba(245,166,35,0.4);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(245,166,35,0.5);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--white);
+      padding: 0.8rem 2rem;
+      border-radius: 50px;
+      border: 2px solid rgba(255,255,255,0.6);
+      font-weight: 600;
+      font-size: 1rem;
+      text-decoration: none;
+      font-family: 'Hind Siliguri', sans-serif;
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .btn-outline:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: var(--white);
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 3rem;
+      justify-content: center;
+      margin-top: 3rem;
+      animation: fadeUp 1s 0.5s ease both;
+    }
+
+    .stat {
+      color: var(--white);
+      text-align: center;
+    }
+
+    .stat-num {
+      font-family: 'Noto Serif Bengali', serif;
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--gold-light);
+    }
+
+    .stat-label {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.7);
+      margin-top: 0.2rem;
+    }
+
+    /* ===== SECTION SHARED ===== */
+    section { padding: 5rem 2rem; }
+
+    .container { max-width: 1100px; margin: 0 auto; }
+
+    .section-label {
+      display: inline-block;
+      background: var(--green-pale);
+      color: var(--green-dark);
+      padding: 0.3rem 1rem;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.8rem;
+      text-transform: uppercase;
+    }
+
+    .section-title {
+      font-family: 'Noto Serif Bengali', serif;
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-weight: 800;
+      color: var(--green-dark);
+      line-height: 1.25;
+      margin-bottom: 1rem;
+    }
+
+    .section-title span { color: var(--green-mid); }
+
+    .section-desc {
+      color: var(--text-mid);
+      font-size: 1rem;
+      line-height: 1.8;
+      max-width: 600px;
+    }
+
+    /* ===== ABOUT ===== */
+    .about { background: var(--off-white); }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      margin-top: 3rem;
+    }
+
+    .about-img-wrap {
+      position: relative;
+    }
+
+    .about-img-main {
+      width: 100%;
+      border-radius: 20px;
+      object-fit: cover;
+      height: 420px;
+      box-shadow: 0 20px 60px var(--shadow);
+    }
+
+    .about-img-badge {
+      position: absolute;
+      bottom: -20px; right: -20px;
+      background: var(--green-dark);
+      color: var(--white);
+      border-radius: 16px;
+      padding: 1rem 1.5rem;
+      text-align: center;
+      box-shadow: 0 8px 30px var(--shadow);
+    }
+
+    .about-img-badge .num {
+      font-family: 'Noto Serif Bengali', serif;
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--gold-light);
+    }
+
+    .about-img-badge .lbl { font-size: 0.75rem; }
+
+    .about-features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .about-feature {
+      background: var(--white);
+      border: 1px solid var(--green-pale);
+      border-radius: 14px;
+      padding: 1rem 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+
+    .about-feature:hover {
+      box-shadow: 0 6px 24px var(--shadow);
+      transform: translateY(-3px);
+    }
+
+    .about-feature-icon {
+      width: 42px; height: 42px;
+      background: var(--green-pale);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+
+    .about-feature-text {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--green-dark);
+    }
+
+    /* ===== SERVICES ===== */
+    .services { background: var(--white); }
+
+    .services-header { text-align: center; margin-bottom: 3rem; }
+    .services-header .section-desc { margin: 0 auto; }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .service-card {
+      background: var(--off-white);
+      border: 1px solid var(--green-pale);
+      border-radius: 20px;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+      position: relative;
+      overflow: hidden;
+      cursor: default;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--green-mid), var(--green-light));
+      transform: scaleX(0);
+      transition: transform 0.3s;
+    }
+
+    .service-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 16px 40px var(--shadow);
+      background: var(--white);
+    }
+
+    .service-card:hover::before { transform: scaleX(1); }
+
+    .service-icon {
+      width: 70px; height: 70px;
+      background: linear-gradient(135deg, var(--green-dark), var(--green-mid));
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      margin: 0 auto 1.2rem;
+      transition: transform 0.3s;
+    }
+
+    .service-card:hover .service-icon { transform: scale(1.1) rotate(-5deg); }
+
+    .service-title {
+      font-family: 'Noto Serif Bengali', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--green-dark);
+      margin-bottom: 0.6rem;
+    }
+
+    .service-desc {
+      font-size: 0.88rem;
+      color: var(--text-mid);
+      line-height: 1.7;
+    }
+
+    /* ===== MISSION ===== */
+    .mission {
+      background: linear-gradient(135deg, var(--green-dark) 0%, #0e3d1f 100%);
+      color: var(--white);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .mission::before {
+      content: '';
+      position: absolute;
+      top: -100px; right: -100px;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(245,166,35,0.08) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .mission::after {
+      content: '';
+      position: absolute;
+      bottom: -80px; left: -80px;
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(76,175,103,0.1) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .mission .section-title { color: var(--white); }
+    .mission .section-desc { color: rgba(255,255,255,0.75); margin: 0 auto; }
+
+    .mission-quote {
+      font-family: 'Noto Serif Bengali', serif;
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-weight: 700;
+      color: var(--gold-light);
+      margin: 2rem auto;
+      max-width: 700px;
+      line-height: 1.5;
+      position: relative;
+      z-index: 1;
+    }
+
+    .mission-quote::before {
+      content: '"';
+      font-size: 5rem;
+      color: rgba(245,166,35,0.2);
+      position: absolute;
+      top: -1rem; left: -1.5rem;
+      line-height: 1;
+      font-family: serif;
+    }
+
+    .mission-values {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin-top: 3rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .mission-value {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 14px;
+      padding: 1.2rem 1.8rem;
+      text-align: center;
+      min-width: 130px;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .mission-value:hover {
+      background: rgba(255,255,255,0.1);
+      transform: translateY(-4px);
+    }
+
+    .mission-value .icon { font-size: 1.8rem; margin-bottom: 0.5rem; }
+    .mission-value .label {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.9);
+    }
+
+    /* ===== GALLERY ===== */
+    .gallery { background: var(--off-white); }
+    .gallery-header { text-align: center; margin-bottom: 3rem; }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: 200px 200px;
+      gap: 1rem;
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .gallery-item {
+      background: var(--green-pale);
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .gallery-item:first-child {
+      grid-row: 1 / 3;
+    }
+
+    .gallery-item img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s;
+    }
+
+    .gallery-item:hover img { transform: scale(1.08); }
+
+    .gallery-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(26,92,46,0.7), transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
+      display: flex;
+      align-items: flex-end;
+      padding: 1rem;
+      color: var(--white);
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .gallery-item:hover .gallery-overlay { opacity: 1; }
+
+    /* ===== CONTACT ===== */
+    .contact { background: var(--white); }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 4rem;
+      align-items: start;
+      margin-top: 3rem;
+    }
+
+    .contact-info { }
+
+    .contact-item {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-icon {
+      width: 46px; height: 46px;
+      background: var(--green-pale);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+
+    .contact-detail strong {
+      display: block;
+      font-weight: 700;
+      color: var(--green-dark);
+      margin-bottom: 0.2rem;
+    }
+
+    .contact-detail p {
+      color: var(--text-mid);
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    .contact-form {
+      background: var(--off-white);
+      border-radius: 20px;
+      padding: 2.5rem;
+      border: 1px solid var(--green-pale);
+    }
+
+    .form-title {
+      font-family: 'Noto Serif Bengali', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--green-dark);
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group { margin-bottom: 1.2rem; }
+
+    .form-group label {
+      display: block;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text-mid);
+      margin-bottom: 0.4rem;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 1.5px solid #d0e8d6;
+      border-radius: 10px;
+      font-family: 'Hind Siliguri', sans-serif;
+      font-size: 0.95rem;
+      color: var(--text-dark);
+      background: var(--white);
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      border-color: var(--green-mid);
+      box-shadow: 0 0 0 3px rgba(46,139,71,0.12);
+    }
+
+    .form-group textarea { resize: vertical; min-height: 100px; }
+
+    .btn-submit {
+      width: 100%;
+      background: linear-gradient(135deg, var(--green-dark), var(--green-mid));
+      color: var(--white);
+      border: none;
+      padding: 0.9rem;
+      border-radius: 50px;
+      font-family: 'Hind Siliguri', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+
+    .btn-submit:hover {
+      opacity: 0.9;
+      transform: translateY(-2px);
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: var(--green-dark);
+      color: rgba(255,255,255,0.8);
+      padding: 4rem 2rem 2rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 3rem;
+      max-width: 1100px;
+      margin: 0 auto 3rem;
+    }
+
+    .footer-brand {}
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .footer-logo-icon {
+      width: 50px; height: 50px;
+      background: var(--white);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      box-shadow: 0 0 0 3px var(--gold);
+    }
+
+    .footer-logo-text {
+      font-family: 'Noto Serif Bengali', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.3;
+    }
+
+    .footer-brand p {
+      font-size: 0.88rem;
+      line-height: 1.8;
+      max-width: 280px;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 0.8rem;
+      margin-top: 1.5rem;
+    }
+
+    .social-btn {
+      width: 38px; height: 38px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      text-decoration: none;
+      color: var(--white);
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .social-btn:hover {
+      background: var(--gold);
+      color: var(--green-dark);
+      transform: translateY(-3px);
+    }
+
+    .footer-col h4 {
+      font-family: 'Noto Serif Bengali', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 1.2rem;
+      position: relative;
+      padding-bottom: 0.6rem;
+    }
+
+    .footer-col h4::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 30px; height: 2px;
+      background: var(--gold);
+    }
+
+    .footer-col ul { list-style: none; }
+
+    .footer-col ul li {
+      margin-bottom: 0.6rem;
+    }
+
+    .footer-col ul li a {
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.2s, padding-left 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .footer-col ul li a:hover { color: var(--gold-light); padding-left: 4px; }
+
+    .footer-bottom {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      text-align: center;
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.5);
+    }
+
+    /* ===== SCROLL TO TOP ===== */
+    .scroll-top {
+      position: fixed;
+      bottom: 2rem; right: 2rem;
+      width: 46px; height: 46px;
+      background: var(--green-dark);
+      color: var(--white);
+      border: 2px solid var(--gold);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1.2rem;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.3s, transform 0.3s;
+      z-index: 999;
+      text-decoration: none;
+    }
+
+    .scroll-top.visible { opacity: 1; transform: translateY(0); }
+    .scroll-top:hover { background: var(--green-mid); }
+
+    /* ===== ANIMATIONS ===== */
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 900px) {
+      nav { padding: 0.7rem 1.5rem; }
+      .nav-links { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: var(--green-dark); padding: 1.5rem; gap: 1rem; }
+      .nav-links.open { display: flex; }
+      .hamburger { display: flex; }
+      .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+      .gallery-item:first-child { grid-row: auto; }
+      .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .hero-stats { gap: 1.5rem; }
+    }
+
+    @media (max-width: 600px) {
+      .services-grid { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
+      .about-features { grid-template-columns: 1fr; }
+      .mission-values { gap: 1rem; }
+      .hero-stats { flex-wrap: wrap; gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <a href="#home" class="nav-logo">
+    <div class="nav-logo-icon">🤝</div>
+    <div class="nav-logo-text">
+      তরুণ প্রয়াস
+      <span>মানব কল্যাণ সংস্থা</span>
+    </div>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#home">হোম</a></li>
+    <li><a href="#about">আমাদের সম্পর্কে</a></li>
+    <li><a href="#services">সেবাসমূহ</a></li>
+    <li><a href="#gallery">গ্যালারি</a></li>
+    <li><a href="#contact">যোগাযোগ</a></li>
+    <li><a href="#contact" class="nav-donate-btn">সহযোগিতা করুন</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div style="position:relative;z-index:1;">
+    <div class="hero-badge">🌱 তরুণের হাতে পরিবর্তনের সূচনা</div>
+    <h1>
+  তরুণ প্রয়াস
+  <span>মানব কল্যাণ সংস্থা</span>
+</h1>
+<h2 class="hero-location">
+  শিবনগর, বাঙালিপুর, কোটচাঁদপুর, ঝিনাইদাহ
+</h2>
+    
+    <p class="hero-tagline">
+      সেবা | সহায়তা | সহযোগিতা | পরিবর্তন<br/>
+      <em>"তরুণের শক্তিতে সমাজ বদলাবে"</em>
+    </p>
+    <div class="hero-cta">
+      <a href="#services" class="btn-primary">আমাদের সেবা দেখুন</a>
+      <a href="#about" class="btn-outline">আরও জানুন</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num">৫০০+</div>
+        <div class="stat-label">উপকারভোগী পরিবার</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">৬টি</div>
+        <div class="stat-label">সেবা কার্যক্রম</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">১০০+</div>
+        <div class="stat-label">স্বেচ্ছাসেবক</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-img-wrap reveal">
+        <img
+          class="about-img-main"
+          src="https://images.unsplash.com/photo-1593113598332-cd288d649433?w=700&q=80"
+          alt="সংস্থার কার্যক্রম"
+        />
+        <div class="about-img-badge">
+          <div class="num">২০২৬</div>
+          <div class="lbl">প্রতিষ্ঠার সাল থেকে<br/>সেবা চলমান</div>
+        </div>
+      </div>
+      <div class="reveal" style="transition-delay:0.15s">
+        <div class="section-label">আমাদের সম্পর্কে</div>
+        <h2 class="section-title">মানবতার জন্য <span>একসাথে</span></h2>
+        <p class="section-desc">
+          তরুণ প্রয়াস মানব কল্যাণ সংস্থা একটি অরাজনৈতিক ও স্বেচ্ছাসেবী মানবকল্যাণমূলক সংগঠন। আমরা সমাজের অসহায় ও সুবিধাবঞ্চিত মানুষের পাশে দাঁড়াতে কাজ করে যাচ্ছি। আমাদের লক্ষ্য — মানবসেবা, শিক্ষা সহায়তা ও সমাজ উন্নয়ন।
+        </p>
+        <p class="section-desc" style="margin-top:1rem;">
+          শিবনগর, বাঙালিপুর, কোটচাঁদপুর, ঝিনাইদাহ থেকে পরিচালিত এই সংগঠনটি তরুণদের উদ্যোগে সমাজের উন্নয়ন ও মানব কল্যাণে নিবেদিত।
+        </p>
+        <div class="about-features">
+          <div class="about-feature">
+            <div class="about-feature-icon">❤️</div>
+            <div class="about-feature-text">মানব সেবা</div>
+          </div>
+          <div class="about-feature">
+            <div class="about-feature-icon">📚</div>
+            <div class="about-feature-text">শিক্ষা সহায়তা</div>
+          </div>
+          <div class="about-feature">
+            <div class="about-feature-icon">🌿</div>
+            <div class="about-feature-text">পরিবেশ সংরক্ষণ</div>
+          </div>
+          <div class="about-feature">
+            <div class="about-feature-icon">🤝</div>
+            <div class="about-feature-text">দুর্যোগ সহায়তা</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="container">
+    <div class="services-header reveal">
+      <div class="section-label">সেবাসমূহ</div>
+      <h2 class="section-title">আমরা যে সেবা <span>প্রদান করি</span></h2>
+      <p class="section-desc">সমাজের প্রতিটি স্তরে পৌঁছে দিচ্ছি আমাদের সেবার হাত।</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-icon">❤️</div>
+        <div class="service-title">মানব সেবা</div>
+        <p class="service-desc">অসহায় ও দুস্থ মানুষদের সরাসরি সহায়তা প্রদান এবং মানবিক সংকটে পাশে থাকা।</p>
+      </div>
+      <div class="service-card reveal" style="transition-delay:0.1s">
+        <div class="service-icon">🎓</div>
+        <div class="service-title">শিক্ষা সহায়তা</div>
+        <p class="service-desc">মেধাবী কিন্তু অসচ্ছল শিক্ষার্থীদের বৃত্তি, শিক্ষা উপকরণ ও পড়াশোনায় সহযোগিতা।</p>
+      </div>
+      <div class="service-card reveal" style="transition-delay:0.2s">
+        <div class="service-icon">🌿</div>
+        <div class="service-title">পরিবেশ সংরক্ষণ</div>
+        <p class="service-desc">বৃক্ষরোপণ, পরিচ্ছন্নতা অভিযান ও পরিবেশ সচেতনতা কার্যক্রম পরিচালনা।</p>
+      </div>
+      <div class="service-card reveal" style="transition-delay:0.1s">
+        <div class="service-icon">🩸</div>
+        <div class="service-title">রক্তদান কর্মসূচি</div>
+        <p class="service-desc">জরুরি রক্তের প্রয়োজনে দ্রুত সাড়া দেওয়া এবং নিয়মিত রক্তদান ক্যাম্প আয়োজন।</p>
+      </div>
+      <div class="service-card reveal" style="transition-delay:0.2s">
+        <div class="service-icon">🆘</div>
+        <div class="service-title">দুর্যোগ সহায়তা</div>
+        <p class="service-desc">বন্যা, ঝড়সহ যেকোনো প্রাকৃতিক দুর্যোগে ক্ষতিগ্রস্তদের পাশে তাৎক্ষণিকভাবে দাঁড়ানো।</p>
+      </div>
+      <div class="service-card reveal" style="transition-delay:0.3s">
+        <div class="service-icon">🍚</div>
+        <div class="service-title">খাদ্য সহায়তা</div>
+        <p class="service-desc">অসহায় পরিবারগুলোতে নিয়মিত খাদ্যসামগ্রী বিতরণ এবং ঈদ-উৎসবে বিশেষ সহায়তা।</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MISSION -->
+<section class="mission" id="mission">
+  <div class="container" style="text-align:center;">
+    <div class="section-label" style="background:rgba(245,166,35,0.15);color:var(--gold-light);">আমাদের অঙ্গীকার</div>
+    <h2 class="section-title reveal" style="color:var(--white);">আমাদের <span style="color:var(--gold-light)">লক্ষ্য ও উদ্দেশ্য</span></h2>
+    <p class="section-desc reveal" style="color:rgba(255,255,255,0.75);margin:0 auto;">
+      তরুণদের সক্রিয় অংশগ্রহণের মাধ্যমে একটি সুন্দর, সুষম ও মানবিক সমাজ গড়ে তোলাই আমাদের মূল লক্ষ্য।
+    </p>
+    <div class="mission-quote reveal">
+      "তরুণের শক্তিতে সমাজ বদলাবে"
+    </div>
+    <div class="mission-values reveal">
+      <div class="mission-value">
+        <div class="icon">🌱</div>
+        <div class="label">সেবা</div>
+      </div>
+      <div class="mission-value">
+        <div class="icon">🤲</div>
+        <div class="label">সহায়তা</div>
+      </div>
+      <div class="mission-value">
+        <div class="icon">🤝</div>
+        <div class="label">সহযোগিতা</div>
+      </div>
+      <div class="mission-value">
+        <div class="icon">✨</div>
+        <div class="label">পরিবর্তন</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery" id="gallery">
+  <div class="container">
+    <div class="gallery-header reveal">
+      <div class="section-label">গ্যালারি</div>
+      <h2 class="section-title">আমাদের <span>কার্যক্রমের মুহূর্তসমূহ</span></h2>
+    </div>
+    <div class="gallery-grid reveal">
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1593113598332-cd288d649433?w=600&q=80" alt="ত্রাণ বিতরণ"/>
+        <div class="gallery-overlay">ত্রাণ বিতরণ কার্যক্রম</div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1500673922987-e212871fec22?w=600&q=80" alt="বৃক্ষরোপণ"/>
+        <div class="gallery-overlay">বৃক্ষরোপণ অভিযান</div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1544027993-37dbfe43562a?w=600&q=80" alt="শিক্ষা সহায়তা"/>
+        <div class="gallery-overlay">শিক্ষা সহায়তা কার্যক্রম</div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=600&q=80" alt="স্বেচ্ছাসেবক"/>
+        <div class="gallery-overlay">স্বেচ্ছাসেবক দল</div>
+      </div>
+      <div class="gallery-item">
+        <img src="sa.jpg" alt="রক্তদান"/>
+        <div class="gallery-overlay">রক্তদান কর্মসূচি</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">যোগাযোগ</div>
+      <h2 class="section-title">আমাদের সাথে <span>যোগাযোগ করুন</span></h2>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div class="contact-detail">
+            <strong>ঠিকানা</strong>
+            <p>শিবনগর, বাঙালিপুর, কোটচাঁদপুর, ঝিনাইদাহ</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📘</div>
+         <div class="contact-detail">
+  <strong>ফেসবুক পেজ</strong>
+  <p>
+    <a href="https://www.facebook.com/tarunproyash" target="_blank">
+      তরুণ প্রয়াস মানব কল্যাণ সংস্থা
+    </a>
+  </p>
+</div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">🕐</div>
+          <div class="contact-detail">
+            <strong>কার্যক্রমের সময়</strong>
+            <p>প্রতিদিন সকাল ৯টা – রাত ৯টা</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">💚</div>
+          <div class="contact-detail">
+            <strong>স্বেচ্ছাসেবক হতে চান?</strong>
+            <p>ফর্ম পূরণ করুন, আমরা যোগাযোগ করব।</p>
+          </div>
+        </div>
+      </div>
+      <div class="contact-form reveal" style="transition-delay:0.15s">
+        <div class="form-title">📨 বার্তা পাঠান বা স্বেচ্ছাসেবক হিসেবে যোগ দিন</div>
+        <div class="form-group">
+          <label>আপনার নাম *</label>
+          <input type="text" placeholder="আপনার পূর্ণ নাম লিখুন"/>
+        </div>
+        <div class="form-group">
+          <label>ফোন নম্বর *</label>
+          <input type="tel" placeholder="০১XXXXXXXXX"/>
+        </div>
+        <div class="form-group">
+          <label>উদ্দেশ্য</label>
+          <select>
+            <option>স্বেচ্ছাসেবক হতে চাই</option>
+            <option>সহায়তার আবেদন</option>
+            <option>রক্তদান সংক্রান্ত</option>
+            <option>সাধারণ যোগাযোগ</option>
+            <option>অনুদান দিতে চাই</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>বার্তা</label>
+          <textarea placeholder="আপনার বার্তা লিখুন..."></textarea>
+        </div>
+        <button class="btn-submit" onclick="handleSubmit()">বার্তা পাঠান ✉️</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <div class="footer-logo-icon">🤝</div>
+        <div class="footer-logo-text">তরুণ প্রয়াস<br/>মানব কল্যাণ সংস্থা</div>
+      </div>
+      <p>একটি অরাজনৈতিক ও স্বেচ্ছাসেবী মানবকল্যাণমূলক সংগঠন। তরুণের শক্তিতে সমাজ পরিবর্তনে নিবেদিত।</p>
+      <div class="footer-social">
+        <a href="#" class="social-btn">📘</a>
+        <a href="#" class="social-btn">📷</a>
+        <a href="#" class="social-btn">▶️</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>দ্রুত লিংক</h4>
+      <ul>
+        <li><a href="#home">▸ হোম</a></li>
+        <li><a href="#about">▸ আমাদের সম্পর্কে</a></li>
+        <li><a href="#services">▸ সেবাসমূহ</a></li>
+        <li><a href="#gallery">▸ গ্যালারি</a></li>
+        <li><a href="#contact">▸ যোগাযোগ</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>আমাদের সেবা</h4>
+      <ul>
+        <li><a href="#">▸ মানব সেবা</a></li>
+        <li><a href="#">▸ শিক্ষা সহায়তা</a></li>
+        <li><a href="#">▸ পরিবেশ সংরক্ষণ</a></li>
+        <li><a href="#">▸ রক্তদান কর্মসূচি</a></li>
+        <li><a href="#">▸ দুর্যোগ সহায়তা</a></li>
+        <li><a href="#">▸ খাদ্য সহায়তা</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© ২০২৬ তরুণ প্রয়াস মানব কল্যাণ সংস্থা। সর্বস্বত্ব সংরক্ষিত।</p>
+    <p style="margin-top:0.4rem;">📍 শিবনগর, বাঙালিপুর, কোটচাঁদপুর, ঝিনাইদাহ</p>
+    <p style="margin-top:0.4rem;">💻 Developed By Sabbir Ahmed</p>
+  </div>
+</footer>
+
+<!-- Scroll to Top -->
+<a href="#home" class="scroll-top" id="scrollTop">↑</a>
+
+<script>
+  // Navbar scroll effect
+  window.addEventListener('scroll', () => {
+    const nav = document.getElementById('navbar');
+    if (window.scrollY > 60) {
+      nav.style.background = 'rgba(14,42,24,0.98)';
+    } else {
+      nav.style.background = 'rgba(26,92,46,0.97)';
+    }
+
+    // Scroll to top button
+    const scrollBtn = document.getElementById('scrollTop');
+    if (window.scrollY > 400) {
+      scrollBtn.classList.add('visible');
+    } else {
+      scrollBtn.classList.remove('visible');
+    }
+  });
+
+  // Mobile menu
+  function toggleMenu() {
+    const links = document.getElementById('navLinks');
+    links.classList.toggle('open');
+  }
+
+  // Close menu on link click
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      document.getElementById('navLinks').classList.remove('open');
+    });
+  });
+
+  // Reveal on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Form submit
+  function handleSubmit() {
+    const btn = document.querySelector('.btn-submit');
+    btn.textContent = '✅ বার্তা পাঠানো হয়েছে! ধন্যবাদ।';
+    btn.style.background = 'linear-gradient(135deg, #1a5c2e, #2e8b47)';
+    setTimeout(() => {
+      btn.textContent = 'বার্তা পাঠান ✉️';
+    }, 3000);
+  }
+
+  // Counter animation
+  function animateCounters() {
+    const stats = document.querySelectorAll('.stat-num');
+    stats.forEach(stat => {
+      stat.style.transition = 'transform 0.5s';
+      stat.style.transform = 'scale(1.15)';
+      setTimeout(() => stat.style.transform = 'scale(1)', 500);
+    });
+  }
+
+  // Trigger counter on hero visible
+  const heroObserver = new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting) animateCounters();
+  }, { threshold: 0.5 });
+  heroObserver.observe(document.querySelector('.hero-stats'));
+</script>
+</body>
+</html>
