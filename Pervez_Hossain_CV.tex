@@ -1,0 +1,232 @@
+\documentclass[a4paper,11pt]{article}
+
+% ── Packages ──────────────────────────────────────────────────────────────────
+\usepackage[a4paper, top=1.8cm, bottom=1.8cm, left=2cm, right=2cm]{geometry}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{colortbl}
+\usepackage{multirow}
+\usepackage{parskip}
+\usepackage{enumitem}
+\usepackage{fontenc}
+\usepackage{inputenc}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{mdframed}
+\usepackage{makecell}  % for \thead
+
+% ── Colors ────────────────────────────────────────────────────────────────────
+\definecolor{headerblue}{RGB}{31, 73, 125}   % dark navy blue (section headers)
+\definecolor{tableheadbg}{RGB}{31, 73, 125}  % same blue for table header rows
+\definecolor{lightgray}{RGB}{242, 242, 242}  % alternating row bg (if needed)
+\definecolor{bordergray}{RGB}{150, 150, 150}
+
+% ── No page numbers ───────────────────────────────────────────────────────────
+\pagestyle{empty}
+
+% ── Helper: section heading (dark blue full-width bar) ────────────────────────
+\newcommand{\cvsection}[1]{%
+  \vspace{4pt}%
+  \noindent\colorbox{headerblue}{%
+    \parbox{\dimexpr\linewidth}{\color{white}\bfseries\large\strut\quad #1}%
+  }%
+  \vspace{4pt}%
+}
+
+% ── Column type for centered, fixed-width cells ───────────────────────────────
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+
+\begin{document}
+
+% ═══════════════════════════════════════════════════════════════════════════════
+%  TITLE / NAME BOX
+% ═══════════════════════════════════════════════════════════════════════════════
+\begin{center}
+  {\LARGE\bfseries CURRICULUM VITAE}
+\end{center}
+
+\vspace{6pt}
+
+% ── Personal info table (no outer border, two-column key:value) ───────────────
+\noindent
+\begin{tabular}{@{}L{3cm} L{7.5cm} L{2.5cm} L{4cm}@{}}
+  \textbf{Name}      & PERVEZ HOSSAIN & \textbf{Mobile No} & 01760-095037 \textbar{} 01602-610921 \\[2pt]
+  \textbf{Address}   & Village: Shibnagar Post Office: Dora (7330) \newline
+                       Upazila: Kotchandpur District: Jhenaidah
+                     & \textbf{E-mail}    & pervez.cse.fcub@gmail.com \\
+\end{tabular}
+
+\vspace{6pt}
+
+% ═══════════════════════════════════════════════════════════════════════════════
+%  CAREER OBJECTIVE
+% ═══════════════════════════════════════════════════════════════════════════════
+\cvsection{Career Objective :}
+
+\noindent
+To secure a position with a stable and profitable organization, where i can be a member of a team
+to utilize my business experience to the fullest.
+
+\vspace{6pt}
+
+% ═══════════════════════════════════════════════════════════════════════════════
+%  EDUCATIONAL QUALIFICATION
+% ═══════════════════════════════════════════════════════════════════════════════
+\cvsection{Educational Qualification:}
+
+\vspace{2pt}
+\noindent
+\renewcommand{\arraystretch}{1.35}
+\begin{tabular}{|C{1.6cm}|L{4.2cm}|C{2cm}|C{1.8cm}|C{1.6cm}|C{1.8cm}|C{1.8cm}|}
+  \hline
+  \rowcolor{tableheadbg}
+  \color{white}\textbf{Degree} &
+  \color{white}\textbf{Institution} &
+  \color{white}\textbf{Board} &
+  \color{white}\textbf{Subject /Group} &
+  \color{white}\textbf{Passing Year} &
+  \color{white}\textbf{Publishing Year} &
+  \color{white}\textbf{Result} \\
+  \hline
+  B.Sc First &
+  First Capital University of Bangladesh, Chuadanga &
+  & CSE & 2025 & 2025 & CGPA -3.06 \\
+  \hline
+  HSC &
+  Government City College, Jashore &
+  Jashore & Science & 2020 & 2021 & GPA - 4.50 \\
+  \hline
+  SSC &
+  Panchlia Secondary School, Jhenaidah &
+  Jashore & Science & 2018 & 2018 & GPA - 4.56 \\
+  \hline
+\end{tabular}
+\renewcommand{\arraystretch}{1}
+
+\vspace{6pt}
+
+% ═══════════════════════════════════════════════════════════════════════════════
+%  LANGUAGE PROFICIENCY
+% ═══════════════════════════════════════════════════════════════════════════════
+\cvsection{Language Proficiency:}
+
+\vspace{2pt}
+\noindent
+\renewcommand{\arraystretch}{1.35}
+\begin{tabular}{|C{3.5cm}|C{3.5cm}|C{3.5cm}|C{3cm}|C{3cm}|}
+  \hline
+  \rowcolor{tableheadbg}
+  \color{white}\textbf{Language} &
+  \color{white}\textbf{Reading} &
+  \color{white}\textbf{Writing} &
+  \color{white}\textbf{Listening} &
+  \color{white}\textbf{Speaking} \\
+  \hline
+  Bengali   & Excellent & Excellent & Excellent & Excellent \\
+  \hline
+  English   & Excellent & Excellent & Good      & Fair      \\
+  \hline
+\end{tabular}
+\renewcommand{\arraystretch}{1}
+
+\vspace{6pt}
+
+% ═══════════════════════════════════════════════════════════════════════════════
+%  COMPUTER SKILLS  &  HOBBY
+% ═══════════════════════════════════════════════════════════════════════════════
+\noindent\textbf{Computer Skills :} MS Word, MS Excel, MS PowerPoint,
+
+\noindent\textbf{Hobby :} Travelling, Listening to Music.
+
+\newpage   % ─── Page 2 ────────────────────────────────────────────────────────
+
+% ═══════════════════════════════════════════════════════════════════════════════
+%  PERSONAL DATA
+% ═══════════════════════════════════════════════════════════════════════════════
+\cvsection{Personal Data:}
+
+\vspace{4pt}
+\noindent
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{@{}L{4cm} L{6.5cm} L{4cm} L{4cm}@{}}
+  \textbf{Name}              & Pervez Hossain            & & \\
+  \textbf{Father's Name}     & Abdul Alim                & \textbf{Father's Occupation} & Farmer \\
+  \textbf{Mother's Name}     & Chameli Khatun            & \textbf{Mother's Occupation} & House Wife \\
+  \textbf{Number of Sibling} & Brother 1 \quad Sister 1  & & \\
+  \textbf{Date of Birth}     & 20 May 2001               & & \\
+  \textbf{Nationality}       & Bangladeshi               & & \\
+  \textbf{National ID No}    & 1514345931                & & \\
+  \textbf{Religion}          & Islam                     & & \\
+  \textbf{Gender}            & Male                      & & \\
+  \textbf{Marital Status}    & Single                    & & \\
+  \textbf{Present Address}   & \multicolumn{3}{L{14cm}}{Village: Shibnagar Post Office: Dora (7330) \newline
+                                Upazila: Kotchandpur District: Jhenaidah} \\
+  \textbf{Permanent Address} & \multicolumn{3}{L{14cm}}{Village: Shibnagar Post Office: Dora (7330) \newline
+                                Upazila: Kotchandpur District: Jhenaidah} \\
+\end{tabular}
+\renewcommand{\arraystretch}{1}
+
+\vspace{10pt}
+
+% ═══════════════════════════════════════════════════════════════════════════════
+%  REFEREES  (two side-by-side boxes)
+% ═══════════════════════════════════════════════════════════════════════════════
+
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+  \begin{mdframed}[
+      linecolor=bordergray,
+      linewidth=0.6pt,
+      innerleftmargin=8pt,
+      innerrightmargin=8pt,
+      innertopmargin=8pt,
+      innerbottommargin=8pt
+    ]
+    {\bfseries Referee 1}\\[4pt]
+    \begin{tabular}{@{}L{2.8cm} L{4.5cm}@{}}
+      \textbf{Name}         & Abdul Halim Mondol \\
+      \textbf{Occupation}   & Businessman \\
+      \textbf{Address}      & Village: Shibnagar Post Office: Dora (7330) \newline
+                              Upazila: Kotchandpur District: Jhenaidah \\
+      \textbf{Contact No}   & 017608-05156 \\
+      \textbf{Relationship} & Uncle \\
+    \end{tabular}
+  \end{mdframed}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+  \begin{mdframed}[
+      linecolor=bordergray,
+      linewidth=0.6pt,
+      innerleftmargin=8pt,
+      innerrightmargin=8pt,
+      innertopmargin=8pt,
+      innerbottommargin=8pt
+    ]
+    {\bfseries Referee 2}\\[4pt]
+    \begin{tabular}{@{}L{2.8cm} L{4.5cm}@{}}
+      \textbf{Name}          & Sabbir Ahmed \\
+      \textbf{Designation}   & Game Developer \newline (Battery Low Interactive Ltd) \\
+      \textbf{Office Address}& House 8, Road 2, Block J, \newline Baridhara, Dhaka 1212, Bangladesh \\
+      \textbf{Address}       & Village: Shibnagar Post Office: Dora (7330) \newline
+                               Upazila: Kotchandpur District: Jhenaidah \\
+      \textbf{Contact No}    & 018465-93095 \\
+      \textbf{Relationship}  & Uncle \\
+    \end{tabular}
+  \end{mdframed}
+\end{minipage}
+
+\vspace{30pt}
+
+% ── Signature line ─────────────────────────────────────────────────────────────
+\noindent
+\begin{tabular}{@{}p{10cm} p{7cm}@{}}
+  & \rule{5cm}{0.4pt} \\
+  & Pervez Hossain \\[4pt]
+  & \textbf{Date:} 28/03/2026 (Walk in Interview) \\
+\end{tabular}
+
+\end{document}
