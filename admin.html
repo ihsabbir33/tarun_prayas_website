@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>অ্যাডমিন প্যানেল | তরুণ প্রয়াস</title>
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Noto+Serif+Bengali:wght@400;600;700;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --green-dark: #0F4C3A;
+      --green-mid: #1A6B50;
+      --gold: #D4AF37;
+      --white: #ffffff;
+      --off-white: #F9FAFB;
+      --text-dark: #1F2937;
+      --text-mid: #4B5563;
+      --shadow: rgba(31,41,55,0.12);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      min-height: 100vh;
+      font-family: 'Hind Siliguri', sans-serif;
+      background: linear-gradient(180deg, #F7F9F6 0%, #EFF5EF 100%);
+      color: var(--text-dark);
+    }
+    .page-wrap {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 2.5rem 1rem 4rem;
+    }
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+    .top-bar h1 {
+      font-family: 'Noto Serif Bengali', serif;
+      font-size: clamp(2rem, 3vw, 2.8rem);
+      color: var(--green-dark);
+      line-height: 1.1;
+    }
+    .top-bar p {
+      color: var(--text-mid);
+      max-width: 740px;
+      line-height: 1.8;
+    }
+    .btn, button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      border: none;
+      cursor: pointer;
+      border-radius: 999px;
+      font-weight: 700;
+      transition: transform 0.2s, background 0.2s, box-shadow 0.2s;
+    }
+    .btn-primary {
+      background: var(--green-dark);
+      color: var(--white);
+      padding: 0.9rem 1.5rem;
+      box-shadow: 0 12px 28px rgba(15,76,58,0.22);
+    }
+    .btn-primary:hover { transform: translateY(-2px); background: var(--gold); color: var(--green-dark); }
+    .btn-secondary {
+      background: var(--white);
+      color: var(--text-dark);
+      border: 1px solid rgba(31,41,55,0.12);
+      padding: 0.85rem 1.3rem;
+    }
+    .btn-secondary:hover { box-shadow: 0 12px 28px rgba(31,41,55,0.12); }
+    .hidden { display: none !important; }
+    .card {
+      background: var(--white);
+      border-radius: 24px;
+      box-shadow: 0 24px 60px rgba(31,41,55,0.08);
+      padding: 2rem;
+      border: 1px solid rgba(31,41,55,0.08);
+    }
+    .login-card {
+      max-width: 520px;
+      margin: 0 auto;
+    }
+    .login-card h2 {
+      font-family: 'Noto Serif Bengali', serif;
+      margin-bottom: 1rem;
+      color: var(--green-dark);
+    }
+    .login-card p { margin-bottom: 1.8rem; }
+    .form-group { margin-bottom: 1.2rem; }
+    .form-group label {
+      display: block;
+      margin-bottom: 0.45rem;
+      color: var(--text-mid);
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+    .form-group input, select, textarea {
+      width: 100%;
+      border-radius: 16px;
+      border: 1.5px solid rgba(31,41,55,0.12);
+      padding: 0.95rem 1rem;
+      font-size: 1rem;
+      color: var(--text-dark);
+      background: var(--off-white);
+    }
+    .form-group textarea { min-height: 120px; resize: vertical; }
+    .message { margin-top: 1rem; color: #c0392b; font-weight: 600; }
+    .small-text { color: var(--text-mid); font-size: 0.95rem; }
+    .admin-tabs { display: flex; flex-wrap: wrap; gap: 0.75rem; margin: 1.5rem 0; }
+    .tab-btn {
+      background: var(--white);
+      color: var(--text-dark);
+      border: 1px solid rgba(31,41,55,0.16);
+      padding: 0.85rem 1.25rem;
+      border-radius: 999px;
+      font-weight: 700;
+    }
+    .tab-btn.active {
+      background: var(--green-dark);
+      color: var(--white);
+      border-color: var(--green-dark);
+    }
+    .dashboard-meta {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 1rem;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+    .dashboard-meta p {
+      color: var(--text-mid);
+      line-height: 1.7;
+    }
+    .panel-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.9fr;
+      gap: 1.5rem;
+    }
+    .panel-list { display: grid; gap: 1rem; }
+    .entry-card {
+      border-radius: 20px;
+      border: 1px solid rgba(31,41,55,0.08);
+      padding: 1.25rem 1.5rem;
+      background: var(--white);
+      display: grid;
+      gap: 0.75rem;
+      box-shadow: 0 14px 30px rgba(31,41,55,0.06);
+    }
+    .entry-card strong { color: var(--green-dark); }
+    .entry-badge {
+      display: inline-flex;
+      gap: 0.5rem;
+      align-items: center;
+      padding: 0.45rem 0.8rem;
+      border-radius: 999px;
+      background: rgba(15,76,58,0.08);
+      color: var(--green-dark);
+      font-size: 0.95rem;
+      font-weight: 700;
+      width: fit-content;
+    }
+    .entry-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+    .entry-actions button { flex: 1 1 auto; }
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.45rem 0.85rem;
+      border-radius: 999px;
+      border: 1px solid rgba(31,41,55,0.12);
+      background: rgba(255,255,255,0.92);
+      color: var(--text-dark);
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+    .input-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .panel-form h3 { margin-bottom: 1rem; }
+    .panel-form button { width: 100%; }
+    @media (max-width: 900px) {
+      .panel-grid { grid-template-columns: 1fr; }
+      .input-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-wrap">
+    <div class="card login-card" id="loginView">
+      <h2>অ্যাডমিন লগইন</h2>
+      <p>একটি সহজ লগইনের মাধ্যমে সদস্য ও লিডারশিপ তথ্য আপডেট করুন।</p>
+      <form id="loginForm">
+        <div class="form-group">
+          <label for="username">ব্যবহারকারী নাম</label>
+          <input type="text" id="username" name="username" placeholder="admin" required />
+        </div>
+        <div class="form-group">
+          <label for="password">পাসওয়ার্ড</label>
+          <input type="password" id="password" name="password" placeholder="proyash123" required />
+        </div>
+        <button class="btn btn-primary" type="submit">লগইন</button>
+        <p class="message" id="loginMessage"></p>
+      </form>
+      <p class="small-text">ডিফল্ট লগইন: <strong>admin</strong> / <strong>proyash123</strong></p>
+      <p class="small-text">নোট: এই পেইজটি আংশিকভাবে লোকাল স্টোরেজে তথ্য সংরক্ষণ করে। এর ফলে আপনি কোনো সার্ভার বা ডাটাবেস ছাড়াই ডেটা আপডেট করতে পারবেন।</p>
+    </div>
+
+    <div class="hidden" id="dashboardView">
+      <div class="top-bar">
+        <div>
+          <h1>অ্যাডমিন ড্যাশবোর্ড</h1>
+          <p>এই প্যানেল থেকে আপনি লিডারশিপ এবং সদস্যদের তালিকা মেইনটেইন করতে পারবেন। নতুন সরবরাহ, সম্পাদনা বা মুছুন।</p>
+        </div>
+        <button class="btn btn-secondary" id="logoutBtn">লগ আউট</button>
+      </div>
+
+      <div class="admin-tabs">
+        <button class="tab-btn active" data-tab="leadership">লিডারশিপ</button>
+        <button class="tab-btn" data-tab="members">সদস্য</button>
+      </div>
+
+      <div class="dashboard-meta">
+        <p id="dashboardIntro">লিডারশিপ ও সদস্য তালিকা দেখুন এবং প্রয়োজন অনুযায়ী পরিবর্তন করুন।</p>
+        <div style="display:flex; gap:0.75rem; flex-wrap:wrap; justify-content:flex-end;">
+          <button class="btn btn-secondary" id="refreshBtn">রিফ্রেশ</button>
+        </div>
+      </div>
+
+      <div class="panel-grid">
+        <div class="panel-list card">
+          <div class="dashboard-meta" style="padding:0; margin:0 0 1rem; grid-template-columns: 1fr auto;">
+            <div>
+              <h3 id="panelTitle">লিডারশিপ পরিচালনা</h3>
+              <p class="small-text" id="panelSubtitle">নিচে বর্তমান সদস্য ও লিডারশিপ তালিকা দেখুন।</p>
+            </div>
+            <span class="status-pill" id="itemCount">0 টি তত্ত্বাবধানে</span>
+          </div>
+          <div id="entryList"></div>
+        </div>
+
+        <div class="panel-form card">
+          <h3 id="formTitle">নতুন সদস্য যোগ করুন</h3>
+          <form id="entryForm">
+            <div class="form-group">
+              <label for="memberName">নাম</label>
+              <input type="text" id="memberName" required />
+            </div>
+            <div class="form-group">
+              <label for="memberIcon">আইকন / ইমোজি</label>
+              <input type="text" id="memberIcon" placeholder="🧭" required />
+            </div>
+            <div class="form-group">
+              <label for="memberCategory">ক্যাটাগরি</label>
+              <select id="memberCategory">
+                <option value="advisor">উপদেষ্টা</option>
+                <option value="executive">নির্বাহী সদস্য</option>
+                <option value="member">সদস্য</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="memberDescription">বর্ণনা</label>
+              <textarea id="memberDescription" required></textarea>
+            </div>
+            <div class="input-row">
+              <button type="submit" class="btn btn-primary">সংরক্ষণ করুন</button>
+              <button type="button" class="btn btn-secondary" id="clearFormBtn">ফর্ম ক্লিয়ার</button>
+            </div>
+            <p class="message" id="formMessage"></p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const adminConfig = {
+      username: 'admin',
+      password: 'proyash123',
+      storageKey: 'tp_team_data',
+      loginKey: 'tp_admin_logged_in'
+    };
+
+    const defaultTeam = [
+      { id: '1', name: 'ডা. কামরুল আহসান', category: 'advisor', icon: '🧭', description: 'সমাজ উন্নয়ন ও নেতৃত্বগত বিষয়ে দীর্ঘ অভিজ্ঞতা। নীতি নির্ধারণে গুরুত্বপূর্ণ ভূমিকা পালন করেন।' },
+      { id: '2', name: 'মো. রফিকুল ইসলাম', category: 'advisor', icon: '🧠', description: 'স্ট্র্যাটেজিক পরিকল্পনা ও কমিউনিটি লিডারশিপ পরামর্শে বিশ্লেষণাত্মক দক্ষ।' },
+      { id: '3', name: 'আশিস আহমেদ', category: 'executive', icon: '🛡️', description: 'প্রকল্প বাস্তবায়ন ও আর্থিক সমন্বয়ের দায়িত্বে যিনি দৃঢ়ভাবে কাজ করেন।' },
+      { id: '4', name: 'সোলাইমান খান', category: 'executive', icon: '📌', description: 'স্থানীয় স্বেচ্ছাসেবী কাজের ব্যবস্থাপনা ও টিম লিডিং-এ পারদর্শী।' },
+      { id: '5', name: 'হাসিনা খাতুন', category: 'member', icon: '🤝', description: 'স্থানীয় কমিউনিটি এ্যাডভোকেসি ও সামাজিক উন্নয়ন প্রোগ্রামে সক্রিয়।' },
+      { id: '6', name: 'জসিম উদ্দিন', category: 'member', icon: '🌱', description: 'স্বেচ্ছাসেবী ক্যাম্পেইন ও জনসচেতনতা কাজের একজন নিবেদিত সদস্য।' }
+    ];
+
+    const loginView = document.getElementById('loginView');
+    const dashboardView = document.getElementById('dashboardView');
+    const loginForm = document.getElementById('loginForm');
+    const loginMessage = document.getElementById('loginMessage');
+    const logoutBtn = document.getElementById('logoutBtn');
+    const tabButtons = document.querySelectorAll('.tab-btn');
+    const panelTitle = document.getElementById('panelTitle');
+    const panelSubtitle = document.getElementById('panelSubtitle');
+    const dashboardIntro = document.getElementById('dashboardIntro');
+    const entryList = document.getElementById('entryList');
+    const itemCount = document.getElementById('itemCount');
+    const formTitle = document.getElementById('formTitle');
+    const formMessage = document.getElementById('formMessage');
+    const clearFormBtn = document.getElementById('clearFormBtn');
+    const refreshBtn = document.getElementById('refreshBtn');
+    const entityNameInput = document.getElementById('memberName');
+    const entityIconInput = document.getElementById('memberIcon');
+    const entityCategorySelect = document.getElementById('memberCategory');
+    const entityDescriptionInput = document.getElementById('memberDescription');
+    const entryForm = document.getElementById('entryForm');
+
+    let currentTab = 'leadership';
+    let currentEditId = null;
+
+    function getStoredTeam() {
+      const saved = localStorage.getItem(adminConfig.storageKey);
+      try {
+        return saved ? JSON.parse(saved) : defaultTeam.slice();
+      } catch (err) {
+        return defaultTeam.slice();
+      }
+    }
+
+    function setStoredTeam(items) {
+      localStorage.setItem(adminConfig.storageKey, JSON.stringify(items));
+    }
+
+    function isLoggedIn() {
+      return localStorage.getItem(adminConfig.loginKey) === 'true';
+    }
+
+    function showLogin() {
+      loginView.classList.remove('hidden');
+      dashboardView.classList.add('hidden');
+      loginMessage.textContent = '';
+    }
+
+    function showDashboard() {
+      loginView.classList.add('hidden');
+      dashboardView.classList.remove('hidden');
+      renderDashboard();
+    }
+
+    function setActiveTab(tab) {
+      currentTab = tab;
+      tabButtons.forEach(btn => btn.classList.toggle('active', btn.dataset.tab === tab));
+      panelTitle.textContent = tab === 'leadership' ? 'লিডারশিপ পরিচালনা' : 'সদস্য পরিচালনা';
+      panelSubtitle.textContent = tab === 'leadership' ? 'উপদেষ্টা ও নির্বাহী সদস্যদের তালিকা' : 'সদস্যের তালিকা দেখুন ও আপডেট করুন।';
+      dashboardIntro.textContent = tab === 'leadership' ? 'আপনি লিডারশিপ এবং পরিচালনাকারী সদস্যদের তালিকা অবজার্ভ ও পরিবর্তন করতে পারবেন।' : 'এখানে সাধারণ সদস্যদের তথ্য যোগ, সম্পাদনা বা মুছুন।';
+      formTitle.textContent = tab === 'leadership' ? 'নতুন লিডারশিপ সদস্য যোগ করুন' : 'নতুন সদস্য যোগ করুন';
+      renderDashboard();
+    }
+
+    function getFilteredItems() {
+      const items = getStoredTeam();
+      if (currentTab === 'members') {
+        return items.filter(item => item.category === 'member');
+      }
+      return items.filter(item => item.category === 'advisor' || item.category === 'executive');
+    }
+
+    function getCategoryLabel(category) {
+      switch (category) {
+        case 'advisor': return 'উপদেষ্টা';
+        case 'executive': return 'নির্বাহী সদস্য';
+        case 'member': return 'সদস্য';
+        default: return 'অন্যান্য';
+      }
+    }
+
+    function renderDashboard() {
+      const items = getFilteredItems();
+      itemCount.textContent = `${items.length} টি`;
+      if (!items.length) {
+        entryList.innerHTML = '<p class="small-text">এই ক্যাটাগরিতে এখনো কোন এন্ট্রি নেই।</p>';
+        return;
+      }
+      entryList.innerHTML = items.map(item => `
+        <div class="entry-card">
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap;">
+            <div>
+              <div class="entry-badge">${item.icon} ${getCategoryLabel(item.category)}</div>
+              <h4 style="margin:0.85rem 0 0.35rem; font-size:1.05rem;">${item.name}</h4>
+            </div>
+            <span class="status-pill">ID: ${item.id}</span>
+          </div>
+          <p style="margin:0.4rem 0 0.85rem; color: var(--text-mid);">${item.description}</p>
+          <div class="entry-actions">
+            <button class="btn btn-primary" type="button" data-action="edit" data-id="${item.id}">সম্পাদনা করুন</button>
+            <button class="btn btn-secondary" type="button" data-action="delete" data-id="${item.id}">মুছুন</button>
+          </div>
+        </div>
+      `).join('');
+      entryList.querySelectorAll('[data-action="edit"]').forEach(button => {
+        button.addEventListener('click', () => startEdit(button.dataset.id));
+      });
+      entryList.querySelectorAll('[data-action="delete"]').forEach(button => {
+        button.addEventListener('click', () => deleteEntry(button.dataset.id));
+      });
+    }
+
+    function resetForm() {
+      currentEditId = null;
+      entryForm.reset();
+      entityCategorySelect.value = currentTab === 'members' ? 'member' : 'advisor';
+      formTitle.textContent = currentTab === 'leadership' ? 'নতুন লিডারশিপ সদস্য যোগ করুন' : 'নতুন সদস্য যোগ করুন';
+      formMessage.textContent = '';
+    }
+
+    function startEdit(id) {
+      const items = getStoredTeam();
+      const item = items.find(entry => entry.id === id);
+      if (!item) return;
+      currentEditId = item.id;
+      entityNameInput.value = item.name;
+      entityIconInput.value = item.icon;
+      entityCategorySelect.value = item.category;
+      entityDescriptionInput.value = item.description;
+      formTitle.textContent = 'সম্পাদনা করুন: ' + item.name;
+      formMessage.textContent = '';
+      window.scrollTo({ top: document.getElementById('entryForm').offsetTop - 40, behavior: 'smooth' });
+    }
+
+    function deleteEntry(id) {
+      if (!confirm('আপনি কি এই এন্ট্রি মুছতে চান?')) return;
+      const items = getStoredTeam().filter(entry => entry.id !== id);
+      setStoredTeam(items);
+      renderDashboard();
+      formMessage.textContent = 'এই এন্ট্রি সফলভাবে মুছে নেওয়া হয়েছে।';
+    }
+
+    function handleLogin(event) {
+      event.preventDefault();
+      const username = loginForm.username.value.trim();
+      const password = loginForm.password.value;
+      if (username === adminConfig.username && password === adminConfig.password) {
+        localStorage.setItem(adminConfig.loginKey, 'true');
+        showDashboard();
+        return;
+      }
+      loginMessage.textContent = 'ব্যবহারকারী নাম বা পাসওয়ার্ড সঠিক নয়।';
+    }
+
+    function handleFormSubmit(event) {
+      event.preventDefault();
+      const name = entityNameInput.value.trim();
+      const icon = entityIconInput.value.trim() || '👤';
+      const category = entityCategorySelect.value;
+      const description = entityDescriptionInput.value.trim();
+      if (!name || !description) {
+        formMessage.textContent = 'সঠিক তথ্য দিয়ে ফর্মটি পূরণ করুন।';
+        return;
+      }
+      const items = getStoredTeam();
+      if (currentEditId) {
+        const index = items.findIndex(entry => entry.id === currentEditId);
+        if (index !== -1) {
+          items[index] = { id: currentEditId, name, icon, category, description };
+          setStoredTeam(items);
+          formMessage.textContent = 'এন্ট্রি সফলভাবে আপডেট হয়েছে।';
+        }
+      } else {
+        const id = Date.now().toString();
+        items.unshift({ id, name, icon, category, description });
+        setStoredTeam(items);
+        formMessage.textContent = 'নতুন এন্ট্রি সফলভাবে যোগ করা হয়েছে।';
+      }
+      resetForm();
+      renderDashboard();
+    }
+
+    function initialize() {
+      if (isLoggedIn()) {
+        showDashboard();
+      } else {
+        showLogin();
+      }
+      tabButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          setActiveTab(btn.dataset.tab);
+        });
+      });
+      entryForm.addEventListener('submit', handleFormSubmit);
+      loginForm.addEventListener('submit', handleLogin);
+      logoutBtn.addEventListener('click', () => {
+        localStorage.removeItem(adminConfig.loginKey);
+        showLogin();
+      });
+      clearFormBtn.addEventListener('click', resetForm);
+      refreshBtn.addEventListener('click', renderDashboard);
+      setActiveTab(currentTab);
+    }
+
+    initialize();
+  </script>
+</body>
+</html>

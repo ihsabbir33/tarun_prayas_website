@@ -185,64 +185,73 @@
       <button class="filter-pill" data-filter="member">সদস্য</button>
     </div>
 
-    <div class="member-list">
-      <article class="member-card" data-category="advisor">
-        <div class="member-card-icon">🧭</div>
-        <div class="member-card-title">ডা. কামরুল আহসান</div>
-        <div class="member-category">উপদেষ্টা</div>
-        <p class="member-card-desc">সমাজ উন্নয়ন ও নেতৃত্বগত বিষয়ে দীর্ঘ অভিজ্ঞতা। নীতি নির্ধারণে গুরুত্বপূর্ণ ভূমিকা পালন করেন।</p>
-      </article>
-
-      <article class="member-card" data-category="advisor">
-        <div class="member-card-icon">🧠</div>
-        <div class="member-card-title">মো. রফিকুল ইসলাম</div>
-        <div class="member-category">উপদেষ্টা</div>
-        <p class="member-card-desc">স্ট্র্যাটেজিক পরিকল্পনা ও কমিউনিটি লিডারশিপ পরামর্শে বিশ্লেষণাত্মক দক্ষ।</p>
-      </article>
-
-      <article class="member-card" data-category="executive">
-        <div class="member-card-icon">🛡️</div>
-        <div class="member-card-title">আশিস আহমেদ</div>
-        <div class="member-category">নির্বাহী সদস্য</div>
-        <p class="member-card-desc">প্রকল্প বাস্তবায়ন ও আর্থিক সমন্বয়ের দায়িত্বে যিনি দৃঢ়ভাবে কাজ করেন।</p>
-      </article>
-
-      <article class="member-card" data-category="executive">
-        <div class="member-card-icon">📌</div>
-        <div class="member-card-title">সোলাইমান খান</div>
-        <div class="member-category">নির্বাহী সদস্য</div>
-        <p class="member-card-desc">স্থানীয় স্বেচ্ছাসেবী কাজের ব্যবস্থাপনা ও টিম লিডিং-এ পারদর্শী।</p>
-      </article>
-
-      <article class="member-card" data-category="member">
-        <div class="member-card-icon">🤝</div>
-        <div class="member-card-title">হাসিনা খাতুন</div>
-        <div class="member-category">সদস্য</div>
-        <p class="member-card-desc">স্থানীয় কমিউনিটি এ্যাডভোকেসি ও সামাজিক উন্নয়ন প্রোগ্রামে সক্রিয়।</p>
-      </article>
-
-      <article class="member-card" data-category="member">
-        <div class="member-card-icon">🌱</div>
-        <div class="member-card-title">জসিম উদ্দিন</div>
-        <div class="member-category">সদস্য</div>
-        <p class="member-card-desc">স্বেচ্ছাসেবী ক্যাম্পেইন ও জনসচেতনতা কাজের একজন নিবেদিত সদস্য।</p>
-      </article>
+    <div style="display:flex; justify-content:flex-end; margin-bottom:1.5rem;">
+      <a href="admin.html" class="filter-pill" style="background: var(--green-dark); color:#fff; border-color: var(--green-dark);">অ্যাডমিন প্যানেল</a>
     </div>
+
+    <div class="member-list" id="memberList"></div>
 
     <p class="footer-note">ফিল্টার চাপলে শুধুমাত্র সংশ্লিষ্ট ক্যাটাগরির সদস্যরা দেখানো হবে।</p>
   </div>
 
   <script>
+    const storageKey = 'tp_team_data';
+    const defaultMembers = [
+      { id: '1', category: 'advisor', icon: '🧭', name: 'ডা. কামরুল আহসান', description: 'সমাজ উন্নয়ন ও নেতৃত্বগত বিষয়ে দীর্ঘ অভিজ্ঞতা। নীতি নির্ধারণে গুরুত্বপূর্ণ ভূমিকা পালন করেন।' },
+      { id: '2', category: 'advisor', icon: '🧠', name: 'মো. রফিকুল ইসলাম', description: 'স্ট্র্যাটেজিক পরিকল্পনা ও কমিউনিটি লিডারশিপ পরামর্শে বিশ্লেষণাত্মক দক্ষ।' },
+      { id: '3', category: 'executive', icon: '🛡️', name: 'আশিস আহমেদ', description: 'প্রকল্প বাস্তবায়ন ও আর্থিক সমন্বয়ের দায়িত্বে যিনি দৃঢ়ভাবে কাজ করেন।' },
+      { id: '4', category: 'executive', icon: '📌', name: 'সোলাইমান খান', description: 'স্থানীয় স্বেচ্ছাসেবী কাজের ব্যবস্থাপনা ও টিম লিডিং-এ পারদর্শী।' },
+      { id: '5', category: 'member', icon: '🤝', name: 'হাসিনা খাতুন', description: 'স্থানীয় কমিউনিটি এ্যাডভোকেসি ও সামাজিক উন্নয়ন প্রোগ্রামে সক্রিয়।' },
+      { id: '6', category: 'member', icon: '🌱', name: 'জসিম উদ্দিন', description: 'স্বেচ্ছাসেবী ক্যাম্পেইন ও জনসচেতনতা কাজের একজন নিবেদিত সদস্য।' }
+    ];
+
+    function loadMembers() {
+      const saved = localStorage.getItem(storageKey);
+      try {
+        return saved ? JSON.parse(saved) : defaultMembers.slice();
+      } catch (err) {
+        return defaultMembers.slice();
+      }
+    }
+
+    function saveMembers(items) {
+      localStorage.setItem(storageKey, JSON.stringify(items));
+    }
+
+    function getCategoryText(category) {
+      if (category === 'advisor') return 'উপদেষ্টা';
+      if (category === 'executive') return 'নির্বাহী সদস্য';
+      if (category === 'member') return 'সদস্য';
+      return 'অন্যান্য';
+    }
+
     const buttons = document.querySelectorAll('.filter-pill');
-    const cards = document.querySelectorAll('.member-card');
+    const list = document.getElementById('memberList');
+    let members = loadMembers();
+
+    function renderList(filter = 'all') {
+      const visible = members.filter(member => filter === 'all' || member.category === filter);
+      if (!visible.length) {
+        list.innerHTML = '<p style="color: var(--text-mid);">এই ক্যাটাগরিতে কোনো সদস্য নেই।</p>';
+        return;
+      }
+      list.innerHTML = visible.map(member => `
+        <article class="member-card" data-category="${member.category}">
+          <div class="member-card-icon">${member.icon}</div>
+          <div class="member-card-title">${member.name}</div>
+          <div class="member-category">${getCategoryText(member.category)}</div>
+          <p class="member-card-desc">${member.description}</p>
+        </article>
+      `).join('');
+    }
+
     buttons.forEach(btn => btn.addEventListener('click', () => {
       buttons.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-      const filter = btn.dataset.filter;
-      cards.forEach(card => {
-        card.style.display = filter === 'all' || card.dataset.category === filter ? 'flex' : 'none';
-      });
+      renderList(btn.dataset.filter);
     }));
+
+    renderList('all');
   </script>
 </body>
 </html>
