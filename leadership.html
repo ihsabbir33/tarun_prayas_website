@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>কমিউনিটি নেতৃত্ব | তরুণ প্রয়াস</title>
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Noto+Serif+Bengali:wght@400;600;700;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --green-dark: #0F4C3A;
+      --green-mid: #1A6B50;
+      --green-light: #4F845E;
+      --gold: #D4AF37;
+      --white: #ffffff;
+      --off-white: #F9FAFB;
+      --text-dark: #1F2937;
+      --text-mid: #4B5563;
+      --shadow: rgba(31,41,55,0.08);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Hind Siliguri', sans-serif;
+      background: var(--off-white);
+      color: var(--text-dark);
+      min-height: 100vh;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    .page-wrap { max-width: 1100px; margin: 0 auto; padding: 4rem 1.5rem 3rem; }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--green-dark);
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+    }
+
+    .heading {
+      text-align: center;
+      margin-bottom: 0.75rem;
+      font-family: 'Noto Serif Bengali', serif;
+      font-size: clamp(2rem, 3vw, 3rem);
+      color: var(--green-dark);
+      line-height: 1.1;
+    }
+
+    .subtext {
+      max-width: 700px;
+      margin: 0 auto 2.5rem;
+      text-align: center;
+      font-size: 1rem;
+      line-height: 1.8;
+      color: var(--text-mid);
+    }
+
+    .filter-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .filter-pill {
+      border: 1px solid rgba(31,41,55,0.1);
+      background: var(--white);
+      color: var(--text-dark);
+      padding: 0.9rem 1.4rem;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s, background 0.2s, color 0.2s;
+      font-weight: 700;
+      box-shadow: 0 10px 25px rgba(31,41,55,0.04);
+    }
+
+    .filter-pill.active,
+    .filter-pill:hover {
+      background: var(--gold);
+      color: var(--green-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 14px 32px rgba(31,41,55,0.12);
+      border-color: var(--gold);
+    }
+
+    .member-list {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(220px, 1fr));
+      gap: 1.5rem;
+      align-items: stretch;
+    }
+
+    .member-card {
+      background: var(--white);
+      border: 1px solid rgba(31,41,55,0.08);
+      border-radius: 24px;
+      padding: 2rem;
+      min-height: 280px;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      box-shadow: 0 20px 45px rgba(31,41,55,0.06);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .member-card::before {
+      content: '';
+      position: absolute;
+      top: -20px;
+      right: -20px;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: rgba(212,175,55,0.15);
+    }
+
+    .member-card-icon {
+      width: 60px;
+      height: 60px;
+      display: grid;
+      place-items: center;
+      border-radius: 18px;
+      background: linear-gradient(135deg, var(--green-dark), var(--green-mid));
+      color: #fff;
+      font-size: 1.5rem;
+      box-shadow: 0 10px 22px rgba(31,41,55,0.1);
+      z-index: 1;
+    }
+
+    .member-card-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--green-dark);
+      z-index: 1;
+    }
+
+    .member-card-desc {
+      color: var(--text-mid);
+      line-height: 1.8;
+      flex-grow: 1;
+      z-index: 1;
+    }
+
+    .member-category {
+      display: inline-flex;
+      padding: 0.45rem 0.9rem;
+      border-radius: 999px;
+      background: rgba(15,76,58,0.08);
+      color: var(--green-dark);
+      font-size: 0.85rem;
+      font-weight: 700;
+      z-index: 1;
+    }
+
+    .footer-note {
+      margin-top: 3rem;
+      text-align: center;
+      color: var(--text-mid);
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 900px) {
+      .member-list { grid-template-columns: repeat(2, minmax(220px, 1fr)); }
+    }
+
+    @media (max-width: 650px) {
+      .member-list { grid-template-columns: 1fr; }
+      .filter-row { gap: 0.75rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-wrap">
+    <a href="index.html" class="back-link">← ফিরে যান</a>
+    <h1 class="heading">কমিউনিটি নেতৃত্ব</h1>
+    <p class="subtext">নীচের তিনটি ক্যাটাগরি থেকে তোমার প্রয়োজনীয় সদস্য খুঁজে নিন। প্রতিটি অনুষঙ্গের জন্য আলাদা তালিকা রয়েছে এবং এখানে ক্লিক করে সংরক্ষণশীল সহযোগিতা নিতে পারবেন।</p>
+
+    <div class="filter-row">
+      <button class="filter-pill active" data-filter="all">সকল</button>
+      <button class="filter-pill" data-filter="advisor">উপদেষ্টা</button>
+      <button class="filter-pill" data-filter="executive">নির্বাহী সদস্য</button>
+      <button class="filter-pill" data-filter="member">সদস্য</button>
+    </div>
+
+    <div class="member-list">
+      <article class="member-card" data-category="advisor">
+        <div class="member-card-icon">🧭</div>
+        <div class="member-card-title">ডা. কামরুল আহসান</div>
+        <div class="member-category">উপদেষ্টা</div>
+        <p class="member-card-desc">সমাজ উন্নয়ন ও নেতৃত্বগত বিষয়ে দীর্ঘ অভিজ্ঞতা। নীতি নির্ধারণে গুরুত্বপূর্ণ ভূমিকা পালন করেন।</p>
+      </article>
+
+      <article class="member-card" data-category="advisor">
+        <div class="member-card-icon">🧠</div>
+        <div class="member-card-title">মো. রফিকুল ইসলাম</div>
+        <div class="member-category">উপদেষ্টা</div>
+        <p class="member-card-desc">স্ট্র্যাটেজিক পরিকল্পনা ও কমিউনিটি লিডারশিপ পরামর্শে বিশ্লেষণাত্মক দক্ষ।</p>
+      </article>
+
+      <article class="member-card" data-category="executive">
+        <div class="member-card-icon">🛡️</div>
+        <div class="member-card-title">আশিস আহমেদ</div>
+        <div class="member-category">নির্বাহী সদস্য</div>
+        <p class="member-card-desc">প্রকল্প বাস্তবায়ন ও আর্থিক সমন্বয়ের দায়িত্বে যিনি দৃঢ়ভাবে কাজ করেন।</p>
+      </article>
+
+      <article class="member-card" data-category="executive">
+        <div class="member-card-icon">📌</div>
+        <div class="member-card-title">সোলাইমান খান</div>
+        <div class="member-category">নির্বাহী সদস্য</div>
+        <p class="member-card-desc">স্থানীয় স্বেচ্ছাসেবী কাজের ব্যবস্থাপনা ও টিম লিডিং-এ পারদর্শী।</p>
+      </article>
+
+      <article class="member-card" data-category="member">
+        <div class="member-card-icon">🤝</div>
+        <div class="member-card-title">হাসিনা খাতুন</div>
+        <div class="member-category">সদস্য</div>
+        <p class="member-card-desc">স্থানীয় কমিউনিটি এ্যাডভোকেসি ও সামাজিক উন্নয়ন প্রোগ্রামে সক্রিয়।</p>
+      </article>
+
+      <article class="member-card" data-category="member">
+        <div class="member-card-icon">🌱</div>
+        <div class="member-card-title">জসিম উদ্দিন</div>
+        <div class="member-category">সদস্য</div>
+        <p class="member-card-desc">স্বেচ্ছাসেবী ক্যাম্পেইন ও জনসচেতনতা কাজের একজন নিবেদিত সদস্য।</p>
+      </article>
+    </div>
+
+    <p class="footer-note">ফিল্টার চাপলে শুধুমাত্র সংশ্লিষ্ট ক্যাটাগরির সদস্যরা দেখানো হবে।</p>
+  </div>
+
+  <script>
+    const buttons = document.querySelectorAll('.filter-pill');
+    const cards = document.querySelectorAll('.member-card');
+    buttons.forEach(btn => btn.addEventListener('click', () => {
+      buttons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+      cards.forEach(card => {
+        card.style.display = filter === 'all' || card.dataset.category === filter ? 'flex' : 'none';
+      });
+    }));
+  </script>
+</body>
+</html>

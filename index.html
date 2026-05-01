@@ -7,17 +7,16 @@
   <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Noto+Serif+Bengali:wght@400;600;700;900&display=swap" rel="stylesheet"/>
   <style>
     :root {
-      --green-dark: #1a5c2e;
-      --green-mid: #2e8b47;
-      --green-light: #4caf67;
-      --green-pale: #d6f0dc;
-      --gold: #f5a623;
-      --gold-light: #ffd166;
+      --green-dark: #0F4C3A;
+      --green-mid: #1A6B50;
+      --green-light: #4F845E;
+      --gold: #D4AF37;
+      --gold-light: #E0C76F;
       --white: #ffffff;
-      --off-white: #f8fdf9;
-      --text-dark: #0e2a18;
-      --text-mid: #2d5a3d;
-      --shadow: rgba(26,92,46,0.15);
+      --off-white: #F9FAFB;
+      --text-dark: #1F2937;
+      --text-mid: #4B5563;
+      --shadow: rgba(31,41,55,0.08);
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -36,13 +35,13 @@
       position: fixed;
       top: 0; left: 0; right: 0;
       z-index: 1000;
-      background: rgba(26,92,46,0.97);
+      background: var(--white);
       backdrop-filter: blur(12px);
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 0.7rem 4rem;
-      box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+      box-shadow: 0 15px 40px rgba(31,41,55,0.08);
     }
 
     .nav-logo {
@@ -60,11 +59,12 @@
       align-items: center;
       justify-content: center;
       font-size: 1.5rem;
+      color: var(--green-dark);
       box-shadow: 0 0 0 3px var(--gold);
     }
 
     .nav-logo-text {
-      color: var(--white);
+      color: var(--green-dark);
       font-family: 'Noto Serif Bengali', serif;
       font-size: 1rem;
       font-weight: 700;
@@ -75,7 +75,7 @@
       display: block;
       font-size: 0.7rem;
       font-weight: 400;
-      color: var(--gold-light);
+      color: var(--gold);
     }
 
     .nav-links {
@@ -85,7 +85,7 @@
     }
 
     .nav-links a {
-      color: rgba(255,255,255,0.85);
+      color: var(--text-dark);
       text-decoration: none;
       font-size: 0.95rem;
       font-weight: 500;
@@ -102,12 +102,12 @@
       transition: width 0.3s;
     }
 
-    .nav-links a:hover { color: var(--gold-light); }
+    .nav-links a:hover { color: var(--gold); }
     .nav-links a:hover::after { width: 100%; }
 
     .nav-donate-btn {
-      background: var(--gold);
-      color: var(--green-dark) !important;
+      background: var(--green-dark);
+      color: var(--white) !important;
       padding: 0.5rem 1.2rem;
       border-radius: 50px;
       font-weight: 700 !important;
@@ -115,7 +115,8 @@
     }
 
     .nav-donate-btn:hover {
-      background: var(--gold-light) !important;
+      background: var(--gold) !important;
+      color: var(--green-dark) !important;
       transform: translateY(-2px);
     }
 
@@ -128,9 +129,9 @@
     }
 
     .lang-btn {
-      border: 1px solid rgba(255,255,255,0.4);
-      background: rgba(255,255,255,0.08);
-      color: rgba(255,255,255,0.95);
+      border: 1px solid var(--green-dark);
+      background: transparent;
+      color: var(--green-dark);
       padding: 0.35rem 0.85rem;
       border-radius: 999px;
       cursor: pointer;
@@ -139,14 +140,14 @@
     }
 
     .lang-btn:hover {
-      background: rgba(255,255,255,0.2);
+      background: rgba(15,76,58,0.08);
       transform: translateY(-1px);
     }
 
     .lang-btn.active {
-      background: var(--white);
-      color: var(--green-dark);
-      border-color: rgba(255,255,255,0.9);
+      background: var(--green-dark);
+      color: var(--white);
+      border-color: var(--green-dark);
     }
 
     /* Hamburger */
@@ -161,7 +162,7 @@
     .hamburger span {
       display: block;
       width: 26px; height: 3px;
-      background: var(--white);
+      background: var(--green-dark);
       border-radius: 2px;
       transition: 0.3s;
     }
@@ -169,9 +170,7 @@
     /* ===== HERO ===== */
     .hero {
       min-height: 100vh;
-      background:
-        linear-gradient(135deg, rgba(26,92,46,0.92) 0%, rgba(46,139,71,0.75) 60%, rgba(76,175,103,0.6) 100%),
-        url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1600&q=80') center/cover no-repeat;
+      background: linear-gradient(135deg, var(--green-dark) 0%, var(--green-mid) 100%);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -179,6 +178,7 @@
       padding: 8rem 2rem 4rem;
       position: relative;
       overflow: hidden;
+      color: var(--white);
     }
 
     .hero::before {
@@ -192,9 +192,9 @@
 
     .hero-badge {
       display: inline-block;
-      background: rgba(245,166,35,0.2);
-      border: 1px solid var(--gold);
-      color: var(--gold-light);
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.24);
+      color: var(--white);
       padding: 0.35rem 1.2rem;
       border-radius: 50px;
       font-size: 0.85rem;
@@ -243,21 +243,23 @@
     }
 
     .btn-primary {
-      background: var(--gold);
-      color: var(--green-dark);
+      background: var(--green-dark);
+      color: var(--white);
       padding: 0.8rem 2rem;
       border-radius: 50px;
       font-weight: 700;
       font-size: 1rem;
       text-decoration: none;
       font-family: 'Hind Siliguri', sans-serif;
-      transition: transform 0.2s, box-shadow 0.2s;
-      box-shadow: 0 4px 20px rgba(245,166,35,0.4);
+      transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+      box-shadow: 0 8px 24px rgba(31,41,55,0.08);
     }
 
     .btn-primary:hover {
+      background: var(--gold);
+      color: var(--green-dark);
       transform: translateY(-3px);
-      box-shadow: 0 8px 30px rgba(245,166,35,0.5);
+      box-shadow: 0 12px 32px rgba(31,41,55,0.12);
     }
 
     .btn-outline {
@@ -265,7 +267,7 @@
       color: var(--white);
       padding: 0.8rem 2rem;
       border-radius: 50px;
-      border: 2px solid rgba(255,255,255,0.6);
+      border: 2px solid rgba(255,255,255,0.75);
       font-weight: 600;
       font-size: 1rem;
       text-decoration: none;
@@ -274,8 +276,8 @@
     }
 
     .btn-outline:hover {
-      background: rgba(255,255,255,0.1);
-      border-color: var(--white);
+      background: rgba(255,255,255,0.16);
+      border-color: rgba(255,255,255,0.95);
     }
 
     .hero-stats {
@@ -311,7 +313,7 @@
 
     .section-label {
       display: inline-block;
-      background: var(--green-pale);
+      background: rgba(212,175,55,0.12);
       color: var(--green-dark);
       padding: 0.3rem 1rem;
       border-radius: 50px;
@@ -326,12 +328,12 @@
       font-family: 'Noto Serif Bengali', serif;
       font-size: clamp(1.6rem, 3vw, 2.4rem);
       font-weight: 800;
-      color: var(--green-dark);
+      color: var(--text-dark);
       line-height: 1.25;
       margin-bottom: 1rem;
     }
 
-    .section-title span { color: var(--green-mid); }
+    .section-title span { color: var(--gold); }
 
     .section-desc {
       color: var(--text-mid);
@@ -392,13 +394,118 @@
 
     .about-feature {
       background: var(--white);
-      border: 1px solid var(--green-pale);
+      border: 1px solid rgba(31,41,55,0.08);
       border-radius: 14px;
       padding: 1rem 1.2rem;
       display: flex;
       align-items: center;
       gap: 0.8rem;
       transition: box-shadow 0.2s, transform 0.2s;
+    }
+
+    .members {
+      background: var(--off-white);
+    }
+
+    .members .section-desc {
+      margin: 0 auto 2.5rem;
+      max-width: 760px;
+    }
+
+    .members-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(240px, 1fr));
+      gap: 2rem;
+      justify-content: center;
+      align-items: stretch;
+      margin-top: 1rem;
+    }
+
+    .member-card {
+      position: relative;
+      min-height: 320px;
+      background: var(--white);
+      border: 1px solid rgba(31,41,55,0.08);
+      border-radius: 28px;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      gap: 1.2rem;
+      box-shadow: 0 24px 60px rgba(31,41,55,0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      overflow: hidden;
+    }
+
+    .member-card::before {
+      content: '';
+      position: absolute;
+      top: -20px;
+      right: -20px;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: rgba(212,175,55,0.12);
+      filter: blur(12px);
+    }
+
+    .member-card::after {
+      content: '';
+      position: absolute;
+      bottom: -18px;
+      left: -18px;
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      background: rgba(212,175,55,0.14);
+      filter: blur(10px);
+    }
+
+    .member-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 30px 80px rgba(31,41,55,0.08);
+    }
+
+    .member-card-icon {
+      width: 72px;
+      height: 72px;
+      display: grid;
+      place-items: center;
+      border-radius: 22px;
+      background: linear-gradient(135deg, var(--green-dark), var(--green-mid));
+      color: #fff;
+      font-size: 2rem;
+      box-shadow: 0 14px 30px rgba(31,41,55,0.1);
+      z-index: 1;
+    }
+
+    .member-card-title {
+      font-family: 'Noto Serif Bengali', serif;
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--green-dark);
+      line-height: 1.2;
+      z-index: 1;
+    }
+
+    .member-card-text {
+      color: var(--text-mid);
+      font-size: 0.98rem;
+      line-height: 1.8;
+      max-width: 18rem;
+      z-index: 1;
+    }
+
+    .member-card-link {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .member-card-link:hover .member-card {
+      transform: translateY(-10px);
     }
 
     .about-feature:hover {
@@ -408,7 +515,7 @@
 
     .about-feature-icon {
       width: 42px; height: 42px;
-      background: var(--green-pale);
+      background: rgba(15,76,58,0.12);
       border-radius: 10px;
       display: flex;
       align-items: center;
@@ -436,15 +543,16 @@
     }
 
     .service-card {
-      background: var(--off-white);
-      border: 1px solid var(--green-pale);
-      border-radius: 20px;
+      background: var(--white);
+      border: 1px solid rgba(31,41,55,0.08);
+      border-radius: 24px;
       padding: 2rem 1.5rem;
       text-align: center;
-      transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+      transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
       position: relative;
       overflow: hidden;
       cursor: default;
+      box-shadow: 0 20px 45px rgba(31,41,55,0.06);
     }
 
     .service-card::before {
@@ -452,15 +560,15 @@
       position: absolute;
       top: 0; left: 0; right: 0;
       height: 4px;
-      background: linear-gradient(90deg, var(--green-mid), var(--green-light));
+      background: var(--gold);
       transform: scaleX(0);
       transition: transform 0.3s;
     }
 
     .service-card:hover {
       transform: translateY(-8px);
-      box-shadow: 0 16px 40px var(--shadow);
-      background: var(--white);
+      box-shadow: 0 24px 60px rgba(31,41,55,0.1);
+      border-color: var(--gold);
     }
 
     .service-card:hover::before { transform: scaleX(1); }
@@ -495,7 +603,7 @@
 
     /* ===== MISSION ===== */
     .mission {
-      background: linear-gradient(135deg, var(--green-dark) 0%, #0e3d1f 100%);
+      background: linear-gradient(135deg, var(--green-dark) 0%, var(--green-mid) 100%);
       color: var(--white);
       text-align: center;
       position: relative;
@@ -505,29 +613,29 @@
     .mission::before {
       content: '';
       position: absolute;
-      top: -100px; right: -100px;
-      width: 400px; height: 400px;
-      background: radial-gradient(circle, rgba(245,166,35,0.08) 0%, transparent 70%);
+      top: -80px; right: -80px;
+      width: 320px; height: 320px;
+      background: rgba(212,175,55,0.12);
       border-radius: 50%;
     }
 
     .mission::after {
       content: '';
       position: absolute;
-      bottom: -80px; left: -80px;
-      width: 300px; height: 300px;
-      background: radial-gradient(circle, rgba(76,175,103,0.1) 0%, transparent 70%);
+      bottom: -70px; left: -70px;
+      width: 240px; height: 240px;
+      background: rgba(255,255,255,0.08);
       border-radius: 50%;
     }
 
     .mission .section-title { color: var(--white); }
-    .mission .section-desc { color: rgba(255,255,255,0.75); margin: 0 auto; }
+    .mission .section-desc { color: rgba(255,255,255,0.85); margin: 0 auto; }
 
     .mission-quote {
       font-family: 'Noto Serif Bengali', serif;
       font-size: clamp(1.4rem, 3vw, 2rem);
       font-weight: 700;
-      color: var(--gold-light);
+      color: var(--gold);
       margin: 2rem auto;
       max-width: 700px;
       line-height: 1.5;
@@ -538,7 +646,7 @@
     .mission-quote::before {
       content: '"';
       font-size: 5rem;
-      color: rgba(245,166,35,0.2);
+      color: rgba(212,175,55,0.15);
       position: absolute;
       top: -1rem; left: -1.5rem;
       line-height: 1;
@@ -556,8 +664,8 @@
     }
 
     .mission-value {
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.14);
       border-radius: 14px;
       padding: 1.2rem 1.8rem;
       text-align: center;
@@ -566,7 +674,7 @@
     }
 
     .mission-value:hover {
-      background: rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.14);
       transform: translateY(-4px);
     }
 
@@ -574,7 +682,7 @@
     .mission-value .label {
       font-weight: 600;
       font-size: 0.95rem;
-      color: rgba(255,255,255,0.9);
+      color: rgba(255,255,255,0.95);
     }
 
     /* ===== GALLERY ===== */
@@ -591,10 +699,11 @@
     }
 
     .gallery-item {
-      background: var(--green-pale);
+      background: var(--white);
       border-radius: 12px;
       overflow: hidden;
       position: relative;
+      box-shadow: 0 18px 40px rgba(31,41,55,0.05);
     }
 
     .gallery-item:first-child {
@@ -612,7 +721,7 @@
     .gallery-overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(to top, rgba(26,92,46,0.7), transparent);
+      background: linear-gradient(to top, rgba(15,76,58,0.75), transparent);
       opacity: 0;
       transition: opacity 0.3s;
       display: flex;
@@ -628,32 +737,55 @@
     /* ===== CONTACT ===== */
     .contact { background: var(--white); }
 
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1.2fr;
-      gap: 4rem;
-      align-items: start;
-      margin-top: 3rem;
+    .contact .section-label,
+    .contact .section-title {
+      text-align: center;
     }
 
-    .contact-info { }
+    .contact-grid {
+      display: grid;
+      justify-content: center;
+      margin-top: 3rem;
+      padding: 0 0.5rem;
+    }
+
+    .contact-card {
+      width: 100%;
+      max-width: 760px;
+      background: var(--white);
+      border: 1px solid rgba(31,41,55,0.08);
+      border-radius: 32px;
+      box-shadow: 0 30px 70px rgba(31,41,55,0.06);
+      padding: 2.5rem;
+    }
+
+    .contact-info {
+      display: grid;
+      gap: 1.25rem;
+    }
 
     .contact-item {
       display: flex;
       gap: 1rem;
       align-items: flex-start;
-      margin-bottom: 1.5rem;
+      margin: 0;
+      padding: 1rem 1rem 1rem 0.8rem;
+      background: rgba(31,41,55,0.04);
+      border-radius: 20px;
+      border: 1px solid rgba(31,41,55,0.08);
     }
 
     .contact-icon {
-      width: 46px; height: 46px;
-      background: var(--green-pale);
-      border-radius: 12px;
+      width: 52px; height: 52px;
+      background: linear-gradient(135deg, var(--green-dark), var(--green-mid));
+      border-radius: 16px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.3rem;
+      font-size: 1.25rem;
+      color: var(--white);
       flex-shrink: 0;
+      box-shadow: 0 10px 20px rgba(31,41,55,0.08);
     }
 
     .contact-detail strong {
@@ -666,21 +798,34 @@
     .contact-detail p {
       color: var(--text-mid);
       font-size: 0.95rem;
-      line-height: 1.5;
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    .contact-detail p a {
+      color: var(--green-dark);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .contact-detail p a:hover {
+      color: var(--green-mid);
+      text-decoration: underline;
     }
 
     .contact-form {
-      background: var(--off-white);
+      background: var(--white);
       border-radius: 20px;
       padding: 2.5rem;
-      border: 1px solid var(--green-pale);
+      border: 1px solid rgba(31,41,55,0.08);
+      box-shadow: 0 24px 50px rgba(31,41,55,0.06);
     }
 
     .form-title {
       font-family: 'Noto Serif Bengali', serif;
       font-size: 1.3rem;
       font-weight: 700;
-      color: var(--green-dark);
+      color: var(--text-dark);
       margin-bottom: 1.5rem;
     }
 
@@ -699,7 +844,7 @@
     .form-group select {
       width: 100%;
       padding: 0.75rem 1rem;
-      border: 1.5px solid #d0e8d6;
+      border: 1.5px solid rgba(31,41,55,0.12);
       border-radius: 10px;
       font-family: 'Hind Siliguri', sans-serif;
       font-size: 0.95rem;
@@ -713,14 +858,14 @@
     .form-group textarea:focus,
     .form-group select:focus {
       border-color: var(--green-mid);
-      box-shadow: 0 0 0 3px rgba(46,139,71,0.12);
+      box-shadow: 0 0 0 3px rgba(26,107,80,0.12);
     }
 
     .form-group textarea { resize: vertical; min-height: 100px; }
 
     .btn-submit {
       width: 100%;
-      background: linear-gradient(135deg, var(--green-dark), var(--green-mid));
+      background: var(--green-dark);
       color: var(--white);
       border: none;
       padding: 0.9rem;
@@ -729,18 +874,20 @@
       font-size: 1rem;
       font-weight: 700;
       cursor: pointer;
-      transition: opacity 0.2s, transform 0.2s;
+      transition: background 0.2s, opacity 0.2s, transform 0.2s;
     }
 
     .btn-submit:hover {
-      opacity: 0.9;
+      background: var(--gold);
+      color: var(--green-dark);
+      opacity: 0.95;
       transform: translateY(-2px);
     }
 
     /* ===== FOOTER ===== */
     footer {
-      background: var(--green-dark);
-      color: rgba(255,255,255,0.8);
+      background: var(--text-dark);
+      color: rgba(255,255,255,0.87);
       padding: 4rem 2rem 2rem;
     }
 
@@ -776,7 +923,7 @@
       font-family: 'Noto Serif Bengali', serif;
       font-size: 1rem;
       font-weight: 700;
-      color: var(--white);
+      color: var(--text-dark);
       line-height: 1.3;
     }
 
@@ -784,6 +931,7 @@
       font-size: 0.88rem;
       line-height: 1.8;
       max-width: 280px;
+      color: rgba(255,255,255,0.78);
     }
 
     .footer-social {
@@ -807,7 +955,7 @@
 
     .social-btn:hover {
       background: var(--gold);
-      color: var(--green-dark);
+      color: var(--text-dark);
       transform: translateY(-3px);
     }
 
@@ -836,7 +984,7 @@
     }
 
     .footer-col ul li a {
-      color: rgba(255,255,255,0.7);
+      color: rgba(255,255,255,0.75);
       text-decoration: none;
       font-size: 0.9rem;
       transition: color 0.2s, padding-left 0.2s;
@@ -845,16 +993,16 @@
       gap: 0.4rem;
     }
 
-    .footer-col ul li a:hover { color: var(--gold-light); padding-left: 4px; }
+    .footer-col ul li a:hover { color: var(--gold); padding-left: 4px; }
 
     .footer-bottom {
       max-width: 1100px;
       margin: 0 auto;
       padding-top: 2rem;
-      border-top: 1px solid rgba(255,255,255,0.1);
+      border-top: 1px solid rgba(255,255,255,0.12);
       text-align: center;
       font-size: 0.85rem;
-      color: rgba(255,255,255,0.5);
+      color: rgba(255,255,255,0.65);
     }
 
     /* ===== SCROLL TO TOP ===== */
@@ -909,7 +1057,7 @@
       .nav-links { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: var(--green-dark); padding: 1.5rem; gap: 1rem; }
       .nav-links.open { display: flex; }
       .hamburger { display: flex; }
-      .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .about-grid, .contact-grid, .members-grid { grid-template-columns: 1fr; gap: 2rem; }
       .services-grid { grid-template-columns: repeat(2, 1fr); }
       .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
       .gallery-item:first-child { grid-row: auto; }
@@ -1047,23 +1195,19 @@
     <p class="section-desc reveal" data-i18n="members_desc">
       তরুণ প্রয়াসের সদস্যরা সমাজসেবায় সক্রিয়ভাবে অংশগ্রহণ করেন, সময় দান করেন এবং কমিউনিটি উদ্যোগে নেতৃত্ব দেন।
     </p>
-    <div class="about-features reveal" style="transition-delay:0.15s">
-      <div class="about-feature">
-        <div class="about-feature-icon">👥</div>
-        <div class="about-feature-text" data-i18n="members_registration">সদস্য নিবন্ধন</div>
-      </div>
-      <div class="about-feature">
-        <div class="about-feature-icon">🤝</div>
-        <div class="about-feature-text" data-i18n="members_participation">সক্রিয় অংশগ্রহণ</div>
-      </div>
-      <div class="about-feature">
-        <div class="about-feature-icon">📋</div>
-        <div class="about-feature-text" data-i18n="members_training">স্বেচ্ছাসেবী প্রশিক্ষণ</div>
-      </div>
-      <div class="about-feature">
-        <div class="about-feature-icon">🌍</div>
-        <div class="about-feature-text" data-i18n="members_leadership">কমিউনিটি নেতৃত্ব</div>
-      </div>
+    <div class="members-grid reveal" style="transition-delay:0.15s">
+      <article class="member-card">
+        <div class="member-card-icon">👥</div>
+        <h3 class="member-card-title" data-i18n="members_card_registration_title">সদস্য নিবন্ধন</h3>
+        <p class="member-card-text" data-i18n="members_card_registration_desc">সহজ অনলাইন ফর্ম পূরণ করে তুমি আমাদের সদস্য হয়ে সমাজে পরিবর্তনের অংশ হতে পারো।</p>
+      </article>
+      <a href="leadership.html" class="member-card-link">
+        <article class="member-card">
+          <div class="member-card-icon">🌍</div>
+          <h3 class="member-card-title" data-i18n="members_card_leadership_title">কমিউনিটি নেতৃত্ব</h3>
+          <p class="member-card-text" data-i18n="members_card_leadership_desc">তোমার উদ্যোগ নিয়ে স্থানীয় প্রকল্প চালাও, কমিউনিটি নেতৃত্বে তোমার শক্তি প্রকাশ করো।</p>
+        </article>
+      </a>
     </div>
   </div>
 </section>
@@ -1143,8 +1287,8 @@
 <!-- MISSION -->
 <section class="mission" id="mission">
   <div class="container" style="text-align:center;">
-    <div class="section-label" style="background:rgba(245,166,35,0.15);color:var(--gold-light);" data-i18n="mission_label">আমাদের অঙ্গীকার</div>
-    <h2 class="section-title reveal" style="color:var(--white);" data-i18n="mission_title">আমাদের <span style="color:var(--gold-light)">লক্ষ্য ও উদ্দেশ্য</span></h2>
+    <div class="section-label" style="background:rgba(212,175,55,0.18);color:var(--gold);" data-i18n="mission_label">আমাদের অঙ্গীকার</div>
+    <h2 class="section-title reveal" style="color:var(--white);" data-i18n="mission_title">আমাদের <span style="color:var(--gold)">লক্ষ্য ও উদ্দেশ্য</span></h2>
     <p class="section-desc reveal" style="color:rgba(255,255,255,0.75);margin:0 auto;" data-i18n="mission_desc">
       তরুণদের সক্রিয় অংশগ্রহণের মাধ্যমে একটি সুন্দর, সুষম ও মানবিক সমাজ গড়ে তোলাই আমাদের মূল লক্ষ্য।
     </p>
@@ -1212,68 +1356,44 @@
       <h2 class="section-title" data-i18n="contact_title">আমাদের সাথে <span>যোগাযোগ করুন</span></h2>
     </div>
     <div class="contact-grid">
-      <div class="contact-info reveal">
-        <div class="contact-item">
-          <div class="contact-icon">📍</div>
-          <div class="contact-detail">
-            <strong data-i18n="contact_address_label">ঠিকানা</strong>
-           <p data-i18n="contact_address_text">
-  শিবনগর, বাঙালিপুর, কোটচাঁদপুর, ঝিনাইদাহ  
-  (<a href="https://maps.app.goo.gl/NgXJiAhzKcJTaBTy9" target="_blank" data-i18n="contact_map_link">Google Map</a>)
-</p>
+      <div class="contact-card reveal">
+        <div class="contact-info">
+          <div class="contact-item">
+            <div class="contact-icon">📍</div>
+            <div class="contact-detail">
+              <strong data-i18n="contact_address_label">ঠিকানা</strong>
+              <p data-i18n="contact_address_text">
+                শিবনগর, বাঙালিপুর, কোটচাঁদপুর, ঝিনাইদহ
+                (<a href="https://maps.app.goo.gl/NgXJiAhzKcJTaBTy9" target="_blank" data-i18n="contact_map_link">Google Map</a>)
+              </p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">📘</div>
+            <div class="contact-detail">
+              <strong data-i18n="contact_facebook_label">ফেসবুক পেজ</strong>
+              <p>
+                <a href="https://www.facebook.com/tarunproyash" target="_blank" data-i18n="contact_facebook_name">তরুণ প্রয়াস মানব কল্যাণ সংস্থা</a>
+              </p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">🕐</div>
+            <div class="contact-detail">
+              <strong data-i18n="contact_hours_label">কার্যক্রমের সময়</strong>
+              <p data-i18n="contact_hours_text">প্রতিদিন সকাল ৯টা – রাত ৯টা</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">💚</div>
+            <div class="contact-detail">
+              <strong data-i18n="contact_registration_label">রেজিস্ট্রেশনের জন্য ফর্ম পূরণ করুন?</strong>
+              <p>
+                <a href="https://forms.gle/ne2CLZtT2cyU45M36" target="_blank" data-i18n="contact_registration_link">ফর্ম পূরণ করুন, আমরা যোগাযোগ করব।</a>
+              </p>
+            </div>
           </div>
         </div>
-        <div class="contact-item">
-          <div class="contact-icon">📘</div>
-         <div class="contact-detail">
-          <strong data-i18n="contact_facebook_label">ফেসবুক পেজ</strong>
-          <p>
-            <a href="https://www.facebook.com/tarunproyash" target="_blank" data-i18n="contact_facebook_name">তরুণ প্রয়াস মানব কল্যাণ সংস্থা</a>
-          </p>
-        </div>
-        </div>
-        <div class="contact-item">
-          <div class="contact-icon">🕐</div>
-          <div class="contact-detail">
-            <strong data-i18n="contact_hours_label">কার্যক্রমের সময়</strong>
-            <p data-i18n="contact_hours_text">প্রতিদিন সকাল ৯টা – রাত ৯টা</p>
-          </div>
-        </div>
-        <div class="contact-item">
-          <div class="contact-icon">💚</div>
-          <div class="contact-detail">
-            <strong data-i18n="contact_registration_label">রেজিস্ট্রেশনের জন্য ফর্ম পূরণ করুন?</strong>
-            <p>
-              <a href="https://forms.gle/ne2CLZtT2cyU45M36" target="_blank" data-i18n="contact_registration_link">ফর্ম পূরণ করুন, আমরা যোগাযোগ করব।</a>
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="contact-form reveal" style="transition-delay:0.15s">
-        <div class="form-title" data-i18n="form_title">📨 বার্তা পাঠান বা স্বেচ্ছাসেবক হিসেবে যোগ দিন</div>
-        <div class="form-group">
-          <label data-i18n="form_name_label">আপনার নাম *</label>
-          <input type="text" placeholder="আপনার পূর্ণ নাম লিখুন" data-i18n-placeholder="form_name_placeholder"/>
-        </div>
-        <div class="form-group">
-          <label data-i18n="form_phone_label">ফোন নম্বর *</label>
-          <input type="tel" placeholder="০১XXXXXXXXX" data-i18n-placeholder="form_phone_placeholder"/>
-        </div>
-        <div class="form-group">
-          <label data-i18n="form_subject_label">উদ্দেশ্য</label>
-          <select>
-            <option data-i18n="form_option_volunteer">স্বেচ্ছাসেবক হতে চাই</option>
-            <option data-i18n="form_option_help">সহায়তার আবেদন</option>
-            <option data-i18n="form_option_blood">রক্তদান সংক্রান্ত</option>
-            <option data-i18n="form_option_general">সাধারণ যোগাযোগ</option>
-            <option data-i18n="form_option_donate">অনুদান দিতে চাই</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label data-i18n="form_message_label">বার্তা</label>
-          <textarea placeholder="আপনার বার্তা লিখুন..." data-i18n-placeholder="form_message_placeholder"></textarea>
-        </div>
-        <button class="btn-submit" onclick="handleSubmit()" data-i18n="form_submit">বার্তা পাঠান ✉️</button>
       </div>
     </div>
   </div>
@@ -1331,9 +1451,11 @@
   window.addEventListener('scroll', () => {
     const nav = document.getElementById('navbar');
     if (window.scrollY > 60) {
-      nav.style.background = 'rgba(14,42,24,0.98)';
+      nav.style.background = 'rgba(255,255,255,0.98)';
+      nav.style.boxShadow = '0 15px 40px rgba(31,41,55,0.08)';
     } else {
-      nav.style.background = 'rgba(26,92,46,0.97)';
+      nav.style.background = 'rgba(255,255,255,0.98)';
+      nav.style.boxShadow = '0 15px 40px rgba(31,41,55,0.08)';
     }
 
     // Scroll to top button
@@ -1369,15 +1491,7 @@
 
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-  // Form submit
-  function handleSubmit() {
-    const btn = document.querySelector('.btn-submit');
-    btn.textContent = '✅ বার্তা পাঠানো হয়েছে! ধন্যবাদ।';
-    btn.style.background = 'linear-gradient(135deg, #1a5c2e, #2e8b47)';
-    setTimeout(() => {
-      btn.textContent = 'বার্তা পাঠান ✉️';
-    }, 3000);
-  }
+
 
   // Counter animation
   function animateCounters() {
@@ -1432,6 +1546,10 @@
       members_participation: 'সক্রিয় অংশগ্রহণ',
       members_training: 'স্বেচ্ছাসেবী প্রশিক্ষণ',
       members_leadership: 'কমিউনিটি নেতৃত্ব',
+      members_card_registration_title: 'সদস্য নিবন্ধন',
+      members_card_registration_desc: 'সহজ অনলাইন ফর্ম পূরণ করে তুমি আমাদের সদস্য হয়ে সমাজে পরিবর্তনের অংশ হতে পারো।',
+      members_card_leadership_title: 'কমিউনিটি নেতৃত্ব',
+      members_card_leadership_desc: 'তোমার উদ্যোগ নিয়ে স্থানীয় প্রকল্প চালাও, কমিউনিটি নেতৃত্বে তোমার শক্তি প্রকাশ করো।',
       emergency_label: 'জরুরি সেবা',
       emergency_title: 'আমাদের <span>জরুরি সেবা</span>',
       emergency_desc: 'যে কোনো প্রাকৃতিক দুর্যোগ বা জরুরি মানুষের সহায়তায় তরুণ প্রয়াস দ্রুত সহায়তা পৌঁছে দেয়।',
@@ -1549,6 +1667,10 @@
       members_participation: 'Active Participation',
       members_training: 'Volunteer Training',
       members_leadership: 'Community Leadership',
+      members_card_registration_title: 'Membership Registration',
+      members_card_registration_desc: 'Fill the simple online form to join us and become part of positive change in your community.',
+      members_card_leadership_title: 'Community Leadership',
+      members_card_leadership_desc: 'Lead local projects with your initiative and help shape stronger community action.',
       emergency_label: 'Emergency Service',
       emergency_title: 'Our <span>Emergency Services</span>',
       emergency_desc: 'Tarun Proyash quickly delivers assistance during natural disasters and urgent human needs.',
