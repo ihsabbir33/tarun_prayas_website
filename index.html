@@ -121,6 +121,34 @@
 
     .nav-donate-btn::after { display: none; }
 
+    .lang-toggle {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+    }
+
+    .lang-btn {
+      border: 1px solid rgba(255,255,255,0.4);
+      background: rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.95);
+      padding: 0.35rem 0.85rem;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      transition: background 0.2s, color 0.2s, transform 0.2s;
+    }
+
+    .lang-btn:hover {
+      background: rgba(255,255,255,0.2);
+      transform: translateY(-1px);
+    }
+
+    .lang-btn.active {
+      background: var(--white);
+      color: var(--green-dark);
+      border-color: rgba(255,255,255,0.9);
+    }
+
     /* Hamburger */
     .hamburger {
       display: none;
@@ -905,18 +933,24 @@
   <a href="#home" class="nav-logo">
     <div class="nav-logo-icon">🤝</div>
     <div class="nav-logo-text">
-      তরুণ প্রয়াস
-      <span>মানব কল্যাণ সংস্থা</span>
+      <div data-i18n="org_name">তরুণ প্রয়াস</div>
+      <span data-i18n="org_tagline">মানব কল্যাণ সংস্থা</span>
     </div>
   </a>
   <ul class="nav-links" id="navLinks">
-    <li><a href="#home">হোম</a></li>
-    <li><a href="#about">আমাদের সম্পর্কে</a></li>
-    <li><a href="#services">সেবাসমূহ</a></li>
-    <li><a href="#gallery">গ্যালারি</a></li>
-    <li><a href="#contact">যোগাযোগ</a></li>
-    <li><a href="#contact" class="nav-donate-btn">সহযোগিতা করুন</a></li>
+    <li><a href="#home" data-i18n="nav_home">হোম</a></li>
+    <li><a href="#about" data-i18n="nav_about">আমাদের সম্পর্কে</a></li>
+    <li><a href="#members" data-i18n="nav_members">মেম্বার</a></li>
+    <li><a href="#services" data-i18n="nav_services">সেবাসমূহ</a></li>
+    <li><a href="#gallery" data-i18n="nav_gallery">গ্যালারি</a></li>
+    <li><a href="#contact" data-i18n="nav_contact">যোগাযোগ</a></li>
+    <li><a href="#emergency" data-i18n="nav_emergency">জরুরি সেবা</a></li>
+    <li><a href="#contact" class="nav-donate-btn" data-i18n="nav_donate">সহযোগিতা করুন</a></li>
   </ul>
+  <div class="lang-toggle">
+    <button type="button" class="lang-btn active" data-lang="bn">বাংলা</button>
+    <button type="button" class="lang-btn" data-lang="en">EN</button>
+  </div>
   <div class="hamburger" id="hamburger" onclick="toggleMenu()">
     <span></span><span></span><span></span>
   </div>
@@ -925,35 +959,34 @@
 <!-- HERO -->
 <section class="hero" id="home">
   <div style="position:relative;z-index:1;">
-    <div class="hero-badge">🌱 তরুণের হাতে পরিবর্তনের সূচনা</div>
+    <div class="hero-badge" data-i18n="hero_badge">🌱 তরুণের হাতে পরিবর্তনের সূচনা</div>
     <h1>
-  তরুণ প্রয়াস
-  <span>মানব কল্যাণ সংস্থা</span>
-</h1>
-<h2 class="hero-location">
-  শিবনগর, বাঙালিপুর, কোটচাঁদপুর, ঝিনাইদাহ
-</h2>
-    
-    <p class="hero-tagline">
+      <span data-i18n="hero_title">তরুণ প্রয়াস</span>
+      <span data-i18n="hero_subtitle">মানব কল্যাণ সংস্থা</span>
+    </h1>
+    <h2 class="hero-location" data-i18n="hero_location">
+      শিবনগর, বাঙালিপুর, কোটচাঁদপুর, ঝিনাইদাহ
+    </h2>
+    <p class="hero-tagline" data-i18n="hero_tagline">
       সেবা | সহায়তা | সহযোগিতা | পরিবর্তন<br/>
       <em>"তরুণের শক্তিতে সমাজ বদলাবে"</em>
     </p>
     <div class="hero-cta">
-      <a href="#services" class="btn-primary">আমাদের সেবা দেখুন</a>
-      <a href="#about" class="btn-outline">আরও জানুন</a>
+      <a href="#services" class="btn-primary" data-i18n="hero_cta_services">আমাদের সেবা দেখুন</a>
+      <a href="#about" class="btn-outline" data-i18n="hero_cta_about">আরও জানুন</a>
     </div>
     <div class="hero-stats">
       <div class="stat">
         <div class="stat-num">৫০০+</div>
-        <div class="stat-label">উপকারভোগী পরিবার</div>
+        <div class="stat-label" data-i18n="stat_families">উপকারভোগী পরিবার</div>
       </div>
       <div class="stat">
         <div class="stat-num">৬টি</div>
-        <div class="stat-label">সেবা কার্যক্রম</div>
+        <div class="stat-label" data-i18n="stat_services">সেবা কার্যক্রম</div>
       </div>
       <div class="stat">
         <div class="stat-num">১০০+</div>
-        <div class="stat-label">স্বেচ্ছাসেবক</div>
+        <div class="stat-label" data-i18n="stat_volunteers">স্বেচ্ছাসেবক</div>
       </div>
     </div>
   </div>
@@ -975,32 +1008,90 @@
         </div>
       </div>
       <div class="reveal" style="transition-delay:0.15s">
-        <div class="section-label">আমাদের সম্পর্কে</div>
-        <h2 class="section-title">মানবতার জন্য <span>একসাথে</span></h2>
-        <p class="section-desc">
+        <div class="section-label" data-i18n="about_label">আমাদের সম্পর্কে</div>
+        <h2 class="section-title" data-i18n="about_title">মানবতার জন্য <span>একসাথে</span></h2>
+        <p class="section-desc" data-i18n="about_desc_1">
           তরুণ প্রয়াস মানব কল্যাণ সংস্থা একটি অরাজনৈতিক ও স্বেচ্ছাসেবী মানবকল্যাণমূলক সংগঠন। আমরা সমাজের অসহায় ও সুবিধাবঞ্চিত মানুষের পাশে দাঁড়াতে কাজ করে যাচ্ছি। আমাদের লক্ষ্য — মানবসেবা, শিক্ষা সহায়তা ও সমাজ উন্নয়ন।
         </p>
-        <p class="section-desc" style="margin-top:1rem;">
+        <p class="section-desc" style="margin-top:1rem;" data-i18n="about_desc_2">
           শিবনগর, বাঙালিপুর, কোটচাঁদপুর, ঝিনাইদাহ থেকে পরিচালিত এই সংগঠনটি তরুণদের উদ্যোগে সমাজের উন্নয়ন ও মানব কল্যাণে নিবেদিত।
         </p>
         <div class="about-features">
           <div class="about-feature">
             <div class="about-feature-icon">❤️</div>
-            <div class="about-feature-text">মানব সেবা</div>
+            <div class="about-feature-text" data-i18n="about_feature_service">মানব সেবা</div>
           </div>
           <div class="about-feature">
             <div class="about-feature-icon">📚</div>
-            <div class="about-feature-text">শিক্ষা সহায়তা</div>
+            <div class="about-feature-text" data-i18n="about_feature_education">শিক্ষা সহায়তা</div>
           </div>
           <div class="about-feature">
             <div class="about-feature-icon">🌿</div>
-            <div class="about-feature-text">পরিবেশ সংরক্ষণ</div>
+            <div class="about-feature-text" data-i18n="about_feature_environment">পরিবেশ সংরক্ষণ</div>
           </div>
           <div class="about-feature">
             <div class="about-feature-icon">🤝</div>
-            <div class="about-feature-text">দুর্যোগ সহায়তা</div>
+            <div class="about-feature-text" data-i18n="about_feature_disaster">দুর্যোগ সহায়তা</div>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MEMBERS -->
+<section class="members" id="members">
+  <div class="container">
+    <div class="section-label reveal" data-i18n="members_label">সদস্য</div>
+    <h2 class="section-title reveal" data-i18n="members_title">আমাদের <span>সদস্যপদ</span></h2>
+    <p class="section-desc reveal" data-i18n="members_desc">
+      তরুণ প্রয়াসের সদস্যরা সমাজসেবায় সক্রিয়ভাবে অংশগ্রহণ করেন, সময় দান করেন এবং কমিউনিটি উদ্যোগে নেতৃত্ব দেন।
+    </p>
+    <div class="about-features reveal" style="transition-delay:0.15s">
+      <div class="about-feature">
+        <div class="about-feature-icon">👥</div>
+        <div class="about-feature-text" data-i18n="members_registration">সদস্য নিবন্ধন</div>
+      </div>
+      <div class="about-feature">
+        <div class="about-feature-icon">🤝</div>
+        <div class="about-feature-text" data-i18n="members_participation">সক্রিয় অংশগ্রহণ</div>
+      </div>
+      <div class="about-feature">
+        <div class="about-feature-icon">📋</div>
+        <div class="about-feature-text" data-i18n="members_training">স্বেচ্ছাসেবী প্রশিক্ষণ</div>
+      </div>
+      <div class="about-feature">
+        <div class="about-feature-icon">🌍</div>
+        <div class="about-feature-text" data-i18n="members_leadership">কমিউনিটি নেতৃত্ব</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EMERGENCY -->
+<section class="emergency" id="emergency">
+  <div class="container">
+    <div class="section-label reveal" data-i18n="emergency_label">জরুরি সেবা</div>
+    <h2 class="section-title reveal" data-i18n="emergency_title">আমাদের <span>জরুরি সেবা</span></h2>
+    <p class="section-desc reveal" data-i18n="emergency_desc">
+      যে কোনো প্রাকৃতিক দুর্যোগ বা জরুরি মানুষের সহায়তায় তরুণ প্রয়াস দ্রুত সহায়তা পৌঁছে দেয়।
+    </p>
+    <div class="about-features reveal" style="transition-delay:0.15s">
+      <div class="about-feature">
+        <div class="about-feature-icon">🆘</div>
+        <div class="about-feature-text" data-i18n="emergency_relief">দুর্যোগ ত্রাণ</div>
+      </div>
+      <div class="about-feature">
+        <div class="about-feature-icon">🚑</div>
+        <div class="about-feature-text" data-i18n="emergency_health">ত্রাণ ও স্বাস্থ্য সহায়তা</div>
+      </div>
+      <div class="about-feature">
+        <div class="about-feature-icon">🍚</div>
+        <div class="about-feature-text" data-i18n="emergency_food">খাদ্য বিতরণ</div>
+      </div>
+      <div class="about-feature">
+        <div class="about-feature-icon">📞</div>
+        <div class="about-feature-text" data-i18n="emergency_call">জরুরি কল সাপোর্ট</div>
       </div>
     </div>
   </div>
@@ -1010,40 +1101,40 @@
 <section class="services" id="services">
   <div class="container">
     <div class="services-header reveal">
-      <div class="section-label">সেবাসমূহ</div>
-      <h2 class="section-title">আমরা যে সেবা <span>প্রদান করি</span></h2>
-      <p class="section-desc">সমাজের প্রতিটি স্তরে পৌঁছে দিচ্ছি আমাদের সেবার হাত।</p>
+      <div class="section-label" data-i18n="services_label">সেবাসমূহ</div>
+      <h2 class="section-title" data-i18n="services_title">আমরা যে সেবা <span>প্রদান করি</span></h2>
+      <p class="section-desc" data-i18n="services_desc">সমাজের প্রতিটি স্তরে পৌঁছে দিচ্ছি আমাদের সেবার হাত।</p>
     </div>
     <div class="services-grid">
       <div class="service-card reveal">
         <div class="service-icon">❤️</div>
-        <div class="service-title">মানব সেবা</div>
-        <p class="service-desc">অসহায় ও দুস্থ মানুষদের সরাসরি সহায়তা প্রদান এবং মানবিক সংকটে পাশে থাকা।</p>
+        <div class="service-title" data-i18n="service_human">মানব সেবা</div>
+        <p class="service-desc" data-i18n="service_human_desc">অসহায় ও দুস্থ মানুষদের সরাসরি সহায়তা প্রদান এবং মানবিক সংকটে পাশে থাকা।</p>
       </div>
       <div class="service-card reveal" style="transition-delay:0.1s">
         <div class="service-icon">🎓</div>
-        <div class="service-title">শিক্ষা সহায়তা</div>
-        <p class="service-desc">মেধাবী কিন্তু অসচ্ছল শিক্ষার্থীদের বৃত্তি, শিক্ষা উপকরণ ও পড়াশোনায় সহযোগিতা।</p>
+        <div class="service-title" data-i18n="service_education">শিক্ষা সহায়তা</div>
+        <p class="service-desc" data-i18n="service_education_desc">মেধাবী কিন্তু অসচ্ছল শিক্ষার্থীদের বৃত্তি, শিক্ষা উপকরণ ও পড়াশোনায় সহযোগিতা।</p>
       </div>
       <div class="service-card reveal" style="transition-delay:0.2s">
         <div class="service-icon">🌿</div>
-        <div class="service-title">পরিবেশ সংরক্ষণ</div>
-        <p class="service-desc">বৃক্ষরোপণ, পরিচ্ছন্নতা অভিযান ও পরিবেশ সচেতনতা কার্যক্রম পরিচালনা।</p>
+        <div class="service-title" data-i18n="service_environment">পরিবেশ সংরক্ষণ</div>
+        <p class="service-desc" data-i18n="service_environment_desc">বৃক্ষরোপণ, পরিচ্ছন্নতা অভিযান ও পরিবেশ সচেতনতা কার্যক্রম পরিচালনা।</p>
       </div>
       <div class="service-card reveal" style="transition-delay:0.1s">
         <div class="service-icon">🩸</div>
-        <div class="service-title">রক্তদান কর্মসূচি</div>
-        <p class="service-desc">জরুরি রক্তের প্রয়োজনে দ্রুত সাড়া দেওয়া এবং নিয়মিত রক্তদান ক্যাম্প আয়োজন।</p>
+        <div class="service-title" data-i18n="service_blood">রক্তদান কর্মসূচি</div>
+        <p class="service-desc" data-i18n="service_blood_desc">জরুরি রক্তের প্রয়োজনে দ্রুত সাড়া দেওয়া এবং নিয়মিত রক্তদান ক্যাম্প আয়োজন।</p>
       </div>
       <div class="service-card reveal" style="transition-delay:0.2s">
         <div class="service-icon">🆘</div>
-        <div class="service-title">দুর্যোগ সহায়তা</div>
-        <p class="service-desc">বন্যা, ঝড়সহ যেকোনো প্রাকৃতিক দুর্যোগে ক্ষতিগ্রস্তদের পাশে তাৎক্ষণিকভাবে দাঁড়ানো।</p>
+        <div class="service-title" data-i18n="service_disaster">দুর্যোগ সহায়তা</div>
+        <p class="service-desc" data-i18n="service_disaster_desc">বন্যা, ঝড়সহ যেকোনো প্রাকৃতিক দুর্যাগে ক্ষতিগ্রস্তদের পাশে তাৎক্ষণিকভাবে দাঁড়ানো।</p>
       </div>
       <div class="service-card reveal" style="transition-delay:0.3s">
         <div class="service-icon">🍚</div>
-        <div class="service-title">খাদ্য সহায়তা</div>
-        <p class="service-desc">অসহায় পরিবারগুলোতে নিয়মিত খাদ্যসামগ্রী বিতরণ এবং ঈদ-উৎসবে বিশেষ সহায়তা।</p>
+        <div class="service-title" data-i18n="service_food">খাদ্য সহায়তা</div>
+        <p class="service-desc" data-i18n="service_food_desc">অসহায় পরিবারগুলোতে নিয়মিত খাদ্যসামগ্রী বিতরণ এবং ঈদ-উৎসবে বিশেষ সহায়তা।</p>
       </div>
     </div>
   </div>
@@ -1052,30 +1143,30 @@
 <!-- MISSION -->
 <section class="mission" id="mission">
   <div class="container" style="text-align:center;">
-    <div class="section-label" style="background:rgba(245,166,35,0.15);color:var(--gold-light);">আমাদের অঙ্গীকার</div>
-    <h2 class="section-title reveal" style="color:var(--white);">আমাদের <span style="color:var(--gold-light)">লক্ষ্য ও উদ্দেশ্য</span></h2>
-    <p class="section-desc reveal" style="color:rgba(255,255,255,0.75);margin:0 auto;">
+    <div class="section-label" style="background:rgba(245,166,35,0.15);color:var(--gold-light);" data-i18n="mission_label">আমাদের অঙ্গীকার</div>
+    <h2 class="section-title reveal" style="color:var(--white);" data-i18n="mission_title">আমাদের <span style="color:var(--gold-light)">লক্ষ্য ও উদ্দেশ্য</span></h2>
+    <p class="section-desc reveal" style="color:rgba(255,255,255,0.75);margin:0 auto;" data-i18n="mission_desc">
       তরুণদের সক্রিয় অংশগ্রহণের মাধ্যমে একটি সুন্দর, সুষম ও মানবিক সমাজ গড়ে তোলাই আমাদের মূল লক্ষ্য।
     </p>
-    <div class="mission-quote reveal">
+    <div class="mission-quote reveal" data-i18n="mission_quote">
       "তরুণের শক্তিতে সমাজ বদলাবে"
     </div>
     <div class="mission-values reveal">
       <div class="mission-value">
         <div class="icon">🌱</div>
-        <div class="label">সেবা</div>
+        <div class="label" data-i18n="mission_value_service">সেবা</div>
       </div>
       <div class="mission-value">
         <div class="icon">🤲</div>
-        <div class="label">সহায়তা</div>
+        <div class="label" data-i18n="mission_value_support">সহায়তা</div>
       </div>
       <div class="mission-value">
         <div class="icon">🤝</div>
-        <div class="label">সহযোগিতা</div>
+        <div class="label" data-i18n="mission_value_cooperation">সহযোগিতা</div>
       </div>
       <div class="mission-value">
         <div class="icon">✨</div>
-        <div class="label">পরিবর্তন</div>
+        <div class="label" data-i18n="mission_value_change">পরিবর্তন</div>
       </div>
     </div>
   </div>
@@ -1085,29 +1176,29 @@
 <section class="gallery" id="gallery">
   <div class="container">
     <div class="gallery-header reveal">
-      <div class="section-label">গ্যালারি</div>
-      <h2 class="section-title">আমাদের <span>কার্যক্রমের মুহূর্তসমূহ</span></h2>
+      <div class="section-label" data-i18n="gallery_label">গ্যালারি</div>
+      <h2 class="section-title" data-i18n="gallery_title">আমাদের <span>কার্যক্রমের মুহূর্তসমূহ</span></h2>
     </div>
     <div class="gallery-grid reveal">
       <div class="gallery-item">
-        <img src="https://images.unsplash.com/photo-1593113598332-cd288d649433?w=600&q=80" alt="ত্রাণ বিতরণ"/>
-        <div class="gallery-overlay">ত্রাণ বিতরণ কার্যক্রম</div>
+        <img src="https://images.unsplash.com/photo-1593113598332-cd288d649433?w=600&q=80" alt="ত্রাণ বিতরণ" data-i18n-alt="gallery_alt_relief"/>
+        <div class="gallery-overlay" data-i18n="gallery_relief">ত্রাণ বিতরণ কার্যক্রম</div>
       </div>
       <div class="gallery-item">
-        <img src="b.png" alt="বৃক্ষরোপণ"/>
-        <div class="gallery-overlay">বৃক্ষরোপণ অভিযান</div>
+        <img src="b.png" alt="বৃক্ষরোপণ" data-i18n-alt="gallery_alt_tree"/>
+        <div class="gallery-overlay" data-i18n="gallery_tree">বৃক্ষরোপণ অভিযান</div>
       </div>    
       <div class="gallery-item">
-        <img src="https://images.unsplash.com/photo-1544027993-37dbfe43562a?w=600&q=80" alt="শিক্ষা সহায়তা"/>
-        <div class="gallery-overlay">শিক্ষা সহায়তা কার্যক্রম</div>
+        <img src="https://images.unsplash.com/photo-1544027993-37dbfe43562a?w=600&q=80" alt="শিক্ষা সহায়তা" data-i18n-alt="gallery_alt_education"/>
+        <div class="gallery-overlay" data-i18n="gallery_education">শিক্ষা সহায়তা কার্যক্রম</div>
       </div>
       <div class="gallery-item">
-        <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=600&q=80" alt="স্বেচ্ছাসেবক"/>
-        <div class="gallery-overlay">স্বেচ্ছাসেবক দল</div>
+        <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=600&q=80" alt="স্বেচ্ছাসেবক" data-i18n-alt="gallery_alt_volunteer"/>
+        <div class="gallery-overlay" data-i18n="gallery_volunteer">স্বেচ্ছাসেবক দল</div>
       </div>
       <div class="gallery-item">
-        <img src="sa.jpg" alt="রক্তদান"/>
-        <div class="gallery-overlay">রক্তদান কর্মসূচি</div>
+        <img src="sa.jpg" alt="রক্তদান" data-i18n-alt="gallery_alt_blood"/>
+        <div class="gallery-overlay" data-i18n="gallery_blood">রক্তদান কর্মসূচি</div>
       </div>
     </div>
   </div>
@@ -1117,81 +1208,72 @@
 <section class="contact" id="contact">
   <div class="container">
     <div class="reveal">
-      <div class="section-label">যোগাযোগ</div>
-      <h2 class="section-title">আমাদের সাথে <span>যোগাযোগ করুন</span></h2>
+      <div class="section-label" data-i18n="contact_label">যোগাযোগ</div>
+      <h2 class="section-title" data-i18n="contact_title">আমাদের সাথে <span>যোগাযোগ করুন</span></h2>
     </div>
     <div class="contact-grid">
       <div class="contact-info reveal">
         <div class="contact-item">
           <div class="contact-icon">📍</div>
           <div class="contact-detail">
-            <strong>ঠিকানা</strong>
-           <p>
+            <strong data-i18n="contact_address_label">ঠিকানা</strong>
+           <p data-i18n="contact_address_text">
   শিবনগর, বাঙালিপুর, কোটচাঁদপুর, ঝিনাইদাহ  
-  (<a href="https://maps.app.goo.gl/NgXJiAhzKcJTaBTy9" target="_blank">
-    Google Map
-  </a>)
+  (<a href="https://maps.app.goo.gl/NgXJiAhzKcJTaBTy9" target="_blank" data-i18n="contact_map_link">Google Map</a>)
 </p>
           </div>
-
-
-
         </div>
         <div class="contact-item">
           <div class="contact-icon">📘</div>
          <div class="contact-detail">
-  <strong>ফেসবুক পেজ</strong>
-  <p>
-    <a href="https://www.facebook.com/tarunproyash" target="_blank">
-      তরুণ প্রয়াস মানব কল্যাণ সংস্থা
-    </a>
-  </p>
-</div>
+          <strong data-i18n="contact_facebook_label">ফেসবুক পেজ</strong>
+          <p>
+            <a href="https://www.facebook.com/tarunproyash" target="_blank" data-i18n="contact_facebook_name">তরুণ প্রয়াস মানব কল্যাণ সংস্থা</a>
+          </p>
+        </div>
         </div>
         <div class="contact-item">
           <div class="contact-icon">🕐</div>
           <div class="contact-detail">
-            <strong>কার্যক্রমের সময়</strong>
-            <p>প্রতিদিন সকাল ৯টা – রাত ৯টা</p>
+            <strong data-i18n="contact_hours_label">কার্যক্রমের সময়</strong>
+            <p data-i18n="contact_hours_text">প্রতিদিন সকাল ৯টা – রাত ৯টা</p>
           </div>
         </div>
         <div class="contact-item">
           <div class="contact-icon">💚</div>
           <div class="contact-detail">
-            <strong>রেজিস্ট্রেশনের জন্য ফর্ম পূরণ করুন?</strong>
+            <strong data-i18n="contact_registration_label">রেজিস্ট্রেশনের জন্য ফর্ম পূরণ করুন?</strong>
             <p>
-  <a href="https://forms.gle/ne2CLZtT2cyU45M36" target="_blank">
-    ফর্ম পূরণ করুন, আমরা যোগাযোগ করব।
-  </a>
-</p>
+              <a href="https://forms.gle/ne2CLZtT2cyU45M36" target="_blank" data-i18n="contact_registration_link">ফর্ম পূরণ করুন, আমরা যোগাযোগ করব।</a>
+            </p>
           </div>
         </div>
       </div>
       <div class="contact-form reveal" style="transition-delay:0.15s">
-        <div class="form-title">📨 বার্তা পাঠান বা স্বেচ্ছাসেবক হিসেবে যোগ দিন</div>
+        <div class="form-title" data-i18n="form_title">📨 বার্তা পাঠান বা স্বেচ্ছাসেবক হিসেবে যোগ দিন</div>
         <div class="form-group">
-          <label>আপনার নাম *</label>
-          <input type="text" placeholder="আপনার পূর্ণ নাম লিখুন"/>
+          <label data-i18n="form_name_label">আপনার নাম *</label>
+          <input type="text" placeholder="আপনার পূর্ণ নাম লিখুন" data-i18n-placeholder="form_name_placeholder"/>
         </div>
         <div class="form-group">
-          <label>ফোন নম্বর *</label>
-          <input type="tel" placeholder="০১XXXXXXXXX"/>
+          <label data-i18n="form_phone_label">ফোন নম্বর *</label>
+          <input type="tel" placeholder="০১XXXXXXXXX" data-i18n-placeholder="form_phone_placeholder"/>
         </div>
         <div class="form-group">
-          <label>উদ্দেশ্য</label>
+          <label data-i18n="form_subject_label">উদ্দেশ্য</label>
           <select>
-            <option>স্বেচ্ছাসেবক হতে চাই</option>
-            <option>সহায়তার আবেদন</option>
-            <option>রক্তদান সংক্রান্ত</option>
-            <option>সাধারণ যোগাযোগ</option>
-            <option>অনুদান দিতে চাই</option>
+            <option data-i18n="form_option_volunteer">স্বেচ্ছাসেবক হতে চাই</option>
+            <option data-i18n="form_option_help">সহায়তার আবেদন</option>
+            <option data-i18n="form_option_blood">রক্তদান সংক্রান্ত</option>
+            <option data-i18n="form_option_general">সাধারণ যোগাযোগ</option>
+            <option data-i18n="form_option_donate">অনুদান দিতে চাই</option>
           </select>
         </div>
         <div class="form-group">
-          <label>বার্তা</label>
-          <textarea placeholder="আপনার বার্তা লিখুন..."></textarea>
+          <label data-i18n="form_message_label">বার্তা</label>
+          <textarea placeholder="আপনার বার্তা লিখুন..." data-i18n-placeholder="form_message_placeholder"></textarea>
         </div>
-        <button class="btn-submit" onclick="handleSubmit()">বার্তা পাঠান ✉️</button>
+        <button class="btn-submit" onclick="handleSubmit()" data-i18n="form_submit">বার্তা পাঠান ✉️</button>
       </div>
     </div>
   </div>
@@ -1203,9 +1285,9 @@
     <div class="footer-brand">
       <div class="footer-logo">
         <div class="footer-logo-icon">🤝</div>
-        <div class="footer-logo-text">তরুণ প্রয়াস<br/>মানব কল্যাণ সংস্থা</div>
+        <div class="footer-logo-text" data-i18n="footer_org_name">তরুণ প্রয়াস<br/>মানব কল্যাণ সংস্থা</div>
       </div>
-      <p>একটি অরাজনৈতিক ও স্বেচ্ছাসেবী মানবকল্যাণমূলক সংগঠন। তরুণের শক্তিতে সমাজ পরিবর্তনে নিবেদিত।</p>
+      <p data-i18n="footer_about">একটি অরাজনৈতিক ও স্বেচ্ছাসেবী মানবকল্যাণমূলক সংগঠন। তরুণের শক্তিতে সমাজ পরিবর্তনে নিবেদিত।</p>
       <div class="footer-social">
         <a href="#" class="social-btn">📘</a>
         <a href="#" class="social-btn">📷</a>
@@ -1213,31 +1295,31 @@
       </div>
     </div>
     <div class="footer-col">
-      <h4>দ্রুত লিংক</h4>
+      <h4 data-i18n="footer_links_label">দ্রুত লিংক</h4>
       <ul>
-        <li><a href="#home">▸ হোম</a></li>
-        <li><a href="#about">▸ আমাদের সম্পর্কে</a></li>
-        <li><a href="#services">▸ সেবাসমূহ</a></li>
-        <li><a href="#gallery">▸ গ্যালারি</a></li>
-        <li><a href="#contact">▸ যোগাযোগ</a></li>
+        <li><a href="#home" data-i18n="footer_link_home">▸ হোম</a></li>
+        <li><a href="#about" data-i18n="footer_link_about">▸ আমাদের সম্পর্কে</a></li>
+        <li><a href="#services" data-i18n="footer_link_services">▸ সেবাসমূহ</a></li>
+        <li><a href="#gallery" data-i18n="footer_link_gallery">▸ গ্যালারি</a></li>
+        <li><a href="#contact" data-i18n="footer_link_contact">▸ যোগাযোগ</a></li>
       </ul>
     </div>
     <div class="footer-col">
-      <h4>আমাদের সেবা</h4>
+      <h4 data-i18n="footer_services_label">আমাদের সেবা</h4>
       <ul>
-        <li><a href="#">▸ মানব সেবা</a></li>
-        <li><a href="#">▸ শিক্ষা সহায়তা</a></li>
-        <li><a href="#">▸ পরিবেশ সংরক্ষণ</a></li>
-        <li><a href="#">▸ রক্তদান কর্মসূচি</a></li>
-        <li><a href="#">▸ দুর্যোগ সহায়তা</a></li>
-        <li><a href="#">▸ খাদ্য সহায়তা</a></li>
+        <li><a href="#" data-i18n="footer_service_human">▸ মানব সেবা</a></li>
+        <li><a href="#" data-i18n="footer_service_education">▸ শিক্ষা সহায়তা</a></li>
+        <li><a href="#" data-i18n="footer_service_environment">▸ পরিবেশ সংরক্ষণ</a></li>
+        <li><a href="#" data-i18n="footer_service_blood">▸ রক্তদান কর্মসূচি</a></li>
+        <li><a href="#" data-i18n="footer_service_disaster">▸ দুর্যোগ সহায়তা</a></li>
+        <li><a href="#" data-i18n="footer_service_food">▸ খাদ্য সহায়তা</a></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
-    <p>© ২০২৬ তরুণ প্রয়াস মানব কল্যাণ সংস্থা। সর্বস্বত্ব সংরক্ষিত।</p>
-    <p style="margin-top:0.4rem;">📍 শিবনগর, বাঙালিপুর, কোটচাঁদপুর, ঝিনাইদাহ</p>
-    <p style="margin-top:0.4rem;">💻 Developed By Sabbir Ahmed</p>
+    <p data-i18n="footer_copyright">© ২০২৬ তরুণ প্রয়াস মানব কল্যাণ সংস্থা। সর্বস্বত্ব সংরক্ষিত।</p>
+    <p style="margin-top:0.4rem;" data-i18n="footer_address">📍 শিবনগর, বাঙালিপুর, কোটচাঁদপুর, ঝিনাইদাহ</p>
+    <p style="margin-top:0.4rem;" data-i18n="footer_credit">💻 Developed By Sabbir Ahmed</p>
   </div>
 </footer>
 
@@ -1312,6 +1394,273 @@
     if (entries[0].isIntersecting) animateCounters();
   }, { threshold: 0.5 });
   heroObserver.observe(document.querySelector('.hero-stats'));
+
+  const translations = {
+    bn: {
+      nav_home: 'হোম',
+      nav_about: 'আমাদের সম্পর্কে',
+      nav_members: 'মেম্বার',
+      nav_services: 'সেবাসমূহ',
+      nav_gallery: 'গ্যালারি',
+      nav_contact: 'যোগাযোগ',
+      nav_emergency: 'জরুরি সেবা',
+      nav_donate: 'সহযোগিতা করুন',
+      org_name: 'তরুণ প্রয়াস',
+      org_tagline: 'মানব কল্যাণ সংস্থা',
+      hero_badge: '🌱 তরুণের হাতে পরিবর্তনের সূচনা',
+      hero_title: 'তরুণ প্রয়াস',
+      hero_subtitle: 'মানব কল্যাণ সংস্থা',
+      hero_location: 'শিবনগর, বাঙালিপুর, কোটচাঁদপুর, ঝিনাইদাহ',
+      hero_tagline: 'সেবা | সহায়তা | সহযোগিতা | পরিবর্তন<br/><em>"তরুণের শক্তিতে সমাজ বদলাবে"</em>',
+      hero_cta_services: 'আমাদের সেবা দেখুন',
+      hero_cta_about: 'আরও জানুন',
+      stat_families: 'উপকারভোগী পরিবার',
+      stat_services: 'সেবা কার্যক্রম',
+      stat_volunteers: 'স্বেচ্ছাসেবক',
+      about_label: 'আমাদের সম্পর্কে',
+      about_title: 'মানবতার জন্য <span>একসাথে</span>',
+      about_desc_1: 'তরুণ প্রয়াস মানব কল্যাণ সংস্থা একটি অরাজনৈতিক ও স্বেচ্ছাসেবী মানবকল্যাণমূলক সংগঠন। আমরা সমাজের অসহায় ও সুবিধাবঞ্চিত মানুষের পাশে দাঁড়াতে কাজ করে যাচ্ছি। আমাদের লক্ষ্য — মানবসেবা, শিক্ষা সহায়তা ও সমাজ উন্নয়ন।',
+      about_desc_2: 'শিবনগর, বাঙালিপুর, কোটচাঁদপুর, ঝিনাইদাহ থেকে পরিচালিত এই সংগঠনটি তরুণদের উদ্যোগে সমাজের উন্নয়ন ও মানব কল্যাণে নিবেদিত।',
+      about_feature_service: 'মানব সেবা',
+      about_feature_education: 'শিক্ষা সহায়তা',
+      about_feature_environment: 'পরিবেশ সংরক্ষণ',
+      about_feature_disaster: 'দুর্যোগ সহায়তা',
+      members_label: 'সদস্য',
+      members_title: 'আমাদের <span>সদস্যপদ</span>',
+      members_desc: 'তরুণ প্রয়াসের সদস্যরা সমাজসেবায় সক্রিয়ভাবে অংশগ্রহণ করেন, সময় দান করেন এবং কমিউনিটি উদ্যোগে নেতৃত্ব দেন।',
+      members_registration: 'সদস্য নিবন্ধন',
+      members_participation: 'সক্রিয় অংশগ্রহণ',
+      members_training: 'স্বেচ্ছাসেবী প্রশিক্ষণ',
+      members_leadership: 'কমিউনিটি নেতৃত্ব',
+      emergency_label: 'জরুরি সেবা',
+      emergency_title: 'আমাদের <span>জরুরি সেবা</span>',
+      emergency_desc: 'যে কোনো প্রাকৃতিক দুর্যোগ বা জরুরি মানুষের সহায়তায় তরুণ প্রয়াস দ্রুত সহায়তা পৌঁছে দেয়।',
+      emergency_relief: 'দুর্যোগ ত্রাণ',
+      emergency_health: 'ত্রাণ ও স্বাস্থ্য সহায়তা',
+      emergency_food: 'খাদ্য বিতরণ',
+      emergency_call: 'জরুরি কল সাপোর্ট',
+      services_label: 'সেবাসমূহ',
+      services_title: 'আমরা যে সেবা <span>প্রদান করি</span>',
+      services_desc: 'সমাজের প্রতিটি স্তরে পৌঁছে দিচ্ছি আমাদের সেবার হাত।',
+      service_human: 'মানব সেবা',
+      service_human_desc: 'অসহায় ও দুস্থ মানুষদের সরাসরি সহায়তা প্রদান এবং মানবিক সংকটে পাশে থাকা।',
+      service_education: 'শিক্ষা সহায়তা',
+      service_education_desc: 'মেধাবী কিন্তু অসচ্ছল শিক্ষার্থীদের বৃত্তি, শিক্ষা উপকরণ ও পড়াশোনায় সহযোগিতা।',
+      service_environment: 'পরিবেশ সংরক্ষণ',
+      service_environment_desc: 'বৃক্ষরোপণ, পরিচ্ছন্নতা অভিযান ও পরিবেশ সচেতনতা কার্যক্রম পরিচালনা।',
+      service_blood: 'রক্তদান কর্মসূচি',
+      service_blood_desc: 'জরুরি রক্তের প্রয়োজনে দ্রুত সাড়া দেওয়া এবং নিয়মিত রক্তদান ক্যাম্প আয়োজন।',
+      service_disaster: 'দুর্যোগ সহায়তা',
+      service_disaster_desc: 'বন্যা, ঝড়সহ যেকোনো প্রাকৃতিক দুর্যোগে ক্ষতিগ্রস্তদের পাশে তাৎক্ষণিকভাবে দাঁড়ানো।',
+      service_food: 'খাদ্য সহায়তা',
+      service_food_desc: 'অসহায় পরিবারগুলোতে নিয়মিত খাদ্যসামগ্রী বিতরণ এবং ঈদ-উৎসবে বিশেষ সহায়তা।',
+      mission_label: 'আমাদের অঙ্গীকার',
+      mission_title: 'আমাদের <span style="color:var(--gold-light)">লক্ষ্য ও উদ্দেশ্য</span>',
+      mission_desc: 'তরুণদের সক্রিয় অংশগ্রহণের মাধ্যমে একটি সুন্দর, সুষম ও মানবিক সমাজ গড়ে তোলাই আমাদের মূল লক্ষ্য।',
+      mission_quote: '"তরুণের শক্তিতে সমাজ বদলাবে"',
+      mission_value_service: 'সেবা',
+      mission_value_support: 'সহায়তা',
+      mission_value_cooperation: 'সহযোগিতা',
+      mission_value_change: 'পরিবর্তন',
+      gallery_label: 'গ্যালারি',
+      gallery_title: 'আমাদের <span>কার্যক্রমের মুহূর্তসমূহ</span>',
+      gallery_relief: 'ত্রাণ বিতরণ কার্যক্রম',
+      gallery_tree: 'বৃক্ষরোপণ অভিযান',
+      gallery_education: 'শিক্ষা সহায়তা কার্যক্রম',
+      gallery_volunteer: 'স্বেচ্ছাসেবক দল',
+      gallery_blood: 'রক্তদান কর্মসূচি',
+      contact_label: 'যোগাযোগ',
+      contact_title: 'আমাদের সাথে <span>যোগাযোগ করুন</span>',
+      contact_address_label: 'ঠিকানা',
+      contact_address_text: 'শিবনগর, বাঙালিপুর, কোটচাঁদপুর, ঝিনাইদাহ (<a href="https://maps.app.goo.gl/NgXJiAhzKcJTaBTy9" target="_blank">Google Map</a>)',
+      contact_map_link: 'Google Map',
+      contact_facebook_label: 'ফেসবুক পেজ',
+      contact_facebook_name: 'তরুণ প্রয়াস মানব কল্যাণ সংস্থা',
+      contact_hours_label: 'কার্যক্রমের সময়',
+      contact_hours_text: 'প্রতিদিন সকাল ৯টা – রাত ৯টা',
+      contact_registration_label: 'রেজিস্ট্রেশনের জন্য ফর্ম পূরণ করুন?',
+      contact_registration_link: 'ফর্ম পূরণ করুন, আমরা যোগাযোগ করব।',
+      form_title: '📨 বার্তা পাঠান বা স্বেচ্ছাসেবক হিসেবে যোগ দিন',
+      form_name_label: 'আপনার নাম *',
+      form_name_placeholder: 'আপনার পূর্ণ নাম লিখুন',
+      form_phone_label: 'ফোন নম্বর *',
+      form_phone_placeholder: '০১XXXXXXXXX',
+      form_subject_label: 'উদ্দেশ্য',
+      form_option_volunteer: 'স্বেচ্ছাসেবক হতে চাই',
+      form_option_help: 'সহায়তার আবেদন',
+      form_option_blood: 'রক্তদান সংক্রান্ত',
+      form_option_general: 'সাধারণ যোগাযোগ',
+      form_option_donate: 'অনুদান দিতে চাই',
+      form_message_label: 'বার্তা',
+      form_message_placeholder: 'আপনার বার্তা লিখুন...',
+      form_submit: 'বার্তা পাঠান ✉️',
+      footer_org_name: 'তরুণ প্রয়াস<br/>মানব কল্যাণ সংস্থা',
+      footer_about: 'একটি অরাজনৈতিক ও স্বেচ্ছাসেবী মানবকল্যাণমূলক সংগঠন। তরুণের শক্তিতে সমাজ পরিবর্তনে নিবেদিত।',
+      footer_links_label: 'দ্রুত লিংক',
+      footer_link_home: '▸ হোম',
+      footer_link_about: '▸ আমাদের সম্পর্কে',
+      footer_link_services: '▸ সেবাসমূহ',
+      footer_link_gallery: '▸ গ্যালারি',
+      footer_link_contact: '▸ যোগাযোগ',
+      footer_services_label: 'আমাদের সেবা',
+      footer_service_human: '▸ মানব সেবা',
+      footer_service_education: '▸ শিক্ষা সহায়তা',
+      footer_service_environment: '▸ পরিবেশ সংরক্ষণ',
+      footer_service_blood: '▸ রক্তদান কর্মসূচি',
+      footer_service_disaster: '▸ দুর্যোগ সহায়তা',
+      footer_service_food: '▸ খাদ্য সহায়তা',
+      footer_copyright: '© ২০২৬ তরুণ প্রয়াস মানব কল্যাণ সংস্থা। সর্বস্বত্ব সংরক্ষিত।',
+      footer_address: '📍 শিবনগর, বাঙালিপুর, কোটচাঁদপুর, ঝিনাইদাহ',
+      footer_credit: '💻 Developed By Sabbir Ahmed'
+    },
+    en: {
+      nav_home: 'Home',
+      nav_about: 'About',
+      nav_members: 'Members',
+      nav_services: 'Services',
+      nav_gallery: 'Gallery',
+      nav_contact: 'Contact',
+      nav_emergency: 'Emergency',
+      nav_donate: 'Support Us',
+      org_name: 'Tarun Proyash',
+      org_tagline: 'Human Welfare Organization',
+      hero_badge: '🌱 Change begins with youth',
+      hero_title: 'Tarun Proyash',
+      hero_subtitle: 'Human Welfare Organization',
+      hero_location: 'Shibnagar, Bangalipur, Kotchandpur, Jhenaidah',
+      hero_tagline: 'Service | Support | Cooperation | Change<br/><em>"Youth power will change society"</em>',
+      hero_cta_services: 'View Our Services',
+      hero_cta_about: 'Learn More',
+      stat_families: 'Beneficiary Families',
+      stat_services: 'Programs',
+      stat_volunteers: 'Volunteers',
+      about_label: 'About Us',
+      about_title: 'Together for <span>humanity</span>',
+      about_desc_1: 'Tarun Proyash is a non-political volunteer-based welfare organization. We work to support the helpless and underprivileged, with a focus on human service, education, and community development.',
+      about_desc_2: 'Based in Shibnagar, Bangalipur, Kotchandpur, Jhenaidah, our organization is devoted to social progress and welfare through youth-led initiatives.',
+      about_feature_service: 'Human Service',
+      about_feature_education: 'Education Support',
+      about_feature_environment: 'Environmental Protection',
+      about_feature_disaster: 'Disaster Relief',
+      members_label: 'Members',
+      members_title: 'Our <span>Membership</span>',
+      members_desc: 'Members of Tarun Proyash actively participate in social service, donate their time, and lead community initiatives.',
+      members_registration: 'Membership Registration',
+      members_participation: 'Active Participation',
+      members_training: 'Volunteer Training',
+      members_leadership: 'Community Leadership',
+      emergency_label: 'Emergency Service',
+      emergency_title: 'Our <span>Emergency Services</span>',
+      emergency_desc: 'Tarun Proyash quickly delivers assistance during natural disasters and urgent human needs.',
+      emergency_relief: 'Disaster Relief',
+      emergency_health: 'Relief and Health Support',
+      emergency_food: 'Food Distribution',
+      emergency_call: 'Emergency Call Support',
+      services_label: 'Services',
+      services_title: 'What <span>we provide</span>',
+      services_desc: 'We reach every layer of society with a helping hand.',
+      service_human: 'Human Service',
+      service_human_desc: 'Providing direct support to vulnerable people and standing by them in humanitarian crises.',
+      service_education: 'Education Support',
+      service_education_desc: 'Supporting talented but underprivileged students with scholarships, materials, and study assistance.',
+      service_environment: 'Environmental Protection',
+      service_environment_desc: 'Organizing tree planting, clean-up drives, and awareness campaigns.',
+      service_blood: 'Blood Donation Campaign',
+      service_blood_desc: 'Responding quickly to urgent blood needs and organizing regular donation camps.',
+      service_disaster: 'Disaster Assistance',
+      service_disaster_desc: 'Standing by those affected by floods, storms, and other natural disasters.',
+      service_food: 'Food Assistance',
+      service_food_desc: 'Delivering regular food supplies to needy families and special support during festivals.',
+      mission_label: 'Our Commitment',
+      mission_title: 'Our <span style="color:var(--gold-light)">Goals and Purpose</span>',
+      mission_desc: 'Our main goal is to build a beautiful, balanced, and humane society through active youth participation.',
+      mission_quote: '"Youth power will change society"',
+      mission_value_service: 'Service',
+      mission_value_support: 'Support',
+      mission_value_cooperation: 'Cooperation',
+      mission_value_change: 'Change',
+      gallery_label: 'Gallery',
+      gallery_title: 'Our <span>activity moments</span>',
+      gallery_relief: 'Relief distribution activity',
+      gallery_tree: 'Tree planting campaign',
+      gallery_education: 'Education support activities',
+      gallery_volunteer: 'Volunteer team',
+      gallery_blood: 'Blood donation campaign',
+      contact_label: 'Contact',
+      contact_title: 'Get in <span>touch with us</span>',
+      contact_address_label: 'Address',
+      contact_address_text: 'Shibnagar, Bangalipur, Kotchandpur, Jhenaidah (<a href="https://maps.app.goo.gl/NgXJiAhzKcJTaBTy9" target="_blank">Google Map</a>)',
+      contact_map_link: 'Google Map',
+      contact_facebook_label: 'Facebook Page',
+      contact_facebook_name: 'Tarun Proyash Human Welfare Organization',
+      contact_hours_label: 'Working Hours',
+      contact_hours_text: 'Daily 9:00 AM – 9:00 PM',
+      contact_registration_label: 'Fill the form for registration?',
+      contact_registration_link: 'Fill the form and we will contact you.',
+      form_title: '📨 Send a message or join as a volunteer',
+      form_name_label: 'Your Name *',
+      form_name_placeholder: 'Enter your full name',
+      form_phone_label: 'Phone Number *',
+      form_phone_placeholder: '01XXXXXXXXX',
+      form_subject_label: 'Purpose',
+      form_option_volunteer: 'I want to volunteer',
+      form_option_help: 'Request help',
+      form_option_blood: 'Blood donation related',
+      form_option_general: 'General inquiry',
+      form_option_donate: 'I want to donate',
+      form_message_label: 'Message',
+      form_message_placeholder: 'Write your message...',
+      form_submit: 'Send Message ✉️',
+      footer_org_name: 'Tarun Proyash<br/>Human Welfare Organization',
+      footer_about: 'A non-political volunteer welfare organization devoted to social change through youth power.',
+      footer_links_label: 'Quick Links',
+      footer_link_home: '▸ Home',
+      footer_link_about: '▸ About Us',
+      footer_link_services: '▸ Services',
+      footer_link_gallery: '▸ Gallery',
+      footer_link_contact: '▸ Contact',
+      footer_services_label: 'Our Services',
+      footer_service_human: '▸ Human Service',
+      footer_service_education: '▸ Education Support',
+      footer_service_environment: '▸ Environmental Protection',
+      footer_service_blood: '▸ Blood Donation Campaign',
+      footer_service_disaster: '▸ Disaster Assistance',
+      footer_service_food: '▸ Food Assistance',
+      footer_copyright: '© 2026 Tarun Proyash Human Welfare Organization. All rights reserved.',
+      footer_address: '📍 Shibnagar, Bangalipur, Kotchandpur, Jhenaidah',
+      footer_credit: '💻 Developed By Sabbir Ahmed'
+    }
+  };
+
+  function applyTranslations(lang) {
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.dataset.i18n;
+      if (translations[lang] && translations[lang][key] !== undefined) {
+        el.innerHTML = translations[lang][key];
+      }
+    });
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+      const key = el.dataset.i18nPlaceholder;
+      if (translations[lang] && translations[lang][key] !== undefined) {
+        el.placeholder = translations[lang][key];
+      }
+    });
+    document.querySelectorAll('[data-i18n-alt]').forEach(el => {
+      const key = el.dataset.i18nAlt;
+      if (translations[lang] && translations[lang][key] !== undefined) {
+        el.alt = translations[lang][key];
+      }
+    });
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.lang === lang);
+    });
+  }
+
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.addEventListener('click', () => applyTranslations(btn.dataset.lang));
+  });
+
+  applyTranslations('bn');
 </script>
 </body>
 </html>
