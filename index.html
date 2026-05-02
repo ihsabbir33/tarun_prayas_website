@@ -697,6 +697,7 @@
     }
 
     .service-card {
+      display: block;
       background: var(--white);
       border: 1px solid rgba(31,41,55,0.08);
       border-radius: 24px;
@@ -705,7 +706,7 @@
       transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
       position: relative;
       overflow: hidden;
-      cursor: default;
+      cursor: pointer;
       box-shadow: 0 20px 45px rgba(31,41,55,0.06);
     }
 
@@ -1232,12 +1233,105 @@
       .hero-stats { gap: 1.5rem; }
     }
 
+    /* ===== HERO CENTER LAYOUT ===== */
+    .hero-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+    }
+
+    .hero-header {
+      text-align: center;
+      margin-bottom: 3rem;
+      animation: fadeDown 0.8s ease both;
+    }
+
+    .hero-title {
+      font-family: 'Noto Serif Bengali', serif;
+      font-size: clamp(2.5rem, 5vw, 3.5rem);
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1.1;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-subtitle {
+      font-size: 1.1rem;
+      color: var(--gold-light);
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      animation: fadeDown 0.9s 0.1s ease both;
+    }
+
+    .hero-center-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr 1fr;
+      gap: 2rem;
+      align-items: center;
+      max-width: 1100px;
+      margin: 0 auto 3rem;
+      animation: fadeDown 1s 0.2s ease both;
+    }
+
+    .hero-info-left,
+    .hero-info-right {
+      text-align: center;
+    }
+
+    .hero-location {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.85);
+      line-height: 1.6;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    .hero-services {
+      font-size: 0.9rem;
+      color: var(--gold-light);
+      letter-spacing: 0.06em;
+      font-weight: 700;
+    }
+
+    .hero-tagline {
+      font-size: 1rem;
+      color: var(--white);
+      line-height: 1.7;
+      font-weight: 600;
+      margin: 0;
+    }
+
+    .hero-image-box {
+      position: relative;
+      width: 100%;
+      min-height: 350px;
+      border-radius: 28px;
+      overflow: hidden;
+      background: var(--green-dark);
+      box-shadow: 0 24px 60px rgba(15,76,58,0.35), inset 0 0 0 1px rgba(255,255,255,0.12);
+      animation: fadeUp 1s 0.3s ease both;
+    }
+
+    @media (max-width: 1200px) {
+      .hero-center-layout {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .hero-image-box {
+        min-height: 300px;
+      }
+    }
+
     @media (max-width: 600px) {
       .services-grid { grid-template-columns: 1fr; }
       .gallery-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
       .about-features { grid-template-columns: 1fr; }
       .mission-values { gap: 1rem; }
       .hero-stats { flex-wrap: wrap; gap: 1rem; }
+      .hero-center-layout { gap: 1rem; }
+      .hero-header { margin-bottom: 2rem; }
     }
   </style>
 </head>
@@ -1290,36 +1384,7 @@
       <a href="#services" class="btn-primary" data-i18n="hero_cta_services">আমাদের সেবা দেখুন</a>
       <a href="#about" class="btn-outline" data-i18n="hero_cta_about">আরও জানুন</a>
     </div>
-    <div class="hero-box reveal">
-      <div class="hero-box-copy">
-        <div class="hero-box-badge">🌱 তরুণের হাতে পরিবর্তনের সূচনা</div>
-        <h3>তরুণ প্রয়াস</h3>
-        <p class="hero-box-subtitle">মানব কল্যাণ সংস্থা</p>
-        <p class="hero-box-location">শিবনগর, বাঙালিপুর, কোটচাঁদপুর, ঝিনাইদাহ</p>
-        <p class="hero-box-points">সেবা | সহায়তা | সহযোগিতা | পরিবর্তন<br/><em>"তরুণের শক্তিতে সমাজ বদলাবে"</em></p>
-      </div>
-      <div class="hero-box-slider">
-        <div class="hero-slider" id="heroSlider">
-          <div class="hero-slide active" style="background-image:url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=1200&q=80');">
-            <div class="hero-slide-overlay"></div>
-            <div class="hero-slide-caption">সেবায় আনন্দ, পরিবর্তনে শক্তি</div>
-          </div>
-          <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1517841905240-472988babdf9?w=1200&q=80');">
-            <div class="hero-slide-overlay"></div>
-            <div class="hero-slide-caption">দূরত্ব নয়, ঐক্যই সাফল্যের পথ</div>
-          </div>
-          <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1481954171064-13c14f0913f7?w=1200&q=80');">
-            <div class="hero-slide-overlay"></div>
-            <div class="hero-slide-caption">সমাজ বদলাতে তরুণের ভূমিকা</div>
-          </div>
-        </div>
-        <div class="slider-nav">
-          <button class="slider-dot active" data-index="0"></button>
-          <button class="slider-dot" data-index="1"></button>
-          <button class="slider-dot" data-index="2"></button>
-        </div>
-      </div>
-    </div>
+    
     <div class="hero-stats">
       <div class="stat">
         <div class="stat-num">৫০০+</div>
@@ -1447,36 +1512,36 @@
       <p class="section-desc" data-i18n="services_desc">সমাজের প্রতিটি স্তরে পৌঁছে দিচ্ছি আমাদের সেবার হাত।</p>
     </div>
     <div class="services-grid">
-      <div class="service-card reveal">
+      <a href="human-service.html" class="service-card reveal service-link">
         <div class="service-icon">❤️</div>
         <div class="service-title" data-i18n="service_human">মানব সেবা</div>
         <p class="service-desc" data-i18n="service_human_desc">অসহায় ও দুস্থ মানুষদের সরাসরি সহায়তা প্রদান এবং মানবিক সংকটে পাশে থাকা।</p>
-      </div>
-      <div class="service-card reveal" style="transition-delay:0.1s">
+      </a>
+      <a href="education-service.html" class="service-card reveal service-link" style="transition-delay:0.1s">
         <div class="service-icon">🎓</div>
         <div class="service-title" data-i18n="service_education">শিক্ষা সহায়তা</div>
         <p class="service-desc" data-i18n="service_education_desc">মেধাবী কিন্তু অসচ্ছল শিক্ষার্থীদের বৃত্তি, শিক্ষা উপকরণ ও পড়াশোনায় সহযোগিতা।</p>
-      </div>
-      <div class="service-card reveal" style="transition-delay:0.2s">
+      </a>
+      <a href="environment-service.html" class="service-card reveal service-link" style="transition-delay:0.2s">
         <div class="service-icon">🌿</div>
         <div class="service-title" data-i18n="service_environment">পরিবেশ সংরক্ষণ</div>
         <p class="service-desc" data-i18n="service_environment_desc">বৃক্ষরোপণ, পরিচ্ছন্নতা অভিযান ও পরিবেশ সচেতনতা কার্যক্রম পরিচালনা।</p>
-      </div>
-      <div class="service-card reveal" style="transition-delay:0.1s">
+      </a>
+      <a href="blood-drive.html" class="service-card reveal service-link" style="transition-delay:0.1s">
         <div class="service-icon">🩸</div>
         <div class="service-title" data-i18n="service_blood">রক্তদান কর্মসূচি</div>
         <p class="service-desc" data-i18n="service_blood_desc">জরুরি রক্তের প্রয়োজনে দ্রুত সাড়া দেওয়া এবং নিয়মিত রক্তদান ক্যাম্প আয়োজন।</p>
-      </div>
-      <div class="service-card reveal" style="transition-delay:0.2s">
+      </a>
+      <a href="disaster-aid.html" class="service-card reveal service-link" style="transition-delay:0.2s">
         <div class="service-icon">🆘</div>
         <div class="service-title" data-i18n="service_disaster">দুর্যোগ সহায়তা</div>
         <p class="service-desc" data-i18n="service_disaster_desc">বন্যা, ঝড়সহ যেকোনো প্রাকৃতিক দুর্যাগে ক্ষতিগ্রস্তদের পাশে তাৎক্ষণিকভাবে দাঁড়ানো।</p>
-      </div>
-      <div class="service-card reveal" style="transition-delay:0.3s">
+      </a>
+      <a href="food-support.html" class="service-card reveal service-link" style="transition-delay:0.3s">
         <div class="service-icon">🍚</div>
         <div class="service-title" data-i18n="service_food">খাদ্য সহায়তা</div>
         <p class="service-desc" data-i18n="service_food_desc">অসহায় পরিবারগুলোতে নিয়মিত খাদ্যসামগ্রী বিতরণ এবং ঈদ-উৎসবে বিশেষ সহায়তা।</p>
-      </div>
+      </a>
     </div>
   </div>
 </section>
@@ -1624,12 +1689,12 @@
     <div class="footer-col">
       <h4 data-i18n="footer_services_label">আমাদের সেবা</h4>
       <ul>
-        <li><a href="#" data-i18n="footer_service_human">▸ মানব সেবা</a></li>
-        <li><a href="#" data-i18n="footer_service_education">▸ শিক্ষা সহায়তা</a></li>
-        <li><a href="#" data-i18n="footer_service_environment">▸ পরিবেশ সংরক্ষণ</a></li>
-        <li><a href="#" data-i18n="footer_service_blood">▸ রক্তদান কর্মসূচি</a></li>
-        <li><a href="#" data-i18n="footer_service_disaster">▸ দুর্যোগ সহায়তা</a></li>
-        <li><a href="#" data-i18n="footer_service_food">▸ খাদ্য সহায়তা</a></li>
+        <li><a href="human-service.html" data-i18n="footer_service_human">▸ মানব সেবা</a></li>
+        <li><a href="education-service.html" data-i18n="footer_service_education">▸ শিক্ষা সহায়তা</a></li>
+        <li><a href="environment-service.html" data-i18n="footer_service_environment">▸ পরিবেশ সংরক্ষণ</a></li>
+        <li><a href="blood-drive.html" data-i18n="footer_service_blood">▸ রক্তদান কর্মসূচি</a></li>
+        <li><a href="disaster-aid.html" data-i18n="footer_service_disaster">▸ দুর্যোগ সহায়তা</a></li>
+        <li><a href="food-support.html" data-i18n="footer_service_food">▸ খাদ্য সহায়তা</a></li>
       </ul>
     </div>
   </div>
@@ -1658,7 +1723,7 @@
     // Scroll to top button
     const scrollBtn = document.getElementById('scrollTop');
     if (window.scrollY > 400) {
-      scrollBtn.classList.add('visible');
+      scrollBtn.classList.add('visible');  r
     } else {
       scrollBtn.classList.remove('visible');
     }
