@@ -101,9 +101,16 @@
       display: flex;
       flex-direction: column;
       gap: 1rem;
-      box-shadow: 0 20px 45px rgba(31,41,55,0.06);
+      box-shadow: 0 18px 45px rgba(31,41,55,0.06);
       position: relative;
       overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+    }
+
+    .member-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 28px 80px rgba(31,41,55,0.12);
+      border-color: rgba(212,175,55,0.16);
     }
 
     .member-card::before {
@@ -162,6 +169,31 @@
       font-size: 0.95rem;
     }
 
+    .load-more-btn {
+      display: block;
+      margin: 2.5rem auto 0;
+      padding: 0.95rem 2rem;
+      background: var(--gold);
+      color: var(--green-dark);
+      border: none;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 14px 32px rgba(31,41,55,0.12);
+    }
+
+    .load-more-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 18px 45px rgba(31,41,55,0.15);
+    }
+
+    .load-more-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
     @media (max-width: 900px) {
       .member-list { grid-template-columns: repeat(2, minmax(220px, 1fr)); }
     }
@@ -185,11 +217,9 @@
       <button class="filter-pill" data-filter="member">সদস্য</button>
     </div>
 
-    <div style="display:flex; justify-content:flex-end; margin-bottom:1.5rem;">
-      <a href="admin.html" class="filter-pill" style="background: var(--green-dark); color:#fff; border-color: var(--green-dark);">অ্যাডমিন প্যানেল</a>
-    </div>
-
     <div class="member-list" id="memberList"></div>
+
+    <button class="load-more-btn" id="loadMoreBtn">আরও সদস্য দেখান</button>
 
     <p class="footer-note">ফিল্টার চাপলে শুধুমাত্র সংশ্লিষ্ট ক্যাটাগরির সদস্যরা দেখানো হবে।</p>
   </div>
@@ -199,10 +229,54 @@
     const defaultMembers = [
       { id: '1', category: 'advisor', icon: '🧭', name: 'ডা. কামরুল আহসান', description: 'সমাজ উন্নয়ন ও নেতৃত্বগত বিষয়ে দীর্ঘ অভিজ্ঞতা। নীতি নির্ধারণে গুরুত্বপূর্ণ ভূমিকা পালন করেন।' },
       { id: '2', category: 'advisor', icon: '🧠', name: 'মো. রফিকুল ইসলাম', description: 'স্ট্র্যাটেজিক পরিকল্পনা ও কমিউনিটি লিডারশিপ পরামর্শে বিশ্লেষণাত্মক দক্ষ।' },
-      { id: '3', category: 'executive', icon: '🛡️', name: 'আশিস আহমেদ', description: 'প্রকল্প বাস্তবায়ন ও আর্থিক সমন্বয়ের দায়িত্বে যিনি দৃঢ়ভাবে কাজ করেন।' },
-      { id: '4', category: 'executive', icon: '📌', name: 'সোলাইমান খান', description: 'স্থানীয় স্বেচ্ছাসেবী কাজের ব্যবস্থাপনা ও টিম লিডিং-এ পারদর্শী।' },
-      { id: '5', category: 'member', icon: '🤝', name: 'হাসিনা খাতুন', description: 'স্থানীয় কমিউনিটি এ্যাডভোকেসি ও সামাজিক উন্নয়ন প্রোগ্রামে সক্রিয়।' },
-      { id: '6', category: 'member', icon: '🌱', name: 'জসিম উদ্দিন', description: 'স্বেচ্ছাসেবী ক্যাম্পেইন ও জনসচেতনতা কাজের একজন নিবেদিত সদস্য।' }
+      { id: '3', category: 'advisor', icon: '👩‍🏫', name: 'নায়েব সুলতানা', description: 'শিক্ষা ও প্রশিক্ষণ উন্নয়নে অভিজ্ঞ, তরুণদের যোগ্যতা বৃদ্ধি করেন।' },
+      { id: '4', category: 'advisor', icon: '📘', name: 'মোহাম্মদ ইমদাদুল', description: 'বাংলা ও সামাজিক নিরাপত্তা নীতিতে পরামর্শদাতা ও গবেষক।' },
+      { id: '5', category: 'advisor', icon: '🎓', name: 'নাবিলা আক্তার', description: 'নারী ক্ষমতায়ন ও লিঙ্গ সমতার বিষয়ে অভিজ্ঞ পরামর্শক।' },
+      { id: '6', category: 'advisor', icon: '🪄', name: 'মোহ. খালেদ হাসান', description: 'সামাজিক উদ্যোগের উন্নয়ন ও দলগত সমন্বয়ের বিশেষজ্ঞ।' },
+      { id: '7', category: 'advisor', icon: '🧑‍⚕️', name: 'ডা. ফারিয়া রহমান', description: 'স্বাস্থ্য ও পুষ্টি প্রকল্পের পরামর্শদাতা, গ্রামীণ স্বাস্থ্যকে শক্তিশালী করেন।' },
+      { id: '8', category: 'advisor', icon: '🧭', name: 'লিয়াকত আলী', description: 'দূরদর্শী নেতৃত্ব ও সংগঠন গঠনে অভিজ্ঞ।' },
+      { id: '9', category: 'advisor', icon: '🧠', name: 'রুমা বিশ্বাস', description: 'পুনর্বাসন ও মানসিক স্বাস্থ্য সমর্থনে কাজ করেন।' },
+      { id: '10', category: 'advisor', icon: '👩‍🏫', name: 'ফাহিমা জাহান', description: 'শিক্ষা অগ্রগতিতে নীতি নির্ধারণ ও ট্রেনিং পরিকল্পনায় দক্ষ।' },
+      { id: '11', category: 'advisor', icon: '📘', name: 'মো. নোমান হোসেন', description: 'আইনি সহায়তা ও সামাজিক বিচার ব্যবস্থায় পরামর্শদাতা।' },
+      { id: '12', category: 'advisor', icon: '🎓', name: 'তাসলিমা শারমিন', description: 'কমিউনিটি উন্নয়ন ও দাতব্য সহায়তা উদ্যোগে অবদান রাখেন।' },
+      { id: '13', category: 'executive', icon: '🛡️', name: 'আশিস আহমেদ', description: 'প্রকল্প বাস্তবায়ন ও আর্থিক সমন্বয়ের দায়িত্বে যিনি দৃঢ়ভাবে কাজ করেন।' },
+      { id: '14', category: 'executive', icon: '📌', name: 'সোলাইমান খান', description: 'স্থানীয় স্বেচ্ছাসেবী কাজের ব্যবস্থাপনা ও টিম লিডিং-এ পারদর্শী।' },
+      { id: '15', category: 'executive', icon: '🧑‍💼', name: 'রুশদী মিয়া', description: 'কর্মসংস্থান ও দক্ষতা উন্নয়নে নেতৃত্ব দেন।' },
+      { id: '16', category: 'executive', icon: '⚙️', name: 'তানিয়া আক্তার', description: 'প্রকল্প সমন্বয় ও ক্রিয়াকলাপ পর্যবেক্ষণে দক্ষ।' },
+      { id: '17', category: 'executive', icon: '📊', name: 'সাদেকুর রহমান', description: 'অর্থ ও বাজেট পরিকল্পনা পরিচালনা করেন।' },
+      { id: '18', category: 'executive', icon: '📣', name: 'নাজমা পারভীন', description: 'যোগাযোগ ও কমিউনিটি আউটরিচ কার্যক্রম সফলভাবে পরিচালনা করেন।' },
+      { id: '19', category: 'executive', icon: '📅', name: 'জিবরান আলী', description: 'ইভেন্ট ও ক্যাম্পেইন ব্যবস্থাপনায় সক্ষম।' },
+      { id: '20', category: 'executive', icon: '🛡️', name: 'ফারুক হোসেন', description: 'ত্রাণ কার্যক্রম ও জরুরি সেবা সার্বক্ষণিক তদারকি করেন।' },
+      { id: '21', category: 'executive', icon: '📌', name: 'রিমা খাতুন', description: 'নারী ও শিশু প্রকল্পের বাস্তবায়নে নেতৃত্ব দেন।' },
+      { id: '22', category: 'executive', icon: '🧑‍💼', name: 'তুষার পাল', description: 'তথ্য ও প্রযুক্তি সমন্বয়ে কার্যক্রম উন্নয়ন করেন।' },
+      { id: '23', category: 'executive', icon: '⚙️', name: 'সোহেল আহমেদ', description: 'স্বাস্থ্যসেবা ও পরিবার উন্নয়ন প্রোগ্রামে সহায়তা করেন।' },
+      { id: '24', category: 'executive', icon: '📊', name: 'মঞ্জুরি বেগম', description: 'সামাজিক সাংগঠনিক কাজে পরিকল্পনা ও বাস্তবায়ন করেন।' },
+      { id: '25', category: 'executive', icon: '📣', name: 'সেলিম মাহমুদ', description: 'জনসচেতনতা ও জনসংযোগ কার্যক্রম এগিয়ে নিয়ে যান।' },
+      { id: '26', category: 'executive', icon: '📅', name: 'শমসুর রহমান', description: 'অভ্যন্তরীণ ব্যবস্থাপনায় দৃঢ় ও সুষ্ঠু সমাধান উপস্থাপন করেন।' },
+      { id: '27', category: 'executive', icon: '🛡️', name: 'মারুফা সুলতানা', description: 'পর্যবেক্ষণ ও মূল্যায়ন কর্মসূচি সুসংহতভাবে পরিচালনা করেন।' },
+      { id: '28', category: 'executive', icon: '📌', name: 'রুবেলা আহমেদ', description: 'সামাজিক সেবা কর্মসূচিতে সময়মত সমন্বয় সাধন করেন।' },
+      { id: '29', category: 'executive', icon: '🧑‍💼', name: 'কামরুল ইসলাম', description: 'স্থানীয় অংশীদারিত্ব ও দাতাব্য সংযোগ বাড়ান।' },
+      { id: '30', category: 'executive', icon: '⚙️', name: 'শামীমা ওসমান', description: 'সম্পদ ব্যবস্থাপনা ও অডিট দলে সমর্থন দেন।' },
+      { id: '31', category: 'member', icon: '🤝', name: 'হাসিনা খাতুন', description: 'স্থানীয় কমিউনিটি এ্যাডভোকেসি ও সামাজিক উন্নয়ন প্রোগ্রামে সক্রিয়।' },
+      { id: '32', category: 'member', icon: '🌱', name: 'জসিম উদ্দিন', description: 'স্বেচ্ছাসেবী ক্যাম্পেইন ও জনসচেতনতা কাজের একজন নিবেদিত সদস্য।' },
+      { id: '33', category: 'member', icon: '🏡', name: 'রোকেয়া সাদেক', description: 'বাসস্থান উন্নয়ন ও গৃহহীনতা কমাতে কাজ করেন।' },
+      { id: '34', category: 'member', icon: '🌸', name: 'মহিউদ্দিন মিয়া', description: 'পরিবেশ রক্ষা ও বৃক্ষরোপণ অভিযানে অংশ নেন।' },
+      { id: '35', category: 'member', icon: '🛠️', name: 'রাফসানা বেগম', description: 'দুর্যোগ পুনর্বাসন ও মেরামত কাজে সক্রিয় ভূমিকা পালন করেন।' },
+      { id: '36', category: 'member', icon: '📝', name: 'জনি করিম', description: 'তথ্য সংগ্রহ ও জরিপ কাজে দক্ষ।' },
+      { id: '37', category: 'member', icon: '🎒', name: 'লুবনা শারমিন', description: 'শিক্ষা সহায়তা প্রদান ও টিউশন কার্যক্রম চালান।' },
+      { id: '38', category: 'member', icon: '👐', name: 'নূরজাহান খাতুন', description: 'সামাজিক সহায়তা ও খাবার বিতরণে নিয়মিত কাজ করেন।' },
+      { id: '39', category: 'member', icon: '🌟', name: 'মনিরুল ইসলাম', description: 'যুব উদ্যোগ ও উদ্যোগশীলতা বাড়াতে প্রয়াস চালান।' },
+      { id: '40', category: 'member', icon: '💧', name: 'সাবিনা ইয়াসমিন', description: 'সফল পানি ও স্যানিটেশন প্রকল্পের একজন এগিয়ে ঠেলা সদস্য।' },
+      { id: '41', category: 'member', icon: '👩‍🌾', name: 'রোহান শেখ', description: 'কৃষি সহায়তা ও টেকসই আয় বাড়াতে কাজ করেন।' },
+      { id: '42', category: 'member', icon: '🧵', name: 'তানজা হক', description: 'স্বনির্ভরতা প্রকল্পে নারীদের দক্ষতা উন্নয়নে যুক্ত।' },
+      { id: '43', category: 'member', icon: '📚', name: 'জাহিদুল ইসলাম', description: 'গ্রামীন শিক্ষা সহায়তা ও লাইব্রেরি কার্যক্রম চালান।' },
+      { id: '44', category: 'member', icon: '🧶', name: 'শোভন কুমার', description: 'কুটির শিল্প ও হস্তশিল্প প্রশিক্ষণে কাজ করেন।' },
+      { id: '45', category: 'member', icon: '🪴', name: 'ফারিহা হোসেন', description: 'নারী উদ্যোক্তা সাপোর্ট প্রোগ্রামে সক্রিয়।' },
+      { id: '46', category: 'member', icon: '📦', name: 'সুমনের রহমান', description: 'বিতরণ কার্যক্রম ও পাবলিক সাপোর্ট টিমে কাজ করেন।' },
+      { id: '47', category: 'member', icon: '🧠', name: 'কে.এম. রাশিদ', description: 'কম্পিউটার ও ডিজিটাল শিক্ষায় যুবকদের সাহায্য করেন।' },
+      { id: '48', category: 'member', icon: '🧾', name: 'রোজিনা আক্তার', description: 'আর্থিক সচেতনতা ও সাশ্রয় প্রকল্পে কাজ করেন।' },
+      { id: '49', category: 'member', icon: '🩺', name: 'সাব্বির হাসান', description: 'স্বাস্থ্য চেতনা ও ফ্রি ক্লিনিক কার্যক্রমে নিয়মিত অংশ নেন।' },
+      { id: '50', category: 'member', icon: '🌺', name: 'মৌসুমী আক্তার', description: 'সম্প্রদায় উন্নয়ন ও সাংস্কৃতিক কার্যক্রমে সক্রিয় সদস্য।' }
     ];
 
     function loadMembers() {
@@ -227,15 +301,32 @@
 
     const buttons = document.querySelectorAll('.filter-pill');
     const list = document.getElementById('memberList');
+    const loadMoreBtn = document.getElementById('loadMoreBtn');
     let members = loadMembers();
+    
+    const itemsPerPage = 12;
+    let currentPage = 1;
+    let currentFilter = 'all';
+    let filteredMembers = members;
 
-    function renderList(filter = 'all') {
-      const visible = members.filter(member => filter === 'all' || member.category === filter);
-      if (!visible.length) {
+    function renderList(filter = 'all', reset = true) {
+      if (reset) {
+        currentPage = 1;
+        currentFilter = filter;
+        filteredMembers = members.filter(m => filter === 'all' || m.category === filter);
+      }
+      
+      if (!filteredMembers.length) {
         list.innerHTML = '<p style="color: var(--text-mid);">এই ক্যাটাগরিতে কোনো সদস্য নেই।</p>';
+        loadMoreBtn.style.display = 'none';
         return;
       }
-      list.innerHTML = visible.map(member => `
+
+      const endIndex = currentPage * itemsPerPage;
+      const itemsToShow = filteredMembers.slice(0, endIndex);
+      const hasMore = filteredMembers.length > endIndex;
+
+      list.innerHTML = itemsToShow.map(member => `
         <article class="member-card" data-category="${member.category}">
           <div class="member-card-icon">${member.icon}</div>
           <div class="member-card-title">${member.name}</div>
@@ -243,13 +334,26 @@
           <p class="member-card-desc">${member.description}</p>
         </article>
       `).join('');
+
+      if (hasMore) {
+        loadMoreBtn.style.display = 'block';
+        loadMoreBtn.textContent = `আরও সদস্য দেখান (${endIndex} / ${filteredMembers.length})`;
+      } else {
+        loadMoreBtn.style.display = 'none';
+      }
     }
 
     buttons.forEach(btn => btn.addEventListener('click', () => {
       buttons.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-      renderList(btn.dataset.filter);
+      renderList(btn.dataset.filter, true);
     }));
+
+    loadMoreBtn.addEventListener('click', () => {
+      currentPage++;
+      renderList(currentFilter, false);
+      list.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
 
     renderList('all');
   </script>
