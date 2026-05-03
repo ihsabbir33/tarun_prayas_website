@@ -11,50 +11,223 @@
       --green-mid: #1A6B50;
       --green-light: #4F845E;
       --gold: #D4AF37;
+      --gold-light: #E0C76F;
       --white: #ffffff;
       --off-white: #F9FAFB;
       --text-dark: #1F2937;
       --text-mid: #4B5563;
+      --shadow: rgba(31,41,55,0.08);
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body { font-family: 'Hind Siliguri', sans-serif; background: var(--off-white); color: var(--text-dark); min-height: 100vh; }
     a { color: inherit; text-decoration: none; }
-    .page-wrap { max-width: 1000px; margin: 0 auto; padding: 3rem 1.5rem; }
+
+    .hero {
+      position: relative;
+      min-height: 70vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2.5rem 1.5rem;
+      background: linear-gradient(135deg, var(--green-dark) 0%, var(--green-mid) 100%);
+      color: var(--white);
+      overflow: hidden;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 650px;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.24);
+      color: rgba(255,255,255,0.95);
+      padding: 0.4rem 1rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      margin-bottom: 1rem;
+    }
+
+    .hero-title {
+      font-family: 'Noto Serif Bengali', serif;
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      line-height: 1.05;
+      margin-bottom: 1rem;
+    }
+
+    .hero-title span {
+      color: var(--gold-light);
+    }
+
+    .hero-sub {
+      max-width: 560px;
+      margin: 0 auto 1.6rem;
+      color: rgba(255,255,255,0.92);
+      line-height: 1.75;
+      font-size: 1rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 0.9rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary,
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      padding: 0.8rem 1.8rem;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.2s, background 0.2s, color 0.2s, border-color 0.2s;
+    }
+
+    .btn-primary {
+      background: var(--white);
+      color: var(--green-dark);
+      border: 1px solid transparent;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      background: #f9f9f9;
+    }
+
+    .btn-outline {
+      background: rgba(255,255,255,0.14);
+      color: var(--white);
+      border: 1px solid rgba(255,255,255,0.28);
+    }
+
+    .btn-outline:hover {
+      background: rgba(255,255,255,0.22);
+      transform: translateY(-2px);
+    }
+
+    .img-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.5rem;
+      height: 140px;
+      overflow: hidden;
+      padding: 0 1.5rem;
+      margin-top: -2.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .img-cell {
+      position: relative;
+      overflow: hidden;
+      border-radius: 14px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+    }
+
+    .img-cell img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s;
+    }
+
+    .img-cell:hover img {
+      transform: scale(1.06);
+    }
+
+    .img-cell::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent 40%, rgba(0,0,0,0.5));
+    }
+
+    .img-cell-label {
+      position: absolute;
+      bottom: 0.8rem;
+      left: 1rem;
+      right: 1rem;
+      color: var(--white);
+      font-weight: 700;
+      text-shadow: 0 1px 5px rgba(0,0,0,0.4);
+      font-size: 0.93rem;
+    }
+
+    .page-wrap { max-width: 1100px; margin: 0 auto; padding: 3rem 1.5rem; }
     .back-link { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--green-dark); font-weight: 700; margin-bottom: 1.5rem; }
-    .page-title { font-family: 'Noto Serif Bengali', serif; font-size: clamp(2.2rem, 4vw, 3.2rem); color: var(--green-dark); margin-bottom: 0.85rem; text-align: center; }
-    .page-subtitle { max-width: 760px; margin: 0 auto 2rem; text-align: center; color: var(--text-mid); line-height: 1.8; }
-    .service-box { background: var(--white); border-radius: 28px; padding: 2.2rem; box-shadow: 0 25px 70px rgba(15,76,58,0.08); }
-    .service-section { margin-top: 2rem; }
-    .section-heading { font-size: 1.25rem; color: var(--green-dark); margin-bottom: 0.85rem; }
-    .section-text { color: var(--text-mid); line-height: 1.8; margin-bottom: 1.25rem; }
-    .activities { display: grid; gap: 1rem; margin-top: 1rem; }
-    .activity-item { background: rgba(15,76,58,0.06); border-radius: 18px; padding: 1rem 1.2rem; color: var(--text-dark); }
-    .activity-item strong { color: var(--green-dark); }
-    .home-link { display: inline-block; margin-top: 2rem; padding: 0.95rem 1.6rem; background: var(--green-dark); color: var(--white); border-radius: 999px; font-weight: 700; }
-    @media (max-width: 720px) { .page-wrap { padding: 2rem 1rem; } }
+    .back-link:hover { opacity: 0.85; }
+    .sec-label { display: inline-flex; align-items: center; gap: 0.4rem; background: rgba(15,76,58,0.08); color: var(--green-dark); border-radius: 999px; padding: 0.45rem 1rem; font-size: 0.8rem; font-weight: 700; margin-bottom: 1rem; }
+    .sec-title { font-family: 'Noto Serif Bengali', serif; font-size: clamp(2rem, 4vw, 3rem); color: var(--green-dark); margin-bottom: 1rem; }
+    .sec-sub { max-width: 760px; margin-bottom: 2rem; color: var(--text-mid); line-height: 1.8; font-size: 1rem; }
+    .service-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.25rem; }
+    .service-card { background: var(--white); border-radius: 24px; padding: 1.6rem; box-shadow: 0 20px 60px rgba(15,76,58,0.08); border: 1px solid rgba(15,76,58,0.08); transition: transform 0.25s; }
+    .service-card:hover { transform: translateY(-4px); }
+    .service-card h3 { font-size: 1.1rem; margin-bottom: 0.85rem; color: var(--green-dark); }
+    .service-card p { color: var(--text-mid); line-height: 1.8; }
+    .home-link { display: inline-block; margin-top: 2.5rem; padding: 0.95rem 1.6rem; background: var(--green-dark); color: var(--white); border-radius: 999px; font-weight: 700; }
+    .home-link:hover { opacity: 0.95; }
+    @media (max-width: 720px) { .page-wrap { padding: 2rem 1rem; } .img-strip { grid-template-columns: 1fr; height: auto; } }
   </style>
 </head>
 <body>
-  <div class="page-wrap">
-    <a href="index.html" class="back-link">← হোমে ফিরে যান</a>
-    <h1 class="page-title">মানব সেবা</h1>
-    <p class="page-subtitle">অসহায় ও দুস্থ মানুষের পাশে দাঁড়িয়ে, জরুরি সাহায্য ও মানবিক সহায়তা পৌঁছে দেওয়া আমাদের মূল লক্ষ্য।</p>
-    <div class="service-box">
-      <div class="service-section">
-        <h2 class="section-heading">আমাদের কাজ</h2>
-        <p class="section-text">তরুণ প্রয়াসের মানব সেবা প্রোগ্রামে আমরা খাবার, প্রয়োজনীয় সামগ্রী, ও অর্থনৈতিক সহায়তা দিয়ে দুর্বল শ্রেণিকে সহায়তা করি। এই কর্মসূচির মাধ্যমে আমরা মানুষকে সম্মানজনকভাবে সহায়তা করার চেষ্টা করি।</p>
+  <section class="hero">
+    <div class="hero-content">
+      <span class="hero-badge">🤝 মানব সেবা</span>
+      <h1 class="hero-title">মানবিক সহায়তা<br><span>দুর্যোগের সময় পাশে দাঁড়ানো</span></h1>
+      <p class="hero-sub">আমরা অসহায় ও দুর্বল মানুষের পাশে দাঁড়িয়ে জরুরি সহায়তা, নিরাপত্তা ও মানসিক সমর্থন পৌঁছে দিই।</p>
+      <div class="hero-actions">
+        <a href="index.html#services" class="btn-outline">সকল সেবা</a>
+        <a href="index.html" class="btn-primary">হোমে ফিরে যান</a>
       </div>
-      <div class="service-section">
-        <h2 class="section-heading">মূল কার্যক্রম</h2>
-        <div class="activities">
-          <div class="activity-item"><strong>জরুরি খাদ্য ও কভার</strong> অসহায় পরিবারকে সরাসরি খাদ্য ও জীবিকা সহায়তা প্রদান।</div>
-          <div class="activity-item"><strong>স্বাস্থ্য ও পরিচ্ছন্নতা</strong> প্রাথমিক চিকিৎসা, ওষুধ ও পরিচ্ছন্নতা সামগ্রী বিতরণ।</div>
-          <div class="activity-item"><strong>পরিবার সহায়তা</strong> বয়স্ক, প্রতিবন্ধী ও বিধবা পরিবারকে আর্থিক সহায়তা।</div>
-          <div class="activity-item"><strong>সামাজিক সহায়তা</strong> মানসিক সহায়তা ও সমর্থন সেবা প্রাপ্তিশীলদের দেয়া।</div>
-        </div>
-      </div>
-      <a href="index.html" class="home-link">সব সেবাসমূহে ফিরে যান</a>
     </div>
+  </section>
+  <div class="img-strip">
+    <div class="img-cell">
+      <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?w=600&q=80" alt="জরুরি সহায়তা" loading="lazy" />
+      <div class="img-cell-label">জরুরি সহায়তা</div>
+    </div>
+    <div class="img-cell">
+      <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600&q=80" alt="স্বাস্থ্য সহায়তা" loading="lazy" />
+      <div class="img-cell-label">স্বাস্থ্য সহায়তা</div>
+    </div>
+    <div class="img-cell">
+      <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=600&q=80" alt="মানবিক পরিষেবা" loading="lazy" />
+      <div class="img-cell-label">মানবিক পরিষেবা</div>
+    </div>
+  </div>
+  <div class="page-wrap">
+    <span class="sec-label">মানব সেবা</span>
+    <h2 class="sec-title">আমাদের মানবিক উদ্যোগ</h2>
+    <p class="sec-sub">অসহায় পরিবার, বয়স্ক ও প্রান্তিক মানুষের জীবনমান উন্নত করতে আমরা মানবিক সহায়তা পৌঁছে দিই।</p>
+    <div class="service-cards">
+      <div class="service-card">
+        <h3>জরুরি খাদ্য ও জীবনধারা সহায়তা</h3>
+        <p>অসহায়দের জন্য খাদ্য, কম্বল এবং জীবিকা সহায়তা বিতরণ করি।</p>
+      </div>
+      <div class="service-card">
+        <h3>স্বাস্থ্য ও পরিচ্ছন্নতা</h3>
+        <p>প্রাথমিক চিকিৎসা, ওষুধ এবং স্যানিটেশন সামগ্রী সরবরাহ করি।</p>
+      </div>
+      <div class="service-card">
+        <h3>পরিবারিক সহায়তা</h3>
+        <p>বয়স্ক, প্রতিবন্ধী এবং বিধবা পরিবারের আর্থিক সহায়তা প্রদান করি।</p>
+      </div>
+      <div class="service-card">
+        <h3>মানসিক ও সামাজিক সমর্থন</h3>
+        <p>সামাজিক সহায়তা ও মানসিক স্বাস্থ্যগত সহায়তা নিশ্চিত করি।</p>
+      </div>
+    </div>
+    <a href="index.html" class="home-link">সব সেবায় ফিরে যান</a>
   </div>
 <script src="scroll-restore.js"></script>
 </body>

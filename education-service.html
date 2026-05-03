@@ -8,32 +8,175 @@
   <style>
     :root {
       --green-dark: #0F4C3A;
-      --white: #ffffff;
-      --off-white: #F9FAFB;
-      --text-dark: #1F2937;
-      --text-mid: #4B5563;
       --green-mid: #1A6B50;
       --green-light: #4F845E;
       --gold: #D4AF37;
       --gold-light: #E0C76F;
+      --white: #ffffff;
+      --off-white: #F9FAFB;
+      --text-dark: #1F2937;
+      --text-mid: #4B5563;
       --shadow: rgba(31,41,55,0.08);
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body { font-family: 'Hind Siliguri', sans-serif; background: var(--off-white); color: var(--text-dark); min-height: 100vh; }
     a { color: inherit; text-decoration: none; }
-    .page-wrap { max-width: 1000px; margin: 0 auto; padding: 3rem 1.5rem; }
+
+    .hero {
+      position: relative;
+      min-height: 70vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2.5rem 1.5rem;
+      background: linear-gradient(135deg, var(--green-dark) 0%, var(--green-mid) 100%);
+      color: var(--white);
+      overflow: hidden;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 650px;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.24);
+      color: rgba(255,255,255,0.95);
+      padding: 0.4rem 1rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      margin-bottom: 1rem;
+    }
+
+    .hero-title {
+      font-family: 'Noto Serif Bengali', serif;
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      line-height: 1.05;
+      margin-bottom: 1rem;
+    }
+
+    .hero-title span {
+      color: var(--gold-light);
+    }
+
+    .hero-sub {
+      max-width: 560px;
+      margin: 0 auto 1.6rem;
+      color: rgba(255,255,255,0.92);
+      line-height: 1.75;
+      font-size: 1rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 0.9rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary,
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      padding: 0.8rem 1.8rem;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.2s, background 0.2s, color 0.2s, border-color 0.2s;
+    }
+
+    .btn-primary {
+      background: var(--white);
+      color: var(--green-dark);
+      border: 1px solid transparent;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      background: #f9f9f9;
+    }
+
+    .btn-outline {
+      background: rgba(255,255,255,0.14);
+      color: var(--white);
+      border: 1px solid rgba(255,255,255,0.28);
+    }
+
+    .btn-outline:hover {
+      background: rgba(255,255,255,0.22);
+      transform: translateY(-2px);
+    }
+
+    .img-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.5rem;
+      height: 140px;
+      overflow: hidden;
+      padding: 0 1.5rem;
+      margin-top: -2.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .img-cell {
+      position: relative;
+      overflow: hidden;
+      border-radius: 14px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+    }
+
+    .img-cell img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s;
+    }
+
+    .img-cell:hover img {
+      transform: scale(1.06);
+    }
+
+    .img-cell::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent 40%, rgba(0,0,0,0.5));
+    }
+
+    .img-cell-label {
+      position: absolute;
+      bottom: 0.8rem;
+      left: 1rem;
+      right: 1rem;
+      color: var(--white);
+      font-weight: 700;
+      text-shadow: 0 1px 5px rgba(0,0,0,0.4);
+      font-size: 0.93rem;
+    }
+
+    .page-wrap { max-width: 1100px; margin: 0 auto; padding: 3rem 1.5rem; }
     .back-link { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--green-dark); font-weight: 700; margin-bottom: 1.5rem; }
-    .page-title { font-family: 'Noto Serif Bengali', serif; font-size: clamp(2.2rem, 4vw, 3.2rem); color: var(--green-dark); margin-bottom: 0.85rem; text-align: center; }
-    .page-subtitle { max-width: 760px; margin: 0 auto 2rem; text-align: center; color: var(--text-mid); line-height: 1.8; }
-    .service-box { background: var(--white); border-radius: 28px; padding: 2.2rem; box-shadow: 0 25px 70px rgba(15,76,58,0.08); }
-    .service-section { margin-top: 2rem; }
-    .section-heading { font-size: 1.25rem; color: var(--green-dark); margin-bottom: 0.85rem; }
-    .section-text { color: var(--text-mid); line-height: 1.8; margin-bottom: 1.25rem; }
-    .activities { display: grid; gap: 1rem; margin-top: 1rem; }
-    .activity-item { background: rgba(15,76,58,0.06); border-radius: 18px; padding: 1rem 1.2rem; color: var(--text-dark); }
-    .activity-item strong { color: var(--green-dark); }
-    .home-link { display: inline-block; margin-top: 2rem; padding: 0.95rem 1.6rem; background: var(--green-dark); color: var(--white); border-radius: 999px; font-weight: 700; }
-    @media (max-width: 720px) { .page-wrap { padding: 2rem 1rem; } }
+    .back-link:hover { opacity: 0.85; }
+    .sec-label { display: inline-flex; align-items: center; gap: 0.4rem; background: rgba(15,76,58,0.08); color: var(--green-dark); border-radius: 999px; padding: 0.45rem 1rem; font-size: 0.8rem; font-weight: 700; margin-bottom: 1rem; }
+    .sec-title { font-family: 'Noto Serif Bengali', serif; font-size: clamp(2rem, 4vw, 3rem); color: var(--green-dark); margin-bottom: 1rem; }
+    .sec-sub { max-width: 760px; margin-bottom: 2rem; color: var(--text-mid); line-height: 1.8; font-size: 1rem; }
+    .service-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.25rem; }
+    .service-card { background: var(--white); border-radius: 24px; padding: 1.6rem; box-shadow: 0 20px 60px rgba(15,76,58,0.08); border: 1px solid rgba(15,76,58,0.08); transition: transform 0.25s; }
+    .service-card:hover { transform: translateY(-4px); }
+    .service-card h3 { font-size: 1.1rem; margin-bottom: 0.85rem; color: var(--green-dark); }
+    .service-card p { color: var(--text-mid); line-height: 1.8; }
+    .home-link { display: inline-block; margin-top: 2.5rem; padding: 0.95rem 1.6rem; background: var(--green-dark); color: var(--white); border-radius: 999px; font-weight: 700; }
+    .home-link:hover { opacity: 0.95; }
+    @media (max-width: 720px) { .page-wrap { padding: 2rem 1rem; } .img-strip { grid-template-columns: 1fr; height: auto; } }
 
     /* ===== NAVBAR ===== */
     nav {
@@ -210,27 +353,55 @@
   </div>
 </nav>
 
-  <div class="page-wrap">
-    <a href="index.html" class="back-link" data-i18n="back_home">← হোমে ফিরে যান</a>
-    <h1 class="page-title" data-i18n="education_title">শিক্ষা সহায়তা</h1>
-    <p class="page-subtitle" data-i18n="education_subtitle">অর্থাভাবে পড়াশোনা ছাড়তে হয় এমন জানগণের জন্য আমরা বৃত্তি, উপকরণ ও শিক্ষাগত সমর্থন দেই।</p>
-    <div class="service-box">
-      <div class="service-section">
-        <h2 class="section-heading" data-i18n="education_programs">আমাদের শিক্ষা কার্যক্রম</h2>
-        <p class="section-text" data-i18n="education_desc">তরুণ প্রয়াস শিক্ষা সহায়তায় মেধাবী ছাত্রছাত্রীদের স্বপ্ন পূরণ করতে শীঘ্রই সহায়তা করে। আমরা নগদ বৃত্তি, বই, স্কুল ছাড় ও টিউটরিং ব্যবস্থা করে থাকি।</p>
-      </div>
-      <div class="service-section">
-        <h2 class="section-heading" data-i18n="education_activities">মূল কার্যক্রম</h2>
-        <div class="activities">
-          <div class="activity-item"><strong data-i18n="activity_scholarship">বৃত্তি প্রোগ্রাম</strong> <span data-i18n="activity_scholarship_desc">মেধাবী কিন্তু আর্থিকভাবে পিছিয়ে পড়া শিক্ষার্থীদের জন্য।</span></div>
-          <div class="activity-item"><strong data-i18n="activity_materials">শিক্ষা সামগ্রী</strong> <span data-i18n="activity_materials_desc">বই, ব্যাগ ও অন্যান্য প্রয়োজনীয় সরঞ্জাম সরবরাহ।</span></div>
-          <div class="activity-item"><strong data-i18n="activity_tutoring">সহপাঠন ও টিউশন</strong> <span data-i18n="activity_tutoring_desc">সহযোগিতামূলক পড়াশোনা ও মেন্টরিং সেশন।</span></div>
-          <div class="activity-item"><strong data-i18n="activity_online">অনলাইন শিক্ষা</strong> <span data-i18n="activity_online_desc">ইন্টারনেট ও ডিজিটাল রিসোর্সের মাধ্যমে শেখার সুযোগ।</span></div>
-        </div>
-      </div>
-      <a href="index.html" class="home-link" data-i18n="back_services">সব সেবাসমূহে ফিরে যান</a>
+<section class="hero">
+  <div class="hero-content">
+    <span class="hero-badge">🎓 শিক্ষার হাত বাড়াই</span>
+    <h1 class="hero-title">শিক্ষা সহায়তা<br><span>ভবিষ্যতের রূপান্তর</span></h1>
+    <p class="hero-sub">অর্থাভাবে পড়াশোনা ছাড়তে হয় এমন শিক্ষার্থীদের জন্য আমরা বৃত্তি, উপকরণ এবং শেখার সহযোগিতা দিয়ে তাদের ভবিষ্যত তৈরি করি।</p>
+    <div class="hero-actions">
+      <a href="index.html#services" class="btn-outline">সকল সেবা দেখুন</a>
+      <a href="index.html" class="btn-primary">হোমে ফিরে যান</a>
     </div>
   </div>
+</section>
+<div class="img-strip">
+  <div class="img-cell">
+    <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600&q=80" alt="শিক্ষা উপকরণ" loading="lazy" />
+    <div class="img-cell-label">শিক্ষা উপকরণ</div>
+  </div>
+  <div class="img-cell">
+    <img src="https://images.unsplash.com/photo-1513521774496-8f94adf12b28?w=600&q=80" alt="টিউশনের সেশন" loading="lazy" />
+    <div class="img-cell-label">টিউশন সেশন</div>
+  </div>
+  <div class="img-cell">
+    <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600&q=80" alt="অনলাইন শিক্ষা" loading="lazy" />
+    <div class="img-cell-label">অনলাইন শিক্ষা</div>
+  </div>
+</div>
+<div class="page-wrap">
+  <span class="sec-label">শিক্ষা সেবা</span>
+  <h2 class="sec-title">আমাদের শিক্ষা উদ্যোগ</h2>
+  <p class="sec-sub">তরুণ প্রয়াশ শিক্ষার মাধ্যমে সমাজের সুবিধাবঞ্চিত সন্তানদের স্বপ্ন পূরনের সুযোগ তৈরি করে।</p>
+  <div class="service-cards">
+    <div class="service-card">
+      <h3>বৃত্তি প্রোগ্রাম</h3>
+      <p>মেধাবী কিন্তু আর্থিকভাবে পিছিয়ে পড়া শিক্ষার্থীদের স্বপ্নপূরণের জন্য ন্যায়সঙ্গত সহায়তা।</p>
+    </div>
+    <div class="service-card">
+      <h3>শিক্ষা সামগ্রী</h3>
+      <p>বই, ব্যাগ, কোটা ও অন্যান্য প্রয়োজনীয় উপকরণ সরবরাহ করে পড়াশোনা সহজ করা।</p>
+    </div>
+    <div class="service-card">
+      <h3>সহপাঠন ও টিউশন</h3>
+      <p>সহযোগিতামূলক পড়াশোনা, গাইডেড টিউশন ও মেন্টরিং সেশনের মাধ্যমে শিক্ষার্থীদের উন্নতি।</p>
+    </div>
+    <div class="service-card">
+      <h3>অনলাইন শিক্ষা</h3>
+      <p>ডিজিটাল রিসোর্স, ইন্টারনেট ক্লাস ও ই-লার্নিং প্ল্যাটফর্মের মাধ্যমে শিক্ষার সুযোগ বৃদ্ধি।</p>
+    </div>
+  </div>
+  <a href="index.html" class="home-link">সব সেবাসমূহে ফিরে যান</a>
+</div>
 
 <script>
   const translations = {
