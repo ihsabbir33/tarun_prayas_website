@@ -12,6 +12,11 @@
       --off-white: #F9FAFB;
       --text-dark: #1F2937;
       --text-mid: #4B5563;
+      --green-mid: #1A6B50;
+      --green-light: #4F845E;
+      --gold: #D4AF37;
+      --gold-light: #E0C76F;
+      --shadow: rgba(31,41,55,0.08);
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: 'Hind Siliguri', sans-serif; background: var(--off-white); color: var(--text-dark); min-height: 100vh; }
@@ -29,29 +34,307 @@
     .activity-item strong { color: var(--green-dark); }
     .home-link { display: inline-block; margin-top: 2rem; padding: 0.95rem 1.6rem; background: var(--green-dark); color: var(--white); border-radius: 999px; font-weight: 700; }
     @media (max-width: 720px) { .page-wrap { padding: 2rem 1rem; } }
+
+    /* ===== NAVBAR ===== */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: var(--white);
+      backdrop-filter: blur(12px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.7rem 4rem;
+      box-shadow: 0 15px 40px rgba(31,41,55,0.08);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      text-decoration: none;
+    }
+
+    .nav-logo-icon {
+      width: 48px; height: 48px;
+      background: var(--white);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      color: var(--green-dark);
+      box-shadow: 0 0 0 3px var(--gold);
+    }
+
+    .nav-logo-text {
+      color: var(--green-dark);
+      font-family: 'Noto Serif Bengali', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .nav-logo-text span {
+      display: block;
+      font-size: 0.7rem;
+      font-weight: 400;
+      color: var(--gold);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-dark);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: color 0.2s;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0;
+      width: 0; height: 2px;
+      background: var(--gold);
+      transition: width 0.3s;
+    }
+
+    .nav-links a:hover { color: var(--gold); }
+    .nav-links a:hover::after { width: 100%; }
+
+    .nav-donate-btn {
+      background: var(--green-dark);
+      color: var(--white) !important;
+      padding: 0.5rem 1.2rem;
+      border-radius: 50px;
+      font-weight: 700 !important;
+      transition: background 0.2s, transform 0.2s !important;
+    }
+
+    .nav-donate-btn:hover {
+      background: var(--gold) !important;
+      color: var(--green-dark) !important;
+      transform: translateY(-2px);
+    }
+
+    .nav-donate-btn::after { display: none; }
+
+    .lang-toggle {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+    }
+
+    .lang-btn {
+      border: 1px solid var(--green-dark);
+      background: transparent;
+      color: var(--green-dark);
+      padding: 0.35rem 0.85rem;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      transition: background 0.2s, color 0.2s, transform 0.2s;
+    }
+
+    .lang-btn:hover {
+      background: rgba(15,76,58,0.08);
+      transform: translateY(-1px);
+    }
+
+    .lang-btn.active {
+      background: var(--green-dark);
+      color: var(--white);
+      border-color: var(--green-dark);
+    }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 26px; height: 3px;
+      background: var(--green-dark);
+      border-radius: 2px;
+      transition: 0.3s;
+    }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+      nav { padding: 0.7rem 1.5rem; }
+      .nav-links { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: var(--green-dark); padding: 1.5rem; gap: 1rem; }
+      .nav-links.open { display: flex; }
+    }
   </style>
 </head>
 <body>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-icon">🤝</div>
+    <div class="nav-logo-text">
+      <div data-i18n="org_name">তরুণ প্রয়াস</div>
+      <span data-i18n="org_tagline">মানব কল্যাণ সংস্থা</span>
+    </div>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html#home" data-i18n="nav_home">হোম</a></li>
+    <li><a href="index.html#about" data-i18n="nav_about">আমাদের সম্পর্কে</a></li>
+    <li><a href="index.html#members" data-i18n="nav_members">মেম্বার</a></li>
+    <li><a href="index.html#emergency" data-i18n="nav_emergency">জরুরি সেবা</a></li>
+    <li><a href="index.html#services" data-i18n="nav_services">সেবাসমূহ</a></li>
+    <li><a href="index.html#gallery" data-i18n="nav_gallery">গ্যালারি</a></li>
+    <li><a href="index.html#contact" data-i18n="nav_contact">যোগাযোগ</a></li>
+    <li><a href="index.html#contact" class="nav-donate-btn" data-i18n="nav_donate">সহযোগিতা করুন</a></li>
+  </ul>
+  <div class="lang-toggle">
+    <button type="button" class="lang-btn active" data-lang="bn">বাংলা</button>
+    <button type="button" class="lang-btn" data-lang="en">EN</button>
+  </div>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
   <div class="page-wrap">
-    <a href="index.html" class="back-link">← হোমে ফিরে যান</a>
-    <h1 class="page-title">শিক্ষা সহায়তা</h1>
-    <p class="page-subtitle">অর্থাভাবে পড়াশোনা ছাড়তে হয় এমন জানগণের জন্য আমরা বৃত্তি, উপকরণ ও শিক্ষাগত সমর্থন দেই।</p>
+    <a href="index.html" class="back-link" data-i18n="back_home">← হোমে ফিরে যান</a>
+    <h1 class="page-title" data-i18n="education_title">শিক্ষা সহায়তা</h1>
+    <p class="page-subtitle" data-i18n="education_subtitle">অর্থাভাবে পড়াশোনা ছাড়তে হয় এমন জানগণের জন্য আমরা বৃত্তি, উপকরণ ও শিক্ষাগত সমর্থন দেই।</p>
     <div class="service-box">
       <div class="service-section">
-        <h2 class="section-heading">আমাদের শিক্ষা কার্যক্রম</h2>
-        <p class="section-text">তরুণ প্রয়াস শিক্ষা সহায়তায় মেধাবী ছাত্রছাত্রীদের স্বপ্ন পূরণ করতে শীঘ্রই সহায়তা করে। আমরা নগদ বৃত্তি, বই, স্কুল ছাড় ও টিউটরিং ব্যবস্থা করে থাকি।</p>
+        <h2 class="section-heading" data-i18n="education_programs">আমাদের শিক্ষা কার্যক্রম</h2>
+        <p class="section-text" data-i18n="education_desc">তরুণ প্রয়াস শিক্ষা সহায়তায় মেধাবী ছাত্রছাত্রীদের স্বপ্ন পূরণ করতে শীঘ্রই সহায়তা করে। আমরা নগদ বৃত্তি, বই, স্কুল ছাড় ও টিউটরিং ব্যবস্থা করে থাকি।</p>
       </div>
       <div class="service-section">
-        <h2 class="section-heading">মূল কার্যক্রম</h2>
+        <h2 class="section-heading" data-i18n="education_activities">মূল কার্যক্রম</h2>
         <div class="activities">
-          <div class="activity-item"><strong>বৃত্তি প্রোগ্রাম</strong> মেধাবী কিন্তু আর্থিকভাবে পিছিয়ে পড়া শিক্ষার্থীদের জন্য।</div>
-          <div class="activity-item"><strong>শিক্ষা সামগ্রী</strong> বই, ব্যাগ ও অন্যান্য প্রয়োজনীয় সরঞ্জাম সরবরাহ।</div>
-          <div class="activity-item"><strong>সহপাঠন ও টিউশন</strong> সহযোগিতামূলক পড়াশোনা ও মেন্টরিং সেশন।</div>
-          <div class="activity-item"><strong>অনলাইন শিক্ষা</strong> ইন্টারনেট ও ডিজিটাল রিসোর্সের মাধ্যমে শেখার সুযোগ।</div>
+          <div class="activity-item"><strong data-i18n="activity_scholarship">বৃত্তি প্রোগ্রাম</strong> <span data-i18n="activity_scholarship_desc">মেধাবী কিন্তু আর্থিকভাবে পিছিয়ে পড়া শিক্ষার্থীদের জন্য।</span></div>
+          <div class="activity-item"><strong data-i18n="activity_materials">শিক্ষা সামগ্রী</strong> <span data-i18n="activity_materials_desc">বই, ব্যাগ ও অন্যান্য প্রয়োজনীয় সরঞ্জাম সরবরাহ।</span></div>
+          <div class="activity-item"><strong data-i18n="activity_tutoring">সহপাঠন ও টিউশন</strong> <span data-i18n="activity_tutoring_desc">সহযোগিতামূলক পড়াশোনা ও মেন্টরিং সেশন।</span></div>
+          <div class="activity-item"><strong data-i18n="activity_online">অনলাইন শিক্ষা</strong> <span data-i18n="activity_online_desc">ইন্টারনেট ও ডিজিটাল রিসোর্সের মাধ্যমে শেখার সুযোগ।</span></div>
         </div>
       </div>
-      <a href="index.html" class="home-link">সব সেবাসমূহে ফিরে যান</a>
+      <a href="index.html" class="home-link" data-i18n="back_services">সব সেবাসমূহে ফিরে যান</a>
     </div>
   </div>
+
+<script>
+  const translations = {
+    bn: {
+      nav_home: 'হোম',
+      nav_about: 'আমাদের সম্পর্কে',
+      nav_members: 'মেম্বার',
+      nav_services: 'সেবাসমূহ',
+      nav_gallery: 'গ্যালারি',
+      nav_contact: 'যোগাযোগ',
+      nav_emergency: 'জরুরি সেবা',
+      nav_donate: 'সহযোগিতা করুন',
+      org_name: 'তরুণ প্রয়াস',
+      org_tagline: 'মানব কল্যাণ সংস্থা',
+      back_home: '← হোমে ফিরে যান',
+      education_title: 'শিক্ষা সহায়তা',
+      education_subtitle: 'অর্থাভাবে পড়াশোনা ছাড়তে হয় এমন জানগণের জন্য আমরা বৃত্তি, উপকরণ ও শিক্ষাগত সমর্থন দেই।',
+      education_programs: 'আমাদের শিক্ষা কার্যক্রম',
+      education_desc: 'তরুণ প্রয়াস শিক্ষা সহায়তায় মেধাবী ছাত্রছাত্রীদের স্বপ্ন পূরণ করতে শীঘ্রই সহায়তা করে। আমরা নগদ বৃত্তি, বই, স্কুল ছাড় ও টিউটরিং ব্যবস্থা করে থাকি।',
+      education_activities: 'মূল কার্যক্রম',
+      activity_scholarship: 'বৃত্তি প্রোগ্রাম',
+      activity_scholarship_desc: 'মেধাবী কিন্তু আর্থিকভাবে পিছিয়ে পড়া শিক্ষার্থীদের জন্য।',
+      activity_materials: 'শিক্ষা সামগ্রী',
+      activity_materials_desc: 'বই, ব্যাগ ও অন্যান্য প্রয়োজনীয় সরঞ্জাম সরবরাহ।',
+      activity_tutoring: 'সহপাঠন ও টিউশন',
+      activity_tutoring_desc: 'সহযোগিতামূলক পড়াশোনা ও মেন্টরিং সেশন।',
+      activity_online: 'অনলাইন শিক্ষা',
+      activity_online_desc: 'ইন্টারনেট ও ডিজিটাল রিসোর্সের মাধ্যমে শেখার সুযোগ।',
+      back_services: 'সব সেবাসমূহে ফিরে যান'
+    },
+    en: {
+      nav_home: 'Home',
+      nav_about: 'About',
+      nav_members: 'Members',
+      nav_services: 'Services',
+      nav_gallery: 'Gallery',
+      nav_contact: 'Contact',
+      nav_emergency: 'Emergency',
+      nav_donate: 'Support Us',
+      org_name: 'Tarun Proyash',
+      org_tagline: 'Human Welfare Organization',
+      back_home: '← Back to Home',
+      education_title: 'Education Support',
+      education_subtitle: 'We provide scholarships, materials, and educational support for those who have to drop out of studies due to financial constraints.',
+      education_programs: 'Our Education Programs',
+      education_desc: 'Tarun Proyash helps fulfill the dreams of meritorious students through education support. We provide cash scholarships, books, school fees, and tutoring arrangements.',
+      education_activities: 'Key Activities',
+      activity_scholarship: 'Scholarship Program',
+      activity_scholarship_desc: 'For meritorious but financially disadvantaged students.',
+      activity_materials: 'Educational Materials',
+      activity_materials_desc: 'Supply of books, bags, and other necessary equipment.',
+      activity_tutoring: 'Co-learning and Tutoring',
+      activity_tutoring_desc: 'Supportive study and mentoring sessions.',
+      activity_online: 'Online Education',
+      activity_online_desc: 'Learning opportunities through internet and digital resources.',
+      back_services: 'Back to All Services'
+    }
+  };
+
+  function applyTranslations(lang) {
+    localStorage.setItem('selectedLanguage', lang);
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.dataset.i18n;
+      if (translations[lang] && translations[lang][key] !== undefined) {
+        el.innerHTML = translations[lang][key];
+      }
+    });
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+      const key = el.dataset.i18nPlaceholder;
+      if (translations[lang] && translations[lang][key] !== undefined) {
+        el.placeholder = translations[lang][key];
+      }
+    });
+    document.querySelectorAll('[data-i18n-alt]').forEach(el => {
+      const key = el.dataset.i18nAlt;
+      if (translations[lang] && translations[lang][key] !== undefined) {
+        el.alt = translations[lang][key];
+      }
+    });
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.lang === lang);
+    });
+  }
+
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.addEventListener('click', () => applyTranslations(btn.dataset.lang));
+  });
+
+  // Load saved language or default to 'bn'
+  const savedLang = localStorage.getItem('selectedLanguage') || 'bn';
+  applyTranslations(savedLang);
+
+  // Mobile menu
+  function toggleMenu() {
+    const links = document.getElementById('navLinks');
+    links.classList.toggle('open');
+  }
+
+  // Close menu on link click
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      document.getElementById('navLinks').classList.remove('open');
+    });
+  });
+</script>
 </body>
 </html>
