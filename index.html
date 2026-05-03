@@ -1333,6 +1333,130 @@
       .hero-center-layout { gap: 1rem; }
       .hero-header { margin-bottom: 2rem; }
     }
+<!-- ======= EMERGENCY CARD STYLES (add to your main CSS) ======= -->
+
+.emergency-card-wrapper {
+  margin-top: 2.5rem;
+  display: flex;
+  justify-content: center;
+}
+
+.emergency-card {
+  position: relative;
+  display: block;
+  text-decoration: none;
+  width: 100%;
+  max-width: 620px;
+  border-radius: 20px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #1a0505 0%, #3d0a0a 50%, #1a0505 100%);
+  border: 1.5px solid rgba(255,80,80,0.35);
+  box-shadow: 0 8px 40px rgba(220,30,30,0.18), 0 2px 8px rgba(0,0,0,0.3);
+  transition: transform 0.22s cubic-bezier(.4,0,.2,1), box-shadow 0.22s;
+  cursor: pointer;
+}
+
+.emergency-card:hover {
+  transform: translateY(-4px) scale(1.012);
+  box-shadow: 0 16px 60px rgba(220,30,30,0.32), 0 4px 16px rgba(0,0,0,0.4);
+}
+
+.emergency-card:hover .emergency-card-arrow {
+  transform: translateX(5px);
+}
+
+/* Pulsing border glow */
+.emergency-card-pulse {
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  border: 2px solid rgba(255,60,60,0.5);
+  animation: cardPulse 2s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes cardPulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(255,60,60,0.3); }
+  50% { opacity: 0.6; box-shadow: 0 0 0 8px rgba(255,60,60,0); }
+}
+
+.emergency-card-inner {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  padding: 1.4rem 1.8rem;
+}
+
+.emergency-card-icon {
+  font-size: 2.4rem;
+  flex-shrink: 0;
+  animation: iconBounce 1.8s ease-in-out infinite;
+}
+
+@keyframes iconBounce {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.12); }
+}
+
+.emergency-card-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.emergency-card-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.01em;
+}
+
+.emergency-card-sub {
+  font-size: 0.8rem;
+  color: rgba(255,160,160,0.85);
+  letter-spacing: 0.03em;
+}
+
+.emergency-card-arrow {
+  color: #ff6060;
+  transition: transform 0.22s ease;
+  flex-shrink: 0;
+}
+
+/* Scrolling ticker */
+.emergency-card-ticker {
+  background: rgba(220,30,30,0.18);
+  border-top: 1px solid rgba(255,80,80,0.2);
+  padding: 0.45rem 0;
+  display: flex;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.emergency-card-ticker span {
+  display: inline-block;
+  color: rgba(255,180,180,0.9);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  animation: tickerScroll 14s linear infinite;
+}
+
+.emergency-card-ticker span:nth-child(2) {
+  animation-delay: -7s;
+}
+
+@keyframes tickerScroll {
+  0%   { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+@media (max-width: 600px) {
+  .emergency-card-inner { padding: 1.1rem 1.2rem; gap: 0.9rem; }
+  .emergency-card-icon { font-size: 2rem; }
+  .emergency-card-title { font-size: 1rem; }
+}
   </style>
 </head>
 <body>
@@ -1474,6 +1598,7 @@
 </section>
 
 <!-- EMERGENCY -->
+<!-- EMERGENCY SECTION (modified) - paste this into your main page -->
 <section class="emergency" id="emergency">
   <div class="container">
     <div class="section-label reveal" data-i18n="emergency_label">জরুরি সেবা</div>
@@ -1499,8 +1624,32 @@
         <div class="about-feature-text" data-i18n="emergency_call">জরুরি কল সাপোর্ট</div>
       </div>
     </div>
+
+    <!-- DYNAMIC EMERGENCY CARD -->
+    <div class="emergency-card-wrapper reveal" style="transition-delay:0.3s">
+      <a href="emergency-numbers.html" class="emergency-card" id="emergencyCard">
+        <div class="emergency-card-pulse"></div>
+        <div class="emergency-card-inner">
+          <div class="emergency-card-icon">🚨</div>
+          <div class="emergency-card-content">
+            <span class="emergency-card-title">জরুরি নম্বর সমূহ</span>
+            <span class="emergency-card-sub">হাসপাতাল · অ্যাম্বুলেন্স · পুলিশ · ফায়ার · বাস</span>
+          </div>
+          <div class="emergency-card-arrow">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </div>
+        </div>
+        <div class="emergency-card-ticker">
+          <span>⚡ সবসময় প্রস্তুত &nbsp;&nbsp;|&nbsp;&nbsp; ২৪/৭ সেবা &nbsp;&nbsp;|&nbsp;&nbsp; দ্রুত সাড়া দিন &nbsp;&nbsp;|&nbsp;&nbsp; জীবন বাঁচান &nbsp;&nbsp;|&nbsp;&nbsp;</span>
+          <span>⚡ সবসময় প্রস্তুত &nbsp;&nbsp;|&nbsp;&nbsp; ২৪/৭ সেবা &nbsp;&nbsp;|&nbsp;&nbsp; দ্রুত সাড়া দিন &nbsp;&nbsp;|&nbsp;&nbsp; জীবন বাঁচান &nbsp;&nbsp;|&nbsp;&nbsp;</span>
+        </div>
+      </a>
+    </div>
+
   </div>
 </section>
+
+
 
 <!-- SERVICES -->
 <section class="services" id="services">

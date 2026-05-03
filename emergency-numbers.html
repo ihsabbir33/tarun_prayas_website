@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>জরুরি নম্বর সমূহ | তরুণ প্রয়াস</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Tiro+Bangla&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg:          #FFFFFF;
+      --bg2:         #F5F7FA;
+      --bg3:         #EEF1F5;
+      --border:      rgba(0,0,0,0.08);
+      --red:         #E53935;
+      --red-soft:    #EF5350;
+      --red-glow:    rgba(229,57,53,0.10);
+      --amber:       #F59E0B;
+      --blue:        #1976D2;
+      --blue-soft:   #1E88E5;
+      --green:       #43A047;
+      --green-soft:  #4CAF50;
+      --cyan:        #0288D1;
+      --text:        #333333;
+      --text-muted:  #757575;
+      --radius:      16px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Hind Siliguri', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── BACKGROUND subtle ── */
+    .bg-fx {
+      position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background:
+        radial-gradient(ellipse 60% 40% at 15% 8%,  rgba(229,57,53,0.05)  0%, transparent 60%),
+        radial-gradient(ellipse 55% 35% at 85% 92%, rgba(25,118,210,0.05) 0%, transparent 60%);
+    }
+
+    /* ── BACK BUTTON ── */
+    .back-btn {
+      position: fixed;
+      top: 1.2rem; left: 1.2rem;
+      z-index: 100;
+      display: flex; align-items: center; gap: 0.5rem;
+      background: #fff;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 0.55rem 1.1rem;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-family: inherit;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    }
+    .back-btn:hover {
+      background: var(--bg2);
+      color: var(--text);
+      box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+    }
+    .back-btn svg { width: 15px; height: 15px; }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative; z-index: 1;
+      text-align: center;
+      padding: 5rem 1.5rem 2.5rem;
+      background: linear-gradient(160deg, #fff 60%, #EEF4FF 100%);
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.45rem;
+      background: rgba(229,57,53,0.08);
+      border: 1px solid rgba(229,57,53,0.25);
+      border-radius: 50px;
+      padding: 0.35rem 1rem;
+      font-size: 0.78rem;
+      color: var(--red);
+      letter-spacing: 0.06em;
+      font-weight: 600;
+      margin-bottom: 1.2rem;
+    }
+    .hero-badge::before {
+      content: '';
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--red);
+      animation: liveBlink 1.2s ease-in-out infinite;
+    }
+    @keyframes liveBlink { 0%,100%{opacity:1} 50%{opacity:0.2} }
+
+    .hero h1 {
+      font-size: clamp(1.8rem, 5vw, 3rem);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 0.8rem;
+      color: #1a1a2e;
+    }
+    .hero h1 span {
+      color: var(--red);
+    }
+
+    .hero p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      max-width: 480px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    /* ── GRID ── */
+    .page-body {
+      position: relative; z-index: 1;
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 1.2rem 5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    /* ── CATEGORY ── */
+    .category {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      animation: fadeUp 0.5s ease both;
+    }
+    .category:nth-child(1) { animation-delay: 0.05s; }
+    .category:nth-child(2) { animation-delay: 0.12s; }
+    .category:nth-child(3) { animation-delay: 0.19s; }
+    .category:nth-child(4) { animation-delay: 0.26s; }
+    .category:nth-child(5) { animation-delay: 0.33s; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(22px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .category-header {
+      display: flex; align-items: center; gap: 0.9rem;
+      padding: 1.1rem 1.4rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .category-icon {
+      width: 42px; height: 42px;
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+
+    .category-title { font-size: 1.05rem; font-weight: 700; }
+    .category-count {
+      margin-left: auto;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      padding: 0.2rem 0.6rem;
+      border-radius: 50px;
+    }
+
+    /* ── NUMBER CARDS GRID ── */
+    .numbers-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1px;
+      background: var(--border);
+    }
+
+    .num-card {
+      background: var(--bg);
+      padding: 1.1rem 1.4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      transition: background 0.18s;
+      cursor: default;
+    }
+    .num-card:hover { background: var(--bg2); }
+
+    .num-name {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .num-value {
+      font-size: 1.35rem;
+      font-weight: 700;
+      font-family: monospace;
+      letter-spacing: 0.05em;
+    }
+
+    .num-note {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      margin-top: 0.1rem;
+    }
+
+    .call-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      margin-top: 0.5rem;
+      background: transparent;
+      border: 1px solid;
+      border-radius: 50px;
+      padding: 0.3rem 0.85rem;
+      font-size: 0.75rem;
+      font-family: inherit;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.18s, color 0.18s;
+      width: fit-content;
+    }
+
+    /* ── COLOR VARIANTS ── */
+
+    /* Red — Hospital */
+    .cat-red .category-header  { background: rgba(229,57,53,0.04); }
+    .cat-red .category-icon    { background: rgba(229,57,53,0.10); }
+    .cat-red .category-title   { color: var(--red); }
+    .cat-red .num-value        { color: var(--red); }
+    .cat-red .call-btn         { border-color: rgba(229,57,53,0.35); color: var(--red); }
+    .cat-red .call-btn:hover   { background: rgba(229,57,53,0.08); }
+
+    /* Amber — Ambulance */
+    .cat-amber .category-header { background: rgba(245,158,11,0.04); }
+    .cat-amber .category-icon   { background: rgba(245,158,11,0.10); }
+    .cat-amber .category-title  { color: #D97706; }
+    .cat-amber .num-value       { color: #D97706; }
+    .cat-amber .call-btn        { border-color: rgba(245,158,11,0.4); color: #D97706; }
+    .cat-amber .call-btn:hover  { background: rgba(245,158,11,0.08); }
+
+    /* Blue — Police */
+    .cat-blue .category-header  { background: rgba(25,118,210,0.04); }
+    .cat-blue .category-icon    { background: rgba(25,118,210,0.10); }
+    .cat-blue .category-title   { color: var(--blue); }
+    .cat-blue .num-value        { color: var(--blue); }
+    .cat-blue .call-btn         { border-color: rgba(25,118,210,0.35); color: var(--blue); }
+    .cat-blue .call-btn:hover   { background: rgba(25,118,210,0.08); }
+
+    /* Green — Fire */
+    .cat-green .category-header  { background: rgba(67,160,71,0.04); }
+    .cat-green .category-icon    { background: rgba(67,160,71,0.10); }
+    .cat-green .category-title   { color: var(--green); }
+    .cat-green .num-value        { color: var(--green); }
+    .cat-green .call-btn         { border-color: rgba(67,160,71,0.35); color: var(--green); }
+    .cat-green .call-btn:hover   { background: rgba(67,160,71,0.08); }
+
+    /* Cyan — Transport */
+    .cat-cyan .category-header  { background: rgba(2,136,209,0.04); }
+    .cat-cyan .category-icon    { background: rgba(2,136,209,0.10); }
+    .cat-cyan .category-title   { color: var(--cyan); }
+    .cat-cyan .num-value        { color: var(--cyan); }
+    .cat-cyan .call-btn         { border-color: rgba(2,136,209,0.35); color: var(--cyan); }
+    .cat-cyan .call-btn:hover   { background: rgba(2,136,209,0.08); }
+
+    /* ── FOOTER NOTE ── */
+    .footer-note {
+      position: relative; z-index: 1;
+      text-align: center;
+      padding: 0 1.5rem 3rem;
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      line-height: 1.8;
+    }
+    .footer-note strong { color: var(--text); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 520px) {
+      .numbers-grid { grid-template-columns: 1fr; }
+      .hero { padding-top: 4rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg-fx"></div>
+
+  <!-- Back Button -->
+  <a href="javascript:history.back()" class="back-btn">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M19 12H5M12 5l-7 7 7 7"/>
+    </svg>
+    ফিরে যান
+  </a>
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-badge">LIVE &nbsp;·&nbsp; ২৪/৭ সেবা</div>
+    <h1>জরুরি <span>নম্বর সমূহ</span></h1>
+    <p>যেকোনো বিপদে সঠিক নম্বরে দ্রুত কল করুন। প্রতিটি মুহূর্ত মূল্যবান।</p>
+  </div>
+
+  <div class="page-body">
+
+    <!-- 1. HOSPITAL -->
+    <div class="category cat-red">
+      <div class="category-header">
+        <div class="category-icon">🏥</div>
+        <span class="category-title">হাসপাতাল</span>
+        <span class="category-count">৫টি</span>
+      </div>
+      <div class="numbers-grid">
+        <div class="num-card">
+          <div class="num-name">ঢাকা মেডিকেল কলেজ হাসপাতাল</div>
+          <div class="num-value">02-55165088</div>
+          <div class="num-note">জরুরি বিভাগ, ২৪ ঘণ্টা</div>
+          <a class="call-btn" href="tel:0255165088">📞 কল করুন</a>
+        </div>
+        <div class="num-card">
+          <div class="num-name">বঙ্গবন্ধু শেখ মুজিব মেডিকেল</div>
+          <div class="num-value">02-55165300</div>
+          <div class="num-note">বহির্বিভাগ ও জরুরি সেবা</div>
+          <a class="call-btn" href="tel:0255165300">📞 কল করুন</a>
+        </div>
+        <div class="num-card">
+          <div class="num-name">শহীদ সোহরাওয়ার্দী হাসপাতাল</div>
+          <div class="num-value">02-9118193</div>
+          <div class="num-note">সার্বক্ষণিক জরুরি বিভাগ</div>
+          <a class="call-btn" href="tel:029118193">📞 কল করুন</a>
+        </div>
+        <div class="num-card">
+          <div class="num-name">চট্টগ্রাম মেডিকেল কলেজ</div>
+          <div class="num-value">031-630634</div>
+          <div class="num-note">জরুরি ও বহির্বিভাগ</div>
+          <a class="call-btn" href="tel:031630634">📞 কল করুন</a>
+        </div>
+        <div class="num-card">
+          <div class="num-name">স্বাস্থ্য বাতায়ন (হেল্পলাইন)</div>
+          <div class="num-value">16110</div>
+          <div class="num-note">সরকারি স্বাস্থ্য তথ্য সেবা</div>
+          <a class="call-btn" href="tel:16110">📞 কল করুন</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. AMBULANCE -->
+    <div class="category cat-amber">
+      <div class="category-header">
+        <div class="category-icon">🚑</div>
+        <span class="category-title">অ্যাম্বুলেন্স সেবা</span>
+        <span class="category-count">৪টি</span>
+      </div>
+      <div class="numbers-grid">
+        <div class="num-card">
+          <div class="num-name">জাতীয় জরুরি সেবা</div>
+          <div class="num-value">999</div>
+          <div class="num-note">অ্যাম্বুলেন্স + পুলিশ + ফায়ার একসাথে</div>
+          <a class="call-btn" href="tel:999">📞 কল করুন</a>
+        </div>
+        <div class="num-card">
+          <div class="num-name">রেড ক্রিসেন্ট অ্যাম্বুলেন্স</div>
+          <div class="num-value">01713-100100</div>
+          <div class="num-note">বিনামূল্যে জরুরি পরিবহন</div>
+          <a class="call-btn" href="tel:01713100100">📞 কল করুন</a>
+        </div>
+        <div class="num-card">
+          <div class="num-name">ডিএমসি অ্যাম্বুলেন্স</div>
+          <div class="num-value">01969-000911</div>
+          <div class="num-note">ঢাকা মেডিকেল অ্যাম্বুলেন্স</div>
+          <a class="call-btn" href="tel:01969000911">📞 কল করুন</a>
+        </div>
+        <div class="num-card">
+          <div class="num-name">প্রাইভেট অ্যাম্বুলেন্স (ঢাকা)</div>
+          <div class="num-value">01611-100100</div>
+          <div class="num-note">২৪ ঘণ্টা প্রস্তুত</div>
+          <a class="call-btn" href="tel:01611100100">📞 কল করুন</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. POLICE -->
+    <div class="category cat-blue">
+      <div class="category-header">
+        <div class="category-icon">👮</div>
+        <span class="category-title">পুলিশ সেবা</span>
+        <span class="category-count">৪টি</span>
+      </div>
+      <div class="numbers-grid">
+        <div class="num-card">
+          <div class="num-name">জাতীয় জরুরি পুলিশ</div>
+          <div class="num-value">999</div>
+          <div class="num-note">সার্বক্ষণিক জরুরি নম্বর</div>
+          <a class="call-btn" href="tel:999">📞 কল করুন</a>
+        </div>
+        <div class="num-card">
+          <div class="num-name">পুলিশ হেডকোয়ার্টার</div>
+          <div class="num-value">02-9569882</div>
+          <div class="num-note">ঢাকা পুলিশ কমিশনার</div>
+          <a class="call-btn" href="tel:029569882">📞 কল করুন</a>
+        </div>
+        <div class="num-card">
+          <div class="num-name">র‌্যাব হেল্পলাইন</div>
+          <div class="num-value">16652</div>
+          <div class="num-note">র‌্যাপিড অ্যাকশন ব্যাটালিয়ন</div>
+          <a class="call-btn" href="tel:16652">📞 কল করুন</a>
+        </div>
+        <div class="num-card">
+          <div class="num-name">মহিলা ও শিশু সহায়তা</div>
+          <div class="num-value">109</div>
+          <div class="num-note">জাতীয় হেল্পলাইন</div>
+          <a class="call-btn" href="tel:109">📞 কল করুন</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. FIRE SERVICE -->
+    <div class="category cat-green">
+      <div class="category-header">
+        <div class="category-icon">🚒</div>
+        <span class="category-title">ফায়ার সার্ভিস ও সিভিল ডিফেন্স</span>
+        <span class="category-count">৩টি</span>
+      </div>
+      <div class="numbers-grid">
+        <div class="num-card">
+          <div class="num-name">জাতীয় ফায়ার সার্ভিস</div>
+          <div class="num-value">16163</div>
+          <div class="num-note">দেশব্যাপী ফায়ার হেল্পলাইন</div>
+          <a class="call-btn" href="tel:16163">📞 কল করুন</a>
+        </div>
+        <div class="num-card">
+          <div class="num-name">ফায়ার সার্ভিস (জরুরি)</div>
+          <div class="num-value">02-9555555</div>
+          <div class="num-note">ঢাকা ফায়ার স্টেশন</div>
+          <a class="call-btn" href="tel:029555555">📞 কল করুন</a>
+        </div>
+        <div class="num-card">
+          <div class="num-name">সিভিল ডিফেন্স</div>
+          <div class="num-value">02-9559888</div>
+          <div class="num-note">দুর্যোগ ও উদ্ধার অভিযান</div>
+          <a class="call-btn" href="tel:029559888">📞 কল করুন</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. BUS / TRANSPORT -->
+    <div class="category cat-cyan">
+      <div class="category-header">
+        <div class="category-icon">🚌</div>
+        <span class="category-title">বাস ও পরিবহন সেবা</span>
+        <span class="category-count">৫টি</span>
+      </div>
+      <div class="numbers-grid">
+        <div class="num-card">
+          <div class="num-name">বাংলাদেশ সড়ক পরিবহন কর্পোরেশন</div>
+          <div class="num-value">02-7100011</div>
+          <div class="num-note">BRTC হেল্পলাইন</div>
+          <a class="call-btn" href="tel:027100011">📞 কল করুন</a>
+        </div>
+        <div class="num-card">
+          <div class="num-name">ঢাকা পরিবহন সমন্বয় কর্তৃপক্ষ</div>
+          <div class="num-value">16516</div>
+          <div class="num-note">DTCA যাত্রী সহায়তা</div>
+          <a class="call-btn" href="tel:16516">📞 কল করুন</a>
+        </div>
+        <div class="num-card">
+          <div class="num-name">রেলওয়ে হেল্পলাইন</div>
+          <div class="num-value">131</div>
+          <div class="num-note">বাংলাদেশ রেলওয়ে তথ্যসেবা</div>
+          <a class="call-btn" href="tel:131">📞 কল করুন</a>
+        </div>
+        <div class="num-card">
+          <div class="num-name">লঞ্চ / নৌ পরিবহন</div>
+          <div class="num-value">02-9576367</div>
+          <div class="num-note">বিআইডব্লিউটিএ (BIWTA)</div>
+          <a class="call-btn" href="tel:029576367">📞 কল করুন</a>
+        </div>
+        <div class="num-card">
+          <div class="num-name">বিমান বাংলাদেশ</div>
+          <div class="num-value">13600</div>
+          <div class="num-note">বিমান যাত্রী সেবা</div>
+          <a class="call-btn" href="tel:13600">📞 কল করুন</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <div class="footer-note">
+    <strong>তরুণ প্রয়াস</strong> — জরুরি তথ্যসেবা<br/>
+    তথ্যে কোনো পরিবর্তন হলে আমাদের জানান। বিপদে সাহস রাখুন।
+  </div>
+
+</body>
+</html>
