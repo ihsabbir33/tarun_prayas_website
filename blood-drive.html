@@ -119,14 +119,6 @@
 
     /* filter */
     .filter-wrap{background:white;border-radius:12px;padding:1.2rem 1.5rem;box-shadow:0 2px 12px var(--shadow);border:1.5px solid var(--border);margin-bottom:2rem;}
-    .filter-search{
-      width:100%;padding:0.75rem 1rem;
-      border:1.5px solid var(--border);border-radius:8px;
-      font-family:'Hind Siliguri',sans-serif;font-size:0.9rem;
-      outline:none;background:white;color:var(--text);
-      transition:all 0.2s;margin-bottom:0.9rem;
-    }
-    .filter-search:focus{border-color:var(--primary);background:white;box-shadow:0 0 0 3px rgba(230,57,70,0.08);}
     .filter-row{display:flex;align-items:center;gap:0.75rem;flex-wrap:wrap;}
     .filter-lbl{font-size:0.8rem;font-weight:700;color:var(--text);white-space:nowrap;}
     .bg-btn{
@@ -199,7 +191,6 @@
       .stat-val{font-size:1.3rem;}
       
       .filter-wrap{padding:1rem;border-radius:10px;}
-      .filter-search{padding:0.65rem 0.85rem;font-size:0.85rem;}
       .bg-btn{padding:0.35rem 0.7rem;font-size:0.75rem;}
       
       .donors-grid{grid-template-columns:1fr;gap:0.8rem;}
@@ -353,33 +344,6 @@
 </head>
 <body>
 
-<!-- NAVBAR -->
-<nav id="navbar">
-  <a href="index.html" class="nav-logo">
-    <div class="nav-logo-icon">🤝</div>
-    <div class="nav-logo-text">
-      <div data-i18n="org_name">তরুণ প্রয়াস</div>
-      <span data-i18n="org_tagline">মানব কল্যাণ সংস্থা</span>
-    </div>
-  </a>
-  <ul class="nav-links" id="navLinks">
-    <li><a href="index.html#home" data-i18n="nav_home">হোম</a></li>
-    <li><a href="index.html#about" data-i18n="nav_about">আমাদের সম্পর্কে</a></li>
-    <li><a href="index.html#members" data-i18n="nav_members">মেম্বার</a></li>
-    <li><a href="index.html#emergency" data-i18n="nav_emergency">জরুরি সেবা</a></li>
-    <li><a href="index.html#services" data-i18n="nav_services">সেবাসমূহ</a></li>
-    <li><a href="index.html#gallery" data-i18n="nav_gallery">গ্যালারি</a></li>
-    <li><a href="index.html#contact" data-i18n="nav_contact">যোগাযোগ</a></li>
-    <li><a href="index.html#contact" class="nav-donate-btn" data-i18n="nav_donate">সহযোগিতা করুন</a></li>
-  </ul>
-  <div class="lang-toggle">
-    <button type="button" class="lang-btn active" data-lang="bn">বাংলা</button>
-    <button type="button" class="lang-btn" data-lang="en">EN</button>
-  </div>
-  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
-    <span></span><span></span><span></span>
-  </div>
-</nav>
 
 <!-- ══ HERO ══ -->
 <section class="hero" id="home">
@@ -422,9 +386,8 @@
     <!-- STATS -->
     <div class="stats-row" id="statsRow"></div>
 
-    <!-- FILTER -->
+    <!-- FILTER — search removed, only blood group + availability toggle -->
     <div class="filter-wrap">
-      <input class="filter-search" type="text" id="searchInput" placeholder="🔍 ডোনারের নাম বা মোবাইল নম্বর দিয়ে খুঁজুন..." oninput="render()" />
       <div class="filter-row">
         <span class="filter-lbl">রক্তের গ্রুপ:</span>
         <div id="bgBtns"></div>
@@ -439,40 +402,12 @@
     <div class="donors-grid" id="donorsGrid"></div>
   </div>
 
-
   <div class="footer-admin">
     <a href="admin.html">⚙ Admin Panel</a>
   </div>
 </div>
 
 <script>
-  const translations = {
-    bn: {
-      nav_home: 'হোম',
-      nav_about: 'আমাদের সম্পর্কে',
-      nav_members: 'মেম্বার',
-      nav_services: 'সেবাসমূহ',
-      nav_gallery: 'গ্যালারি',
-      nav_contact: 'যোগাযোগ',
-      nav_emergency: 'জরুরি সেবা',
-      nav_donate: 'সহযোগিতা করুন',
-      org_name: 'তরুণ প্রয়াস',
-      org_tagline: 'মানব কল্যাণ সংস্থা',
-    },
-    en: {
-      nav_home: 'Home',
-      nav_about: 'About',
-      nav_members: 'Members',
-      nav_services: 'Services',
-      nav_gallery: 'Gallery',
-      nav_contact: 'Contact',
-      nav_emergency: 'Emergency',
-      nav_donate: 'Support Us',
-      org_name: 'Tarun Proyash',
-      org_tagline: 'Human Welfare Organization',
-    }
-  };
-
   function applyTranslations(lang) {
     localStorage.setItem('selectedLanguage', lang);
     document.querySelectorAll('[data-i18n]').forEach(el => {
@@ -502,24 +437,20 @@
     btn.addEventListener('click', () => applyTranslations(btn.dataset.lang));
   });
 
-  // Load saved language or default to 'bn'
   const savedLang = localStorage.getItem('selectedLanguage') || 'bn';
   applyTranslations(savedLang);
 
-  // Mobile menu
   function toggleMenu() {
     const links = document.getElementById('navLinks');
     links.classList.toggle('open');
   }
 
-  // Close menu on link click
   document.querySelectorAll('.nav-links a').forEach(link => {
     link.addEventListener('click', () => {
       document.getElementById('navLinks').classList.remove('open');
     });
   });
 
-  // Existing script for blood drive
   const DONORS_KEY = 'tp_blood_donors';
   const INFO_KEY   = 'tp_blood_info';
   let selBG = '', onlyAvail = false;
@@ -551,7 +482,6 @@
 
   function render(){
     const donors=getDonors();
-    const search=document.getElementById('searchInput').value.toLowerCase();
     const avCount=donors.filter(isAvail).length;
     const groups=[...new Set(donors.map(d=>d.blood))];
 
@@ -568,11 +498,10 @@
       bgBtns.innerHTML+=`<button class="bg-btn ${selBG===g?'active':''}" onclick="setBG('${g}',this)">${g}</button>`;
     });
 
-    // filter
+    // filter — no search, only blood group + availability
     let list=donors;
     if(selBG) list=list.filter(d=>d.blood===selBG);
     if(onlyAvail) list=list.filter(d=>isAvail(d));
-    if(search) list=list.filter(d=>d.name.toLowerCase().includes(search)||d.phone.includes(search));
 
     const grid=document.getElementById('donorsGrid');
     if(!list.length){
@@ -603,10 +532,14 @@
   // load page info
   (function(){
     const info=getInfo();
-    if(info.initiative) document.getElementById('initiativeText').textContent=info.initiative;
+    if(info.initiative && document.getElementById('initiativeText')) {
+      document.getElementById('initiativeText').textContent=info.initiative;
+    }
   })();
 
+  // Render all donors immediately on page load
   render();
+
   // re-render if admin changes data in another tab
   window.addEventListener('storage',()=>render());
 </script>
