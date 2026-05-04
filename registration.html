@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>সদস্য নিবন্ধন</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background: linear-gradient(120deg,#00c9a7,#845ec2);
+  color: white;
+  text-align: center;
+}
+
+/* 🔙 Back Button */
+.back-btn {
+  position: absolute;
+  left: 20px;
+  top: 20px;
+  padding: 8px 15px;
+  background: rgba(255,255,255,0.2);
+  border: none;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  transition: 0.3s;
+}
+
+.back-btn:hover {
+  background: rgba(255,255,255,0.4);
+}
+
+/* 🎥 Video Section */
+.video-container {
+  padding: 20px;
+}
+
+video {
+  width: 90%;
+  max-width: 500px;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+/* 🧾 Card */
+.card {
+  margin: 40px auto;
+  padding: 30px;
+  width: 320px;
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(15px);
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+/* 🔥 Button */
+.btn {
+  padding: 12px 25px;
+  background: #00c9a7;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background: #00a884;
+  transform: scale(1.05);
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🔙 Back Button -->
+<button class="back-btn" onclick="goBack()">⬅ ফিরে যাও</button>
+
+<h1>📋 সদস্য নিবন্ধন</h1>
+
+<!-- 🎥 Instruction Video -->
+<div class="video-container">
+  <h3>কিভাবে নিবন্ধন করবেন</h3>
+  <video controls muted playsinline>
+    <source src="director.mp4" type="video/mp4">
+    আপনার ব্রাউজার ভিডিও সাপোর্ট করে না
+  </video>
+</div>
+
+<!-- 🧾 Registration Card -->
+<div class="card">
+  <h2>সদস্য হতে চান?</h2>
+  <p>নিচের বাটনে ক্লিক করে নিবন্ধন করুন</p>
+
+  <button class="btn" onclick="openForm()">
+    📝 Registration করুন
+  </button>
+</div>
+
+<script>
+// 🔙 Back Function
+function goBack(){
+  window.history.back();
+}
+
+// 🔗 Open Google Form
+function openForm(){
+  window.open("https://forms.gle/q5MePEZMXHUkwEfAA", "_blank");
+}
+</script>
+
+</body>
+</html>
